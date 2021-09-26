@@ -1,9 +1,12 @@
 import {FC} from 'react';
+import {BoardListItemProps} from "../../../types/board";
 
-const BoardListItem: FC = () => {
+import './board-list-item.css';
+
+const BoardListItem: FC<BoardListItemProps> = ({name}) => {
     return (
-        <div>
-            BoardListItem works!
+        <div className="board-list-item">
+            {name}
         </div>
     );
 };

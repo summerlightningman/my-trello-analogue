@@ -23,4 +23,8 @@ export interface BoardState {
     boardList: Board[]
 }
 
+export interface BoardListItemProps {
+    name: BoardName
+}
+
 export type BoardAction = SetBoardAction | AddBoardAction

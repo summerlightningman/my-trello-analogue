@@ -4,8 +4,9 @@ import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {Board} from "../../types/board";
 import BoardListItem from "./board-list-item/board-list-item";
 
-import './board-list.css';
 import BoardListItemAdd from "./board-list-item-add/board-list-item-add";
+
+import './board-list.css';
 
 const BoardList: FC = () => {
     const {boardList} = useTypedSelector(state => state.board);

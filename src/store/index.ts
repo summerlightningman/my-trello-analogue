@@ -1,7 +1,5 @@
-import {combineReducers, createStore} from "redux";
-import {boardReducer} from "./reducers/boardReducer";
+import {createStore} from "redux";
+import {rootReducer} from "./reducers/rootReducer";
 
 
-export const store = createStore(combineReducers({
-    board: boardReducer
-}));
+export const store = createStore(rootReducer);

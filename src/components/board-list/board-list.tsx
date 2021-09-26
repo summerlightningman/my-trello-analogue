@@ -1,4 +1,4 @@
-import {FC, MouseEventHandler} from 'react';
+import {FC} from 'react';
 
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {Board} from "../../types/board";

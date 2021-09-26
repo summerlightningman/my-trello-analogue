@@ -5,17 +5,14 @@ import {Board} from "../../types/board";
 import BoardListItem from "./board-list-item/board-list-item";
 
 import './board-list.css';
+import BoardListItemAdd from "./board-list-item-add/board-list-item-add";
 
 const BoardList: FC = () => {
     const {boardList} = useTypedSelector(state => state.board);
 
-    const addBoard: MouseEventHandler = () => {
-
-    };
-
     return (
         <div className="board-list">
-            <button onClick={addBoard}>Добавить доску</button>
+            <BoardListItemAdd/>
             {boardList.map(({name}: Board) => <BoardListItem name={name}/>)}
         </div>
     );

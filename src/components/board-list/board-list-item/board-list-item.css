@@ -6,9 +6,17 @@
     border: 1px solid #0003;
     border-radius: 10px;
 
+    font-size: 2rem;
+
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+}
+
+.board-list-item_card {
+    background: #00b1ff;
+    color: white;
+    cursor: pointer;
 }
 

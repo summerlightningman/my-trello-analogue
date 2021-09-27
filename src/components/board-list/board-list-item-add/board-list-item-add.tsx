@@ -21,6 +21,8 @@ const BoardListItemAdd: FC = () => {
     const addBoard: MouseEventHandler<HTMLButtonElement> = () => {
         const board: Board = {name: newBoardName};
         dispatch({type: BoardActionTypes.ADD_BOARD, payload: board});
+        dispatch({type: BoardActionTypes.SET_NEW_BOARD_NAME, payload: ''});
+        dispatch({type: BoardActionTypes.SWITCH_ADDING_STATE, payload: false});
     };
 
     const input = <>

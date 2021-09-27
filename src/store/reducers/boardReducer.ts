@@ -9,7 +9,7 @@ const initialState: BoardState = {
 export const boardReducer = (state = initialState, action: BoardAction): BoardState => {
     switch (action.type) {
         case BoardActionTypes.ADD_BOARD:
-            return {...state, boardList: [...state.boardList, action.payload], isAddingBoard: false, newBoardName: ''}
+            return {...state, boardList: [action.payload, ...state.boardList]}
         case BoardActionTypes.SWITCH_ADDING_STATE:
             return {...state, isAddingBoard: !state.isAddingBoard}
         case BoardActionTypes.SET_NEW_BOARD_NAME:

@@ -28,8 +28,8 @@ const BoardListItemAdd: FC = () => {
     const input = <>
         <input type="text" value={newBoardName} onInput={handleInput} className="board-list-item-add__input"/>
         <div className="buttons-panel">
-            <button onClick={addBoard} disabled={!newBoardName}>Добавить</button>
-            <button onClick={switchState}>Отмена</button>
+            <button onClick={addBoard} disabled={!newBoardName} className="buttons-panel__btn">Добавить</button>
+            <button onClick={switchState} className="buttons-panel__btn">Отмена</button>
         </div>
     </>;
 

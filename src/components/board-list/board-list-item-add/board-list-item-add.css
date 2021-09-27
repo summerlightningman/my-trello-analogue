@@ -33,6 +33,19 @@
     margin-bottom: 20px;
 }
 
+.buttons-panel__btn {
+    border: none;
+    padding: 0;
+    background: transparent;
+    color: #0098dd;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.buttons-panel__btn:disabled {
+    color: #00aeff;
+}
+
 .buttons-panel > button:enabled {
     cursor: pointer;
 }

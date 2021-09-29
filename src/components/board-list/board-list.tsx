@@ -6,6 +6,8 @@ import BoardListItem from "./board-list-item/board-list-item";
 
 import BoardListItemAdd from "./board-list-item-add/board-list-item-add";
 
+import {Link} from "react-router-dom";
+
 import './board-list.css';
 
 const BoardList: FC = () => {
@@ -14,7 +16,7 @@ const BoardList: FC = () => {
     return (
         <div className="board-list">
             <BoardListItemAdd/>
-            {boardList.map(({name}: Board) => <BoardListItem name={name}/>)}
+            {boardList.map(({id, name}: Board) => <Link to={'/board/' + id} className="nolink"><BoardListItem name={name}/></Link>)}
         </div>
     );
 };

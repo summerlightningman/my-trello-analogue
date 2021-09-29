@@ -7,7 +7,7 @@ import {Board, BoardActionTypes} from "../../../types/board";
 import './board-list-item-add.css';
 
 const BoardListItemAdd: FC = () => {
-    const {isAddingBoard, newBoardName} = useTypedSelector(state => state.board);
+    const {isAddingBoard, newBoardName, boardList} = useTypedSelector(state => state.board);
     const dispatch = useDispatch();
 
     const switchState: MouseEventHandler<HTMLButtonElement> = () =>
@@ -19,7 +19,10 @@ const BoardListItemAdd: FC = () => {
     const button = <button onClick={switchState} className="board-list-item-add__btn">Добавить</button>;
 
     const addBoard: MouseEventHandler<HTMLButtonElement> = () => {
-        const board: Board = {name: newBoardName};
+        const board: Board = {
+            id: boardList.length + 1,
+            name: newBoardName
+        };
         dispatch({type: BoardActionTypes.ADD_BOARD, payload: board});
         dispatch({type: BoardActionTypes.SET_NEW_BOARD_NAME, payload: ''});
         dispatch({type: BoardActionTypes.SWITCH_ADDING_STATE, payload: false});

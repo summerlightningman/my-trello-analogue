@@ -7,3 +7,7 @@
 .content {
     padding: 0 10%;
 }
+
+.nolink {
+    text-decoration: none;
+}

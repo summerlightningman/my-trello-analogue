@@ -1,4 +1,5 @@
 type BoardName = string;
+type BoardID = number;
 
 export enum BoardActionTypes {
     SET_BOARD = 'SET_BOARD',
@@ -27,6 +28,7 @@ interface SetNewBoardName {
 }
 
 export interface Board {
+    id: BoardID,
     name: BoardName
 }
 

@@ -1,7 +1,8 @@
 import {FC, MouseEventHandler} from 'react';
 
-import './board.css';
 import {useHistory} from "react-router-dom";
+
+import './board.css';
 
 const Board: FC = () => {
     const history = useHistory();

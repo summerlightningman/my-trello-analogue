@@ -1,9 +1,18 @@
-import './board.css';
+import {FC, MouseEventHandler} from 'react';
 
-const Board = () => {
+import './board.css';
+import {useHistory} from "react-router-dom";
+
+const Board: FC = () => {
+    const history = useHistory();
+
+    const back: MouseEventHandler  = () => {
+        history.goBack();
+    }
+
     return (
-        <div>
-            Board works!
+        <div className="board">
+            <button className="buttons-panel__btn" onClick={back}>Назад</button>
         </div>
     );
 };

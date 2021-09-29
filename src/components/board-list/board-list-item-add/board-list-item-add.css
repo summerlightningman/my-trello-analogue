@@ -40,10 +40,12 @@
     color: #0098dd;
     font-weight: bold;
     font-size: 1rem;
+    cursor: pointer;
 }
 
 .buttons-panel__btn:disabled {
     color: #00aeff;
+    cursor: default;
 }
 
 .buttons-panel > button:enabled {

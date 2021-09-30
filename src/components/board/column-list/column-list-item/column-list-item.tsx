@@ -6,7 +6,7 @@ import './column-list-item.css';
 
 const ColumnListItem: FC<ColumnListItemProps> = ({name}) => {
     return (
-        <div>
+        <div className="column-list-item ">
             {name}
         </div>
     );

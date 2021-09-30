@@ -4,8 +4,8 @@ import './column-list-item-add.css';
 
 const ColumnListItemAdd: FC = () => {
     return (
-        <div>
-            Column list item add
+        <div className="column-list-item column-list-item-add">
+            Column list item add works!
         </div>
     );
 };

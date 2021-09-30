@@ -3,9 +3,10 @@ import {FC} from "react";
 import BoardList from "../board-list/board-list";
 
 import {BrowserRouter as Router, Route} from "react-router-dom";
+import Board from "../board/board";
 
 import './App.css';
-import Board from "../board/board";
+
 
 const App: FC = () => {
     return <>
@@ -13,7 +14,7 @@ const App: FC = () => {
         <main className="content">
             <Router>
                 <Route path="/" exact><BoardList/></Route>
-                <Route path="/board/1"><Board/></Route>
+                <Route path="/board/:id"><Board/></Route>
             </Router>
         </main>
     </>;

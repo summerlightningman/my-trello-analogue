@@ -1,4 +1,4 @@
-import {BoardAction, BoardActionTypes, BoardState} from "../../types/board";
+import {BoardAction, BoardActionTypes, BoardState} from "../types/board";
 
 const initialState: BoardState = {
     boardList: [],

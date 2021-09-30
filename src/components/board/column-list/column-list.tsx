@@ -4,8 +4,8 @@ import './column-list.css';
 
 const ColumnList: FC = () => {
     return (
-        <div>
-
+        <div className="column-list">
+            ColumnList works!
         </div>
     );
 };

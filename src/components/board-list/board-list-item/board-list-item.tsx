@@ -1,5 +1,5 @@
 import {FC} from 'react';
-import {BoardListItemProps} from "../../../types/board";
+import {BoardListItemProps} from "../../../store/types/board";
 
 import './board-list-item.css';
 

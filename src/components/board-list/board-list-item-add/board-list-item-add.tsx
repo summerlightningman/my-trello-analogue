@@ -2,9 +2,11 @@ import {FC, FormEventHandler, MouseEventHandler} from 'react';
 
 import {useTypedSelector} from "../../../hooks/useTypedSelector";
 import {useDispatch} from "react-redux";
-import {Board, BoardActionTypes} from "../../../store/types/board";
+import {BoardActionTypes} from "../../../store/types/board";
+import {Board} from "../../../types/board";
 
 import './board-list-item-add.css';
+
 
 const BoardListItemAdd: FC = () => {
     const {isAddingBoard, newBoardName, boardList} = useTypedSelector(state => state.board);
@@ -19,10 +21,7 @@ const BoardListItemAdd: FC = () => {
     const button = <button onClick={switchState} className="board-list-item-add__btn">Добавить</button>;
 
     const addBoard: MouseEventHandler<HTMLButtonElement> = () => {
-        const board: Board = {
-            id: boardList.length + 1,
-            name: newBoardName
-        };
+        const board: Board = new Board(boardList.length, newBoardName);
         dispatch({type: BoardActionTypes.ADD_BOARD, payload: board});
         dispatch({type: BoardActionTypes.SET_NEW_BOARD_NAME, payload: ''});
         dispatch({type: BoardActionTypes.SWITCH_ADDING_STATE, payload: false});

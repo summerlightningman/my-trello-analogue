@@ -4,8 +4,8 @@ export type BoardName = string;
 export type BoardID = number;
 
 export class Board {
-    id: BoardID;
-    name: BoardName;
+    readonly id: BoardID;
+    readonly name: BoardName;
     columns: Column[];
 
     constructor(id: ColumnId, name: BoardName) {

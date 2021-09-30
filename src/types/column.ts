@@ -2,8 +2,8 @@ export type ColumnName = string;
 export type ColumnId = number;
 
 export class Column {
-    name: ColumnName;
-    id: ColumnId;
+    readonly id: ColumnId;
+    readonly name: ColumnName;
     cards: number[]; // switch to Card
 
     constructor(id: ColumnId, name: ColumnName) {

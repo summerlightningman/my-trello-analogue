@@ -1,12 +1,15 @@
 import {FC} from 'react';
 
-import './column-list.css';
 import {ColumnListProps} from "../../../types/column";
+import ColumnListItemAdd from "./column-list-item-add/column-list-item-add";
 
-const ColumnList: FC<ColumnListProps> = (items) => {
+import './column-list.css';
+
+const ColumnList: FC<ColumnListProps> = ({items}) => {
     return (
         <div className="column-list">
-            ColumnList works!
+            <ColumnListItemAdd/>
+            {items.map(column => column.name)}
         </div>
     );
 };

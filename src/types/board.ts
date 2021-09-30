@@ -2,15 +2,20 @@ import {Column, ColumnId} from "./column";
 
 export type BoardName = string;
 export type BoardID = number;
+export type ColumnList = Column[];
 
 export class Board {
     readonly id: BoardID;
     readonly name: BoardName;
-    columns: Column[];
+    columnList: ColumnList;
 
     constructor(id: ColumnId, name: BoardName) {
         this.id = id;
         this.name = name;
-        this.columns = [];
+        this.columnList = [];
     }
+}
+
+export interface BoardListItemProps {
+    name: BoardName
 }

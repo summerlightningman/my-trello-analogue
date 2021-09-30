@@ -33,8 +33,6 @@ export interface BoardState {
     isAddingBoard: boolean
 }
 
-export interface BoardListItemProps {
-    name: BoardName
-}
+
 
 export type BoardAction = SetBoardAction | AddBoardAction | SwitchAddingState | SetNewBoardName

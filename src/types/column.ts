@@ -4,7 +4,7 @@ export type ColumnId = number;
 export class Column {
     readonly id: ColumnId;
     readonly name: ColumnName;
-    cards: number[]; // switch to Card
+    cards: number[];
 
     constructor(id: ColumnId, name: ColumnName) {
         this.name = name;

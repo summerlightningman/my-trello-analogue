@@ -18,7 +18,7 @@ const BoardListItemAdd: FC = () => {
     const handleInput: FormEventHandler<HTMLInputElement> = e =>
         dispatch({type: BoardActionTypes.SET_NEW_BOARD_NAME, payload: e.currentTarget.value});
 
-    const button = <button onClick={switchState} className="board-list-item-add__btn">Добавить</button>;
+    const button = <button onClick={switchState} className="board-list-item-add__btn">Add board</button>;
 
     const addBoard: MouseEventHandler<HTMLButtonElement> = () => {
         const board: Board = new Board(boardList.length, newBoardName);
@@ -30,8 +30,8 @@ const BoardListItemAdd: FC = () => {
     const input = <>
         <input type="text" value={newBoardName} onInput={handleInput} className="board-list-item-add__input"/>
         <div className="buttons-panel">
-            <button onClick={addBoard} disabled={!newBoardName} className="buttons-panel__btn">Добавить</button>
-            <button onClick={switchState} className="buttons-panel__btn">Отмена</button>
+            <button onClick={addBoard} disabled={!newBoardName} className="buttons-panel__btn">Add</button>
+            <button onClick={switchState} className="buttons-panel__btn">Cancel</button>
         </div>
     </>;
 

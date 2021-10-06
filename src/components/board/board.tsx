@@ -24,7 +24,7 @@ const Board: FC = () => {
         <div className="board">
             <div>
                 <h2>Board: {board.name}</h2>
-                <button className="buttons-panel__btn" onClick={back}>Назад</button>
+                <button className="buttons-panel__btn" onClick={back}>Back</button>
             </div>
             <ColumnList items={board.columnList}/>
         </div>

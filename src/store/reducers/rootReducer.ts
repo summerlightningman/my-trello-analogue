@@ -1,10 +1,10 @@
 import {combineReducers} from "redux";
 import {boardReducer} from "./boardReducer";
-import {interfaceReducer} from "./interfaceReducer";
+import {guiReducer} from "./guiReducer";
 
 export const rootReducer = combineReducers({
-    board: boardReducer,
-    interface: interfaceReducer
+    gui: guiReducer,
+    board: boardReducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

@@ -6,11 +6,13 @@ import {BrowserRouter as Router, Route} from "react-router-dom";
 import Board from "../board/board";
 
 import './App.css';
+import {useTypedSelector} from "../../hooks/useTypedSelector";
 
 
 const App: FC = () => {
+    const {title} = useTypedSelector(state => state.gui);
     return <>
-        <h1 className="header">My Trello Analogue</h1>
+        <h1 className="header">{title}</h1>
         <main className="content">
             <Router>
                 <Route path="/" exact><BoardList/></Route>

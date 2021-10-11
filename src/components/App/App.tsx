@@ -10,9 +10,10 @@ import {useTypedSelector} from "../../hooks/useTypedSelector";
 
 
 const App: FC = () => {
-    const {title} = useTypedSelector(state => state.gui);
+    const {windowTitle} = useTypedSelector(state => state.board);
+
     return <>
-        <h1 className="header">{title}</h1>
+        <h1 className="header">{windowTitle}</h1>
         <main className="content">
             <Router>
                 <Route path="/" exact><BoardList/></Route>

@@ -8,7 +8,7 @@ import {GuiActionType} from "../../../../store/types/gui";
 import './column-list-item-add.css';
 
 const ColumnListItemAdd: FC = () => {
-    const {isAddingColumn} = useTypedSelector(state => state.gui);
+    const {isAddingColumn} = useTypedSelector(state => state.board);
     const dispatch = useDispatch();
 
     const switchIsAddingColumn: MouseEventHandler<HTMLButtonElement> = () =>

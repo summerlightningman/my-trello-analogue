@@ -5,28 +5,24 @@ import {useDispatch} from "react-redux";
 import {BoardActionTypes} from "../../../store/types/board";
 import {Board} from "../../../types/board";
 
-import {GuiActionType} from "../../../store/types/gui";
-
 import './board-list-item-add.css';
 
 const BoardListItemAdd: FC = () => {
-    const [newBoardName, boardList] = useTypedSelector(({board}) =>
-        [board.newBoardName, board.boardList]);
-    const {isAddingBoard} = useTypedSelector(state => state.gui);
+    const {newBoardName, boardList, isAddingBoard} = useTypedSelector(state => state.board);
 
     const dispatch = useDispatch();
 
     const switchState: MouseEventHandler<HTMLButtonElement> = () =>
-        dispatch({type: GuiActionType.SWITCH_IS_ADDING_BOARD});
+        dispatch({type: BoardActionTypes.SWITCH_IS_ADDING_BOARD, payload: !isAddingBoard});
 
-    const handleInput: FormEventHandler<HTMLInputElement> = e =>
+    const handleInput:  FormEventHandler<HTMLInputElement> = e =>
         dispatch({type: BoardActionTypes.SET_NEW_BOARD_NAME, payload: e.currentTarget.value});
 
     const addBoard: MouseEventHandler<HTMLButtonElement> = () => {
         const board: Board = new Board(boardList.length, newBoardName);
         dispatch({type: BoardActionTypes.ADD_BOARD, payload: board});
         dispatch({type: BoardActionTypes.SET_NEW_BOARD_NAME, payload: ''});
-        dispatch({type: GuiActionType.SWITCH_IS_ADDING_BOARD, payload: false});
+        dispatch({type: BoardActionTypes.SWITCH_IS_ADDING_BOARD, payload: false});
     };
 
     const button = <button onClick={switchState} className="board-list-item-add__btn">Add board</button>;

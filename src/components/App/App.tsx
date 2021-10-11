@@ -5,9 +5,9 @@ import BoardList from "../board-list/board-list";
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import Board from "../board/board";
 
-import './App.css';
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 
+import './App.css';
 
 const App: FC = () => {
     const {windowTitle} = useTypedSelector(state => state.board);

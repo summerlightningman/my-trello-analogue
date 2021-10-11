@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import {FC, useEffect} from 'react';
 
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 import BoardListItem from "./board-list-item/board-list-item";
@@ -8,10 +8,18 @@ import BoardListItemAdd from "./board-list-item-add/board-list-item-add";
 import {Link} from "react-router-dom";
 
 import './board-list.css';
+import {useDispatch} from "react-redux";
+import {BoardActionTypes} from "../../store/types/board";
 
 
 const BoardList: FC = () => {
     const {boardList} = useTypedSelector(state => state.board);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+            dispatch({type: BoardActionTypes.SET_WINDOW_TITLE, payload: 'My Trello Analogue'})
+        },
+        [dispatch]);
 
     return (
         <div className="board-list">

@@ -23,7 +23,7 @@ const BoardList: FC = () => {
 
     return (
         <div className="board-list">
-            <BoardListItemAdd/>
+            <BoardListItemAdd />
             {
                 boardList.map(
                     ({id, name}: Board) =>

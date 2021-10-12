@@ -2,4 +2,12 @@
     width: 280px;
     border: 1px solid #0003;
     border-radius: 10px;
+    margin-right: 10px;
+}
+
+.column-list-item__name {
+    text-align: center;
+    width: 100%;
+    display: block;
+    font-size: 1.5rem;
 }

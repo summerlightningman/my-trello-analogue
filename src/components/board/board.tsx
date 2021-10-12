@@ -24,16 +24,14 @@ const Board: FC = () => {
         },
         [board.name, dispatch]);
 
-    const back: MouseEventHandler = () => {
-        history.goBack();
-    }
+    const back: MouseEventHandler = () => history.goBack();
 
     return (
         <div className="board">
             <div>
                 <button className="buttons-panel__btn" onClick={back}>Back</button>
             </div>
-            <ColumnList items={board.columnList}/>
+            <ColumnList board={board}/>
         </div>
     );
 };

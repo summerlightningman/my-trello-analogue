@@ -1,19 +1,26 @@
-import {Board, BoardName} from "../../types/board";
-import {ColumnName} from "../../types/column";
+import {Board, BoardID, BoardName} from "../../types/board";
+import {Column, ColumnName} from "../../types/column";
 
 
 export enum BoardActionTypes {
     ADD_BOARD = 'ADD_BOARD',
+    ADD_COLUMN = 'ADD_COLUMN',
     SET_WINDOW_TITLE = 'SET_WINDOW_TITLE',
     SET_NEW_BOARD_NAME = 'SET_NEW_BOARD_NAME',
     SET_NEW_COLUMN_NAME = 'SET_NEW_COLUMN_NAME',
     SWITCH_IS_ADDING_COLUMN = 'SWITCH_IS_ADDING_COLUMN',
-    SWITCH_IS_ADDING_BOARD = 'SWITCH_IS_ADDING_BOARD'
+    SWITCH_IS_ADDING_BOARD = 'SWITCH_IS_ADDING_BOARD',
+
 }
 
 interface AddBoardAction {
     type: BoardActionTypes.ADD_BOARD,
     payload: Board
+}
+
+interface AddColumnAction {
+    type: BoardActionTypes.ADD_COLUMN,
+    payload: [BoardID, Column]
 }
 
 interface SetWindowTitleAction {
@@ -53,6 +60,7 @@ export interface BoardState {
 
 export type BoardAction =
     AddBoardAction
+    | AddColumnAction
     | SetNewBoardNameAction
     | SetNewColumnNameAction
     | SwitchIsAddingBoardAction

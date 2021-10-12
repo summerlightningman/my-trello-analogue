@@ -13,6 +13,14 @@ export const boardReducer = (state = initialState, action: BoardAction): BoardSt
     switch (action.type) {
         case BoardActionTypes.ADD_BOARD:
             return {...state, boardList: [action.payload, ...state.boardList]}
+        case BoardActionTypes.ADD_COLUMN:
+            const [boardId, column] = action.payload;
+            const [board,] = state.boardList.filter(board => board.id === boardId);
+            const listWithoutBoard = state.boardList.filter(board => board.id !== boardId);
+            board.columnList = [column, ...board.columnList];
+            const newBoardList = [board, ...listWithoutBoard]
+                .sort((left, right) => left.id - right.id);
+            return {...state, boardList: newBoardList}
         case BoardActionTypes.SET_WINDOW_TITLE:
             return {...state, windowTitle: action.payload}
         case BoardActionTypes.SET_NEW_BOARD_NAME:

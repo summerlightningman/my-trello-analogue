@@ -1,4 +1,4 @@
-import {ColumnList} from "./board";
+import {Board} from "./board";
 
 export type ColumnName = string;
 export type ColumnId = number;
@@ -17,9 +17,13 @@ export class Column {
 }
 
 export interface ColumnListProps {
-    items: ColumnList
+    board: Board
 }
 
 export interface ColumnListItemProps {
     name: ColumnName
+}
+
+export interface ColumnListItemAddProps {
+    board: Board
 }

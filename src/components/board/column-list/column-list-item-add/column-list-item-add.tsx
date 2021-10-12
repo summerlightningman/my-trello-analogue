@@ -2,11 +2,13 @@ import {FC, FormEventHandler, MouseEventHandler} from 'react';
 
 import {useTypedSelector} from "../../../../hooks/useTypedSelector";
 import {useDispatch} from "react-redux";
+import {AiOutlinePlus} from "react-icons/all";
 
 import {BoardActionTypes} from "../../../../store/types/board";
 import {Column, ColumnListItemAddProps} from "../../../../types/column";
 
 import './column-list-item-add.css';
+
 
 const ColumnListItemAdd: FC<ColumnListItemAddProps> = ({board}) => {
     const {isAddingColumn, newColumnName} = useTypedSelector(state => state.board);
@@ -25,10 +27,10 @@ const ColumnListItemAdd: FC<ColumnListItemAddProps> = ({board}) => {
         dispatch({type: BoardActionTypes.SWITCH_IS_ADDING_COLUMN, payload: false});
     };
 
-    const button = <button onClick={switchIsAddingColumn}>Add column</button>;
+    const button = <button onClick={switchIsAddingColumn} className="column-list-item-add__btn"><AiOutlinePlus/></button>;
 
     const input = <>
-        <input type="text" onInput={handleInput} value={newColumnName}/>
+        <input type="text" onInput={handleInput} value={newColumnName} className="column-list-item-add__input"/>
         <div className="buttons-panel">
             <button className="buttons-panel__btn" onClick={addColumn} disabled={!newColumnName}>Add</button>
             <button className="buttons-panel__btn" onClick={switchIsAddingColumn}>Cancel</button>

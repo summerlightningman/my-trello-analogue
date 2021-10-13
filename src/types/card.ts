@@ -16,3 +16,7 @@ export class Card {
 export interface CardListProps {
     cardList: CardList
 }
+
+export interface CardListItemProps {
+    card: Card
+}

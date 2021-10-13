@@ -29,7 +29,7 @@ export interface ColumnListProps {
 }
 
 export interface ColumnListItemProps {
-    name: ColumnName
+    column: Column
 }
 
 export interface ColumnListItemAddProps {

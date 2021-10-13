@@ -41,6 +41,11 @@
     font-weight: bold;
     font-size: 1rem;
     cursor: pointer;
+    outline: none;
+}
+
+.buttons-panel__btn:active {
+    color: black;
 }
 
 .buttons-panel__btn:disabled {

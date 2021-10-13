@@ -19,6 +19,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    outline: none;
 }
 
 .column-list-item-add__input {

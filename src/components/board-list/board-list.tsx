@@ -1,16 +1,15 @@
 import {FC, useEffect} from 'react';
-
+import {Link} from "react-router-dom";
+import {useDispatch} from "react-redux";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
+
 import BoardListItem from "./board-list-item/board-list-item";
-import {Board} from "../../types/board";
 import BoardListItemAdd from "./board-list-item-add/board-list-item-add";
 
-import {Link} from "react-router-dom";
-
-import './board-list.css';
-import {useDispatch} from "react-redux";
+import {Board} from "../../types/board";
 import {BoardActionTypes} from "../../store/types/board";
 
+import './board-list.css';
 
 const BoardList: FC = () => {
     const {boardList} = useTypedSelector(state => state.board);

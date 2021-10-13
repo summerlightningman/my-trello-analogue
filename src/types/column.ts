@@ -15,6 +15,13 @@ export class Column {
         this.id = id;
         this.cardList = [];
     }
+
+    addCard(card: Card) {
+        const column = new Column(this.id, this.name);
+        column.cardList = [card, ...column.cardList]
+            .sort((left: Card, right: Card) => left.id - right.id);
+        return column
+    }
 }
 
 export interface ColumnListProps {

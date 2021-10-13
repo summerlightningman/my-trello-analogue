@@ -17,8 +17,8 @@ export const boardReducer = (state = initialState, action: BoardAction): BoardSt
             const [boardId, column] = action.payload;
             const [board,] = state.boardList.filter(board => board.id === boardId);
             const listWithoutBoard = state.boardList.filter(board => board.id !== boardId);
-            board.columnList = [column, ...board.columnList];
-            const newBoardList = [board, ...listWithoutBoard]
+            const newBoard = board.addColumn(column);
+            const newBoardList = [newBoard, ...listWithoutBoard]
                 .sort((left, right) => left.id - right.id);
             return {...state, boardList: newBoardList}
         case BoardActionTypes.SET_WINDOW_TITLE:

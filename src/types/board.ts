@@ -14,6 +14,13 @@ export class Board {
         this.name = name;
         this.columnList = [];
     }
+
+    addColumn(column: Column) {
+        const board = new Board(this.id, this.name);
+        board.columnList = [column, ...this.columnList]
+            .sort((left: Column, right: Column) => left.id - right.id);
+        return board
+    }
 }
 
 export interface BoardListItemProps {

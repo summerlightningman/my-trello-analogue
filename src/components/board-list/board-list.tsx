@@ -23,13 +23,15 @@ const BoardList: FC = () => {
 
     return (
         <div className="board-list">
-            <BoardListItemAdd />
+            <BoardListItemAdd/>
             {
                 boardList.map(
                     ({id, name}: Board) =>
-                        <Link to={'/board/' + id} key={id} className="nolink">
-                            <BoardListItem name={name}/>
-                        </Link>
+                        <div className="board-list-item__wrapper">
+                            <Link to={'/board/' + id} key={id} className="nolink">
+                                <BoardListItem name={name}/>
+                            </Link>
+                        </div>
                 )
             }
         </div>

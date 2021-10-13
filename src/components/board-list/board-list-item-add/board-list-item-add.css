@@ -10,6 +10,11 @@
     color: white;
     font-size: 2rem;
     cursor: pointer;
+    outline: none;
+}
+
+.board-list-item-add__btn:hover {
+    color: #EEE;
 }
 
 .board-list-item-add__input {

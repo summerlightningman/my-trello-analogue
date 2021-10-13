@@ -35,8 +35,10 @@ const BoardListItemAdd: FC = () => {
     </>;
 
     return (
-        <div className="board-list-item board-list-item-add">
-            {isAddingBoard ? input : button}
+        <div className="board-list-item__wrapper">
+            <div className="board-list-item board-list-item-add">
+                {isAddingBoard ? input : button}
+            </div>
         </div>
     );
 };

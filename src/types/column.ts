@@ -1,8 +1,9 @@
 import {Board} from "./board";
+import {Card} from "./card";
 
 export type ColumnName = string;
 export type ColumnId = number;
-export type CardList = number[]; // todo: fix this later
+export type CardList = Card[];
 
 export class Column {
     readonly id: ColumnId;

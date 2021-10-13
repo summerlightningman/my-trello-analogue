@@ -8,6 +8,7 @@ import Board from "../board/board";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 
 import './App.css';
+import '../buttons-panel.css';
 
 const App: FC = () => {
     const {windowTitle} = useTypedSelector(state => state.board);

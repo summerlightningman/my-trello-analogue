@@ -27,7 +27,9 @@ const ColumnListItemAdd: FC<ColumnListItemAddProps> = ({board}) => {
         dispatch({type: BoardActionTypes.SWITCH_IS_ADDING_COLUMN, payload: false});
     };
 
-    const button = <button onClick={switchIsAddingColumn} className="column-list-item-add__btn"><AiOutlinePlus/></button>;
+    const button = <button onClick={switchIsAddingColumn} className="column-list-item-add__btn">
+        <AiOutlinePlus color="blue"/>
+    </button>;
 
     const input = <>
         <input type="text" onInput={handleInput} value={newColumnName} className="column-list-item-add__input"/>

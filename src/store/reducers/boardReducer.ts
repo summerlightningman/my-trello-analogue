@@ -5,8 +5,10 @@ const initialState: BoardState = {
     windowTitle: 'My Trello Analogue',
     newBoardName: '',
     newColumnName: '',
+    newCardName: '',
     isAddingBoard: false,
-    isAddingColumn: false
+    isAddingColumn: false,
+    isAddingCard: false
 }
 
 export const boardReducer = (state = initialState, action: BoardAction): BoardState => {
@@ -27,10 +29,15 @@ export const boardReducer = (state = initialState, action: BoardAction): BoardSt
             return {...state, newBoardName: action.payload}
         case BoardActionTypes.SET_NEW_COLUMN_NAME:
             return {...state, newColumnName: action.payload}
+        case BoardActionTypes.ADD_CARD:
+            // TODO: RELEASE THAT
+            return {...state}
         case BoardActionTypes.SWITCH_IS_ADDING_BOARD:
             return {...state, isAddingBoard: action.payload}
         case BoardActionTypes.SWITCH_IS_ADDING_COLUMN:
             return {...state, isAddingColumn: action.payload}
+        case BoardActionTypes.SWITCH_IS_ADDING_CARD:
+            return {...state, isAddingCard: action.payload}
         default:
             return initialState
     }

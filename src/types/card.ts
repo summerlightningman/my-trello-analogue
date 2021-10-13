@@ -1,3 +1,5 @@
+import {CardList} from "./column";
+
 export type CardID = number;
 export type CardName = string;
 
@@ -9,4 +11,8 @@ export class Card {
         this.id = id;
         this.name = name;
     }
+}
+
+export interface CardListProps {
+    cardList: CardList
 }

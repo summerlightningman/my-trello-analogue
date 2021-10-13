@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FormEventHandler, KeyboardEventHandler} from 'react';
 
 import './card-list-item-add.css';
 import {useTypedSelector} from "../../../../../hooks/useTypedSelector";
@@ -12,9 +12,19 @@ const CardListItemAdd = () => {
     const switchIsAddingCard = () =>
         dispatch({action: BoardActionTypes.SWITCH_IS_ADDING_CARD, payload: !isAddingCard});
 
+    const addBoard = () => {
+        // TODO: FINISH WRITE THIS
+        dispatch({action: BoardActionTypes.SET_NEW_CARD_NAME, payload: ''});
+        dispatch({action: BoardActionTypes.SWITCH_IS_ADDING_CARD, payload: false});
+    }
+
+    const handleInput: FormEventHandler<HTMLInputElement> = e =>
+        dispatch({action: BoardActionTypes.SET_NEW_CARD_NAME, payload: e.currentTarget.value});
+    const handleKeyPress: KeyboardEventHandler<HTMLInputElement> = e => e.key === 'Enter' && addBoard();
+
     const button = <button onClick={switchIsAddingCard}>Add card</button>;
     const input = <>
-        <input type="text"/>
+        <input type="text" value={newCardName} onInput={handleInput} onKeyPress={handleKeyPress}/>
         <div className="buttons-panel">
             <button className="buttons-panel__btn">Add</button>
             <button className="buttons-panel__btn" onClick={switchIsAddingCard}>Cancel</button>

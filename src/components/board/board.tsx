@@ -1,5 +1,5 @@
 import {FC, MouseEventHandler, useEffect} from 'react';
-import ColumnList from "./column-list/column-list";
+import ColumnList from "../column-list/column-list";
 
 import {useHistory} from "react-router-dom";
 

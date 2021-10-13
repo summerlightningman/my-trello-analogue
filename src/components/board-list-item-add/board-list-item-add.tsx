@@ -1,9 +1,9 @@
 import {FC, FormEventHandler, KeyboardEventHandler, MouseEventHandler} from 'react';
 
-import {useTypedSelector} from "../../../hooks/useTypedSelector";
+import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {useDispatch} from "react-redux";
-import {BoardActionTypes} from "../../../store/types/board";
-import {Board} from "../../../types/board";
+import {BoardActionTypes} from "../../store/types/board";
+import {Board} from "../../types/board";
 
 import './board-list-item-add.css';
 

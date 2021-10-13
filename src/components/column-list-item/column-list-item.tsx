@@ -1,9 +1,9 @@
 import {FC} from 'react';
 
-import {ColumnListItemProps} from "../../../../types/column";
+import {ColumnListItemProps} from "../../types/column";
 
 import './column-list-item.css';
-import CardList from "./card-list/card-list";
+import CardList from "../card-list/card-list";
 
 const ColumnListItem: FC<ColumnListItemProps> = ({column}) => {
     return (

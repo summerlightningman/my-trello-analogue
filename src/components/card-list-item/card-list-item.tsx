@@ -1,7 +1,7 @@
 import {FC} from 'react';
 
 import './card-list-item.css';
-import {CardListItemProps} from "../../../../../types/card";
+import {CardListItemProps} from "../../types/card";
 
 const CardListItem: FC<CardListItemProps> = ({card}) => {
     return (

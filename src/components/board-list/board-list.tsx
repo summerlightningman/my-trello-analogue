@@ -3,8 +3,8 @@ import {Link} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 
-import BoardListItem from "./board-list-item/board-list-item";
-import BoardListItemAdd from "./board-list-item-add/board-list-item-add";
+import BoardListItem from "../board-list-item/board-list-item";
+import BoardListItemAdd from "../board-list-item-add/board-list-item-add";
 
 import {Board} from "../../types/board";
 import {BoardActionTypes} from "../../store/types/board";

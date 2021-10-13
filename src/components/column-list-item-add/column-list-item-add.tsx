@@ -1,11 +1,11 @@
 import {FC, FormEventHandler, KeyboardEventHandler, MouseEventHandler} from 'react';
 
-import {useTypedSelector} from "../../../../hooks/useTypedSelector";
+import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {useDispatch} from "react-redux";
 import {AiOutlinePlus} from "react-icons/all";
 
-import {BoardActionTypes} from "../../../../store/types/board";
-import {Column, ColumnListItemAddProps} from "../../../../types/column";
+import {BoardActionTypes} from "../../store/types/board";
+import {Column, ColumnListItemAddProps} from "../../types/column";
 
 import './column-list-item-add.css';
 

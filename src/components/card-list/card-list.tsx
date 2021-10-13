@@ -1,6 +1,6 @@
 import {FC} from 'react';
 
-import {CardListProps} from "../../../../../types/card";
+import {CardListProps} from "../../types/card";
 
 import CardListItem from "../card-list-item/card-list-item";
 import CardListItemAdd from "../card-list-item-add/card-list-item-add";

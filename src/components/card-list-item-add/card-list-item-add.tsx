@@ -1,9 +1,9 @@
 import React, {FormEventHandler, KeyboardEventHandler, MouseEventHandler} from 'react';
 
 import './card-list-item-add.css';
-import {useTypedSelector} from "../../../../../hooks/useTypedSelector";
+import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {useDispatch} from "react-redux";
-import {BoardActionTypes} from "../../../../../store/types/board";
+import {BoardActionTypes} from "../../store/types/board";
 
 const CardListItemAdd = () => {
     const {isAddingCard, newCardName} = useTypedSelector(state => state.board);

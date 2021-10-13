@@ -1,8 +1,8 @@
 import {FC} from 'react';
 
-import {ColumnListProps} from "../../../types/column";
-import ColumnListItemAdd from "./column-list-item-add/column-list-item-add";
-import ColumnListItem from "./column-list-item/column-list-item";
+import {ColumnListProps} from "../../types/column";
+import ColumnListItemAdd from "../column-list-item-add/column-list-item-add";
+import ColumnListItem from "../column-list-item/column-list-item";
 
 import './column-list.css';
 

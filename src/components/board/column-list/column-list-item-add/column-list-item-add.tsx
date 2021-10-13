@@ -1,4 +1,4 @@
-import {FC, FormEventHandler, MouseEventHandler} from 'react';
+import {FC, FormEventHandler, KeyboardEventHandler, MouseEventHandler} from 'react';
 
 import {useTypedSelector} from "../../../../hooks/useTypedSelector";
 import {useDispatch} from "react-redux";
@@ -20,21 +20,30 @@ const ColumnListItemAdd: FC<ColumnListItemAddProps> = ({board}) => {
     const handleInput: FormEventHandler<HTMLInputElement> = e =>
         dispatch({type: BoardActionTypes.SET_NEW_COLUMN_NAME, payload: e.currentTarget.value});
 
-    const addColumn: MouseEventHandler<HTMLButtonElement> = () => {
+    const addColumn = () => {
         const column: Column = new Column(board.columnList.length, newColumnName);
         dispatch({type: BoardActionTypes.ADD_COLUMN, payload: [board.id, column]});
         dispatch({type: BoardActionTypes.SET_NEW_COLUMN_NAME, payload: ''});
         dispatch({type: BoardActionTypes.SWITCH_IS_ADDING_COLUMN, payload: false});
-    };
+    }
+
+    const handleAddClick: MouseEventHandler<HTMLButtonElement> = () => addColumn();
+    const handleKeyPress: KeyboardEventHandler<HTMLInputElement> = e => e.key === 'Enter' && addColumn();
 
     const button = <button onClick={switchIsAddingColumn} className="column-list-item-add__btn">
-        <AiOutlinePlus color="blue"/>
+        <AiOutlinePlus color="#0098dd"/>
     </button>;
 
     const input = <>
-        <input type="text" onInput={handleInput} value={newColumnName} className="column-list-item-add__input"/>
+        <input
+            type="text"
+            onInput={handleInput}
+            onKeyPress={handleKeyPress}
+            value={newColumnName}
+            className="column-list-item-add__input"
+        />
         <div className="buttons-panel">
-            <button className="buttons-panel__btn" onClick={addColumn} disabled={!newColumnName}>Add</button>
+            <button className="buttons-panel__btn" onClick={handleAddClick} disabled={!newColumnName}>Add</button>
             <button className="buttons-panel__btn" onClick={switchIsAddingColumn}>Cancel</button>
         </div>
     </>;

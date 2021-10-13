@@ -49,9 +49,9 @@ const ColumnListItemAdd: FC<ColumnListItemAddProps> = ({board}) => {
     </>;
 
     return (
-        <div className="column-list-item column-list-item-add">
+        <li className="column-list-item column-list-item-add">
             {isAddingColumn ? input : button}
-        </div>
+        </li>
     );
 };
 

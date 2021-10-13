@@ -19,7 +19,7 @@
     height: 170px;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
 }
 

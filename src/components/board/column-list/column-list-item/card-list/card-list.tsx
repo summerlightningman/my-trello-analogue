@@ -10,7 +10,7 @@ import './card-list.css';
 const CardList: FC<CardListProps> = ({cardList}) => {
     return (
         <ul className="card-list">
-            <CardListItemAdd/>
+            <CardListItemAdd key={-1}/>
             {cardList.map(card => <CardListItem card={card} key={card.id}/>)}
         </ul>
     );

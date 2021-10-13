@@ -21,19 +21,19 @@ const BoardList: FC = () => {
         [dispatch]);
 
     return (
-        <div className="board-list">
-            <BoardListItemAdd/>
+        <ul className="board-list">
+            <BoardListItemAdd key={-1}/>
             {
                 boardList.map(
                     ({id, name}: Board) =>
-                        <div className="board-list-item__wrapper">
-                            <Link to={'/board/' + id} key={id} className="nolink">
+                        <li className="board-list-item__wrapper" key={id}>
+                            <Link to={'/board/' + id} className="nolink">
                                 <BoardListItem name={name}/>
                             </Link>
-                        </div>
+                        </li>
                 )
             }
-        </div>
+        </ul>
     );
 };
 

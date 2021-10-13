@@ -9,10 +9,10 @@ import './column-list.css';
 const ColumnList: FC<ColumnListProps> = ({board}) => {
 
     return (
-        <div className="column-list">
+        <ul className="column-list">
             <ColumnListItemAdd board={board}/>
             {board.columnList.map(column => <ColumnListItem column={column} key={column.id}/>)}
-        </div>
+        </ul>
     );
 };
 

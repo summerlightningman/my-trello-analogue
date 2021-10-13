@@ -29,6 +29,8 @@ export const boardReducer = (state = initialState, action: BoardAction): BoardSt
             return {...state, newBoardName: action.payload}
         case BoardActionTypes.SET_NEW_COLUMN_NAME:
             return {...state, newColumnName: action.payload}
+        case BoardActionTypes.SET_NEW_CARD_NAME:
+            return {...state, newCardName: action.payload}
         case BoardActionTypes.ADD_CARD:
             // TODO: RELEASE THAT
             return {...state}

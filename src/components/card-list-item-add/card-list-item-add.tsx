@@ -22,11 +22,17 @@ const CardListItemAdd = () => {
         dispatch({type: BoardActionTypes.SET_NEW_CARD_NAME, payload: e.currentTarget.value});
     const handleKeyPress: KeyboardEventHandler<HTMLInputElement> = e => e.key === 'Enter' && addBoard();
 
-    const button = <button onClick={switchIsAddingCard}>Add card</button>;
+    const button = <button className="card-list-item-add__btn" onClick={switchIsAddingCard}>Add card</button>;
     const input = <>
-        <input type="text" value={newCardName} onInput={handleInput} onKeyPress={handleKeyPress}/>
-        <div className="buttons-panel">
-            <button className="buttons-panel__btn">Add</button>
+        <input
+            className="card-list-item-add__input"
+            type="text"
+            value={newCardName}
+            onInput={handleInput}
+            onKeyPress={handleKeyPress}
+        />
+        <div className="card-list-item-add__btns buttons-panel">
+            <button className="buttons-panel__btn" disabled={!newCardName}>Add</button>
             <button className="buttons-panel__btn" onClick={switchIsAddingCard}>Cancel</button>
         </div>
     </>

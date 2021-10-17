@@ -30,7 +30,7 @@ export const boardReducer = (state = initialState, action: BoardAction): BoardSt
         case BoardActionTypes.SET_NEW_CARD_NAME:
             const [board_ ,column_, newCardName] = action.payload;
             const newColumn = column_.setNewCardName(newCardName);
-            board_.updateColumn(newColumn);
+            console.log(newColumn);
             const listWithoutBoard_ = state.boardList.filter(board => board.id !== board_.id);
             const newBoard_ = board_.updateColumn(newColumn);
             const newBoardList_ = [newBoard_, ...listWithoutBoard_]
@@ -39,7 +39,6 @@ export const boardReducer = (state = initialState, action: BoardAction): BoardSt
         case BoardActionTypes.ADD_CARD:
             const [board___ ,column___, card] = action.payload;
             const newColumn__ = column___.addCard(card);
-            board___.updateColumn(newColumn__);
             const listWithoutBoard___ = state.boardList.filter(board => board.id !== board___.id);
             const newBoard___ = board___.updateColumn(newColumn__);
             const newBoardList___ = [newBoard___, ...listWithoutBoard___]
@@ -52,8 +51,6 @@ export const boardReducer = (state = initialState, action: BoardAction): BoardSt
         case BoardActionTypes.SWITCH_IS_ADDING_CARD:
             const [board__ ,column__, value] = action.payload;
             const newColumn_ = column__.setIsAddingCard(value);
-            board__.updateColumn(newColumn_);
-
             const listWithoutBoard__ = state.boardList.filter(board => board.id !== board__.id);
             const newBoard__ = board__.updateColumn(newColumn_);
             const newBoardList__ = [newBoard__, ...listWithoutBoard__]

@@ -6,7 +6,7 @@ import {CardListItemProps} from "../../types/card";
 const CardListItem: FC<CardListItemProps> = ({card}) => {
     return (
         <li className="card-list-item">
-            {card}
+            {card.name}
         </li>
     );
 };

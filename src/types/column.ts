@@ -22,27 +22,34 @@ export class Column {
 
         this.setNewCardName = this.setNewCardName.bind(this);
         this.addCard = this.addCard.bind(this);
+        this.cloneColumn = this.cloneColumn.bind(this)
     }
 
     addCard(card: Card): Column {
         const column = new Column(this.id, this.name);
-        column.cardList = [card, ...column.cardList]
+        column.cardList = [card, ...this.cardList]
             .sort((left: Card, right: Card) => left.id - right.id);
         return column
     }
 
     setNewCardName(value: CardName): Column {
-        const column = new Column(this.id, this.name);
-        column._isAddingCard = this._isAddingCard;
+        const column = this.cloneColumn();
         column._newCardName = value;
         return column
     }
 
     setIsAddingCard(value: boolean): Column {
-        const newColumn = new Column(this.id, this.name);
-        newColumn._newCardName = this._newCardName;
+        const newColumn = this.cloneColumn();
         newColumn._isAddingCard = value;
         return newColumn
+    }
+
+    private cloneColumn(): Column {
+        const column = new Column(this.id, this.name);
+        column._newCardName = this._newCardName;
+        column._isAddingCard = this._isAddingCard;
+        column.cardList = [...this.cardList];
+        return column
     }
 
     get newCardName(): CardName {

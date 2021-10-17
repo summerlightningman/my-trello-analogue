@@ -1,9 +1,10 @@
 import {FC, FormEventHandler, KeyboardEventHandler, MouseEventHandler} from 'react';
 
-import './card-list-item-add.css';
 import {useDispatch} from "react-redux";
 import {CardListItemAddProps} from "../../types/card";
 import {useColumn} from "../../hooks/useColumn";
+
+import './card-list-item-add.css';
 
 const CardListItemAdd: FC<CardListItemAddProps> = ({board, column}) => {
     const {switchIsAddingCard, setNewCardName, addCard} = useColumn(board, column, useDispatch());

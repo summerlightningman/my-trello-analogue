@@ -5,10 +5,8 @@ const initialState: BoardState = {
     windowTitle: 'My Trello Analogue',
     newBoardName: '',
     newColumnName: '',
-    newCardName: '',
     isAddingBoard: false,
     isAddingColumn: false,
-    isAddingCard: false
 }
 
 export const boardReducer = (state = initialState, action: BoardAction): BoardState => {
@@ -33,18 +31,15 @@ export const boardReducer = (state = initialState, action: BoardAction): BoardSt
             const [board_ ,column_, newCardName] = action.payload;
             const newColumn = column_.setNewCardName(newCardName);
             board_.updateColumn(newColumn);
-
             const listWithoutBoard_ = state.boardList.filter(board => board.id !== board_.id);
             const newBoard_ = board_.updateColumn(newColumn);
             const newBoardList_ = [newBoard_, ...listWithoutBoard_]
                 .sort((left, right) => left.id - right.id);
-
             return {...state, boardList: newBoardList_}
         case BoardActionTypes.ADD_CARD:
             const [board___ ,column___, card] = action.payload;
             const newColumn__ = column___.addCard(card);
             board___.updateColumn(newColumn__);
-
             const listWithoutBoard___ = state.boardList.filter(board => board.id !== board___.id);
             const newBoard___ = board___.updateColumn(newColumn__);
             const newBoardList___ = [newBoard___, ...listWithoutBoard___]

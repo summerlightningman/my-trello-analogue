@@ -70,10 +70,8 @@ export interface BoardState {
     boardList: Board[],
     newBoardName: BoardName,
     newColumnName: ColumnName,
-    newCardName: CardName
     isAddingBoard: boolean,
     isAddingColumn: boolean,
-    isAddingCard: boolean,
     windowTitle: string
 }
 

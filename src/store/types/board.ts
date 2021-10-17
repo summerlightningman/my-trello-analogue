@@ -28,7 +28,7 @@ interface AddColumnAction {
 
 interface AddCardAction {
     type: BoardActionTypes.ADD_CARD,
-    payload: [Column, Card]
+    payload: [Board, Column, Card]
 }
 
 interface SetWindowTitleAction {
@@ -48,7 +48,7 @@ interface SetNewColumnNameAction {
 
 interface SetNewCardNameAction {
     type: BoardActionTypes.SET_NEW_CARD_NAME,
-    payload: CardName
+    payload: [Board, Column, CardName]
 }
 
 interface SwitchIsAddingColumnAction {
@@ -63,7 +63,7 @@ interface SwitchIsAddingBoardAction {
 
 interface SwitchIsAddingCardAction {
     type: BoardActionTypes.SWITCH_IS_ADDING_CARD,
-    payload: boolean
+    payload: [Board, Column, boolean]
 }
 
 export interface BoardState {

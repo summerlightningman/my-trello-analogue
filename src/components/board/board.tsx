@@ -13,7 +13,7 @@ import './board.css';
 
 const Board: FC = () => {
     const history = useHistory();
-    const back: MouseEventHandler = () => history.goBack();
+    const back: MouseEventHandler = () => history.push('/');
 
     const {boardList} = useTypedSelector(state => state.board);
     const dispatch = useDispatch();

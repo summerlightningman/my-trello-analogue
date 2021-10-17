@@ -1,4 +1,5 @@
-import {CardList} from "./column";
+import {Column} from "./column";
+import {Board} from "./board";
 
 export type CardID = number;
 export type CardName = string;
@@ -14,9 +15,15 @@ export class Card {
 }
 
 export interface CardListProps {
-    cardList: CardList
+    column: Column
+    board: Board
 }
 
 export interface CardListItemProps {
     card: Card
+}
+
+export interface CardListItemAddProps {
+    column: Column
+    board: Board
 }

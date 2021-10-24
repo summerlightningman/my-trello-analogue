@@ -7,7 +7,6 @@ const initialState: BoardState = {
     cardList: [],
     windowTitle: 'My Trello Analogue',
     newBoardName: '',
-    newColumnName: '',
     isAddingBoard: false,
 }
 

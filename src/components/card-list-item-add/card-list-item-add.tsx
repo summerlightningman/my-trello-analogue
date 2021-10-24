@@ -6,8 +6,8 @@ import {useColumn} from "../../hooks/useColumn";
 
 import './card-list-item-add.css';
 
-const CardListItemAdd: FC<CardListItemAddProps> = ({board, column}) => {
-    const {switchIsAddingCard, setNewCardName, addCard} = useColumn(board, column, useDispatch());
+const CardListItemAdd: FC<CardListItemAddProps> = ({column}) => {
+    const {switchIsAddingCard, setNewCardName, addCard} = useColumn(column, useDispatch());
 
     const handleClick: MouseEventHandler<HTMLButtonElement> = () => switchIsAddingCard(!column.isAddingCard)
 

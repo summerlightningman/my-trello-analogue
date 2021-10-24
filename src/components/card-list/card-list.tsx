@@ -7,10 +7,10 @@ import CardListItemAdd from "../card-list-item-add/card-list-item-add";
 
 import './card-list.css';
 
-const CardList: FC<CardListProps> = ({board, column}) => {
+const CardList: FC<CardListProps> = ({column}) => {
     return (
         <ul className="card-list">
-            <CardListItemAdd key={-1} column={column} board={board}/>
+            <CardListItemAdd key={-1} column={column}/>
             {column.cardList.map(card => <CardListItem card={card} key={card.id}/>)}
         </ul>
     );

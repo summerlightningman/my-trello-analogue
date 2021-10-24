@@ -65,7 +65,6 @@ export interface ColumnListProps {
 
 export interface ColumnListItemProps {
     column: Column
-    board: Board
 }
 
 export interface ColumnListItemAddProps {

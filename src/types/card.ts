@@ -1,5 +1,4 @@
 import {Column, ColumnID} from "./column";
-import {Board} from "./board";
 import {AppUnit} from "./app-unit";
 
 export type CardID = number;
@@ -19,7 +18,6 @@ export class Card implements AppUnit {
 
 export interface CardListProps {
     column: Column
-    board: Board
 }
 
 export interface CardListItemProps {
@@ -28,5 +26,4 @@ export interface CardListItemProps {
 
 export interface CardListItemAddProps {
     column: Column
-    board: Board
 }

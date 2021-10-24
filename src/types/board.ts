@@ -7,8 +7,8 @@ export type BoardID = number;
 export class Board implements AppUnit {
     readonly id: BoardID;
     readonly name: BoardName;
-    private newColumnName: ColumnName;
-    private isAddingColumn: boolean;
+    newColumnName: ColumnName;
+    isAddingColumn: boolean;
 
     constructor(id: ColumnID, name: BoardName) {
         this.id = id;

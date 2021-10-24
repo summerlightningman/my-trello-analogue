@@ -12,6 +12,7 @@ import './column-list-item-add.css';
 
 const ColumnListItemAdd: FC<ColumnListItemAddProps> = ({board}) => {
     const {columnList} = useTypedSelector(state => state.board);
+    const {newColumnName, isAddingColumn} = board;
     const dispatch = useDispatch();
 
     const switchIsAddingColumn: MouseEventHandler<HTMLButtonElement> = () =>

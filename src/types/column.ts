@@ -1,23 +1,23 @@
 import {Board} from "./board";
 import {Card, CardName} from "./card";
+import {AppUnit} from "./app-unit";
 
 export type ColumnName = string;
-export type ColumnId = number;
+export type ColumnID = number;
 export type CardList = Card[];
 
-export class Column {
-
-    readonly id: ColumnId;
+export class Column implements AppUnit {
+    readonly id: ColumnID;
     readonly name: ColumnName;
-    private _newCardName: CardName;
+    private newCardName: CardName;
     cardList: CardList;
     private _isAddingCard: boolean;
 
-    constructor(id: ColumnId, name: ColumnName) {
+    constructor(id: ColumnID, name: ColumnName) {
         this.name = name;
         this.id = id;
         this.cardList = [];
-        this._newCardName = '';
+        this.newCardName = '';
         this._isAddingCard = false;
 
         this.setNewCardName = this.setNewCardName.bind(this);
@@ -34,7 +34,7 @@ export class Column {
 
     setNewCardName(value: CardName): Column {
         const column = this.cloneColumn();
-        column._newCardName = value;
+        column.newCardName = value;
         return column
     }
 
@@ -46,18 +46,10 @@ export class Column {
 
     private cloneColumn(): Column {
         const column = new Column(this.id, this.name);
-        column._newCardName = this._newCardName;
+        column.newCardName = this.newCardName;
         column._isAddingCard = this._isAddingCard;
         column.cardList = [...this.cardList];
         return column
-    }
-
-    get newCardName(): CardName {
-        return this._newCardName;
-    }
-
-    set newCardName(value: CardName) {
-        this._newCardName = value;
     }
 
     get isAddingCard(): boolean {

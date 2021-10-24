@@ -11,7 +11,7 @@ import './column-list-item-add.css';
 
 
 const ColumnListItemAdd: FC<ColumnListItemAddProps> = ({board}) => {
-    const {isAddingColumn, newColumnName} = useTypedSelector(state => state.board);
+    const {columnList} = useTypedSelector(state => state.board);
     const dispatch = useDispatch();
 
     const switchIsAddingColumn: MouseEventHandler<HTMLButtonElement> = () =>
@@ -21,7 +21,7 @@ const ColumnListItemAdd: FC<ColumnListItemAddProps> = ({board}) => {
         dispatch({type: BoardActionTypes.SET_NEW_COLUMN_NAME, payload: e.currentTarget.value});
 
     const addColumn = () => {
-        const column: Column = new Column(board.columnList.length, newColumnName);
+        const column: Column = new Column(board.id, columnList.length, board.newColumnName);
         dispatch({type: BoardActionTypes.ADD_COLUMN, payload: [board.id, column]});
         dispatch({type: BoardActionTypes.SET_NEW_COLUMN_NAME, payload: ''});
         dispatch({type: BoardActionTypes.SWITCH_IS_ADDING_COLUMN, payload: false});

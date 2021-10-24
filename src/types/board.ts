@@ -1,37 +1,33 @@
-import {Column, ColumnId} from "./column";
+import {ColumnID, ColumnName} from "./column";
+import {AppUnit} from "./app-unit";
 
 export type BoardName = string;
 export type BoardID = number;
-export type ColumnList = Column[];
 
-export class Board {
+export class Board implements AppUnit {
     readonly id: BoardID;
     readonly name: BoardName;
-    columnList: ColumnList;
+    private newColumnName: ColumnName;
+    private isAddingColumn: boolean;
 
-    constructor(id: ColumnId, name: BoardName) {
+    constructor(id: ColumnID, name: BoardName) {
         this.id = id;
         this.name = name;
-        this.columnList = [];
+        this.newColumnName = '';
+        this.isAddingColumn = false;
     }
 
-    addColumn(column: Column): Board {
+    setNewColumnName(name: ColumnName): Board {
         const board = new Board(this.id, this.name);
-        board.columnList = [column, ...this.columnList]
-            .sort((left: Column, right: Column) => left.id - right.id);
+        board.isAddingColumn = true;
+        board.newColumnName = name;
         return board
     }
 
-    removeColumn(column: Column): Board {
+    setIsAddingColumn(value: boolean): Board {
         const board = new Board(this.id, this.name);
-        board.columnList = board.columnList.filter((col: Column) => col.id === column.id);
-        return board
-    }
-
-    updateColumn(column: Column): Board {
-        const listWithoutCol = this.columnList.filter(col => col.id !== column.id);
-        const board = new Board(this.id, this.name);
-        board.columnList = [...listWithoutCol, column].sort((a, b) => a.id - b.id);
+        board.isAddingColumn = value;
+        board.newColumnName = this.newColumnName;
         return board
     }
 }

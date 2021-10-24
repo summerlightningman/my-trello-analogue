@@ -1,4 +1,4 @@
-import {Board, BoardID, BoardName} from "../../types/board";
+import {Board, BoardName} from "../../types/board";
 import {Column, ColumnName} from "../../types/column";
 import {Card, CardName} from "../../types/card";
 
@@ -23,12 +23,12 @@ interface AddBoardAction {
 
 interface AddColumnAction {
     type: BoardActionTypes.ADD_COLUMN,
-    payload: [BoardID, Column]
+    payload: Column
 }
 
 interface AddCardAction {
     type: BoardActionTypes.ADD_CARD,
-    payload: [Board, Column, Card]
+    payload: Card
 }
 
 interface SetWindowTitleAction {
@@ -43,17 +43,17 @@ interface SetNewBoardNameAction {
 
 interface SetNewColumnNameAction {
     type: BoardActionTypes.SET_NEW_COLUMN_NAME,
-    payload: ColumnName,
+    payload: [Board, ColumnName],
 }
 
 interface SetNewCardNameAction {
     type: BoardActionTypes.SET_NEW_CARD_NAME,
-    payload: [Board, Column, CardName]
+    payload: [Column, CardName]
 }
 
 interface SwitchIsAddingColumnAction {
     type: BoardActionTypes.SWITCH_IS_ADDING_COLUMN,
-    payload: boolean
+    payload: [Board, boolean]
 }
 
 interface SwitchIsAddingBoardAction {
@@ -63,15 +63,16 @@ interface SwitchIsAddingBoardAction {
 
 interface SwitchIsAddingCardAction {
     type: BoardActionTypes.SWITCH_IS_ADDING_CARD,
-    payload: [Board, Column, boolean]
+    payload: [Column, boolean]
 }
 
 export interface BoardState {
     boardList: Board[],
+    columnList: Column[],
+    cardList: Card[],
     newBoardName: BoardName,
     newColumnName: ColumnName,
     isAddingBoard: boolean,
-    isAddingColumn: boolean,
     windowTitle: string
 }
 

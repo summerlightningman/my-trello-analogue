@@ -16,16 +16,14 @@ const ColumnListItemAdd: FC<ColumnListItemAddProps> = ({board}) => {
     const dispatch = useDispatch();
 
     const switchIsAddingColumn: MouseEventHandler<HTMLButtonElement> = () =>
-        dispatch({type: BoardActionTypes.SWITCH_IS_ADDING_COLUMN, payload: !isAddingColumn});
+        dispatch({type: BoardActionTypes.SWITCH_IS_ADDING_COLUMN, payload: [board, !isAddingColumn]});
 
     const handleInput: FormEventHandler<HTMLInputElement> = e =>
-        dispatch({type: BoardActionTypes.SET_NEW_COLUMN_NAME, payload: e.currentTarget.value});
+        dispatch({type: BoardActionTypes.SET_NEW_COLUMN_NAME, payload: [board, e.currentTarget.value]});
 
     const addColumn = () => {
         const column: Column = new Column(board.id, columnList.length, board.newColumnName);
-        dispatch({type: BoardActionTypes.ADD_COLUMN, payload: [board.id, column]});
-        dispatch({type: BoardActionTypes.SET_NEW_COLUMN_NAME, payload: ''});
-        dispatch({type: BoardActionTypes.SWITCH_IS_ADDING_COLUMN, payload: false});
+        dispatch({type: BoardActionTypes.ADD_COLUMN, payload: column});
     }
 
     const handleAddClick: MouseEventHandler<HTMLButtonElement> = () => addColumn();
@@ -43,7 +41,7 @@ const ColumnListItemAdd: FC<ColumnListItemAddProps> = ({board}) => {
             value={newColumnName}
             className="column-list-item-add__input"
         />
-        <div className="buttons-panel">
+        <div className="buttons-panel column-list-item-add__btns">
             <button className="buttons-panel__btn" onClick={handleAddClick} disabled={!newColumnName}>Add</button>
             <button className="buttons-panel__btn" onClick={switchIsAddingColumn}>Cancel</button>
         </div>

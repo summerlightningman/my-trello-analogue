@@ -1,13 +1,28 @@
 import {FC, FormEventHandler, KeyboardEventHandler, MouseEventHandler} from 'react';
 
 import {useDispatch} from "react-redux";
-import {CardListItemAddProps} from "../../types/card";
-import {useColumn} from "../../hooks/useColumn";
+import {Card, CardListItemAddProps, CardName} from "../../types/card";
+
+import {BoardActionTypes} from "../../store/types/board";
 
 import './card-list-item-add.css';
 
 const CardListItemAdd: FC<CardListItemAddProps> = ({column}) => {
-    const {switchIsAddingCard, setNewCardName, addCard} = useColumn(column, useDispatch());
+    const dispatch = useDispatch();
+
+    const switchIsAddingCard = (value: boolean) => dispatch({
+        type: BoardActionTypes.SWITCH_IS_ADDING_CARD,
+        payload: [column, value]
+    });
+
+    const setNewCardName = (value: CardName) => dispatch({
+        type: BoardActionTypes.SET_NEW_CARD_NAME,
+        payload: [column, value]
+    });
+    const addCard = () => {
+        const card = new Card(column.id, column.cardList.length, column.newCardName);
+        dispatch({type: BoardActionTypes.ADD_CARD, payload: card});
+    };
 
     const handleClick: MouseEventHandler<HTMLButtonElement> = () => switchIsAddingCard(!column.isAddingCard)
 

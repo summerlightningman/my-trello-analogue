@@ -15,9 +15,17 @@ export const boardReducer = (state = initialState, action: BoardAction): BoardSt
         case BoardActionTypes.ADD_BOARD:
             return {...state, boardList: [...state.boardList, action.payload]}
         case BoardActionTypes.ADD_COLUMN:
-            return {...state, columnList: [...state.columnList, action.payload]}
+            const newCol_ = action.payload;
+            const [brd_,] = state.boardList.filter(b => b.id === newCol_.boardId);
+            const newBrd_ = brd_.setNewColumnName('').setIsAddingColumn(false);
+            const newBrdList = replaceInListById(state.boardList, brd_, newBrd_);
+            return {...state, columnList: [...state.columnList, action.payload], boardList: newBrdList}
         case BoardActionTypes.ADD_CARD:
-            return {...state, cardList: [...state.cardList, action.payload]}
+            const newCard = action.payload;
+            const [col_,] = state.columnList.filter(b => b.id === newCard.columnId);
+            const newColumn_ = col_.setNewCardName('').setIsAddingCard(false);
+            const newColumnList_ = replaceInListById(state.columnList, col_, newColumn_);
+            return {...state, cardList: [action.payload, ...state.cardList], columnList: newColumnList_}
         case BoardActionTypes.SET_WINDOW_TITLE:
             return {...state, windowTitle: action.payload}
         case BoardActionTypes.SET_NEW_BOARD_NAME:
@@ -25,8 +33,8 @@ export const boardReducer = (state = initialState, action: BoardAction): BoardSt
         case BoardActionTypes.SET_NEW_COLUMN_NAME:
             const [brd, newColumnName] = action.payload;
             const newBrd = brd.setNewColumnName(newColumnName);
-            const newBrdList = replaceInListById(state.boardList, brd, newBrd);
-            return {...state, boardList: newBrdList}
+            const boardList = replaceInListById(state.boardList, brd, newBrd);
+            return {...state, boardList}
         case BoardActionTypes.SET_NEW_CARD_NAME:
             const [col, cardName] = action.payload;
             const newCol = col.setNewCardName(cardName);

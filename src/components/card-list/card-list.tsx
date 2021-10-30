@@ -14,8 +14,8 @@ const CardList: FC<CardListProps> = ({column}) => {
 
     return (
         <ul className="card-list">
-            <CardListItemAdd key={-1} column={column}/>
-            {cardList.map(card => <CardListItem card={card} key={card.id}/>)}
+            <CardListItemAdd key={-1} column={column} cardCount={cardList.length}/>
+            {cardList.map(card => <CardListItem card={card}  key={card.id}/>)}
         </ul>
     );
 };

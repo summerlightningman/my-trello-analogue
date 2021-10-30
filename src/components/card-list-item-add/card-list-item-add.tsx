@@ -7,7 +7,7 @@ import {BoardActionTypes} from "../../store/types/board";
 
 import './card-list-item-add.css';
 
-const CardListItemAdd: FC<CardListItemAddProps> = ({column}) => {
+const CardListItemAdd: FC<CardListItemAddProps> = ({column,cardCount}) => {
     const dispatch = useDispatch();
 
     const switchIsAddingCard = (value: boolean) => dispatch({
@@ -20,7 +20,7 @@ const CardListItemAdd: FC<CardListItemAddProps> = ({column}) => {
         payload: [column, value]
     });
     const addCard = () => {
-        const card = new Card(column.id, column.cardList.length, column.newCardName);
+        const card = new Card(column.id, cardCount, column.newCardName);
         dispatch({type: BoardActionTypes.ADD_CARD, payload: card});
     };
 

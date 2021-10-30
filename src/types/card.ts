@@ -3,6 +3,7 @@ import {AppUnit} from "./app-unit";
 
 export type CardID = number;
 export type CardName = string;
+export type CardCount = number;
 
 export class Card implements AppUnit {
     readonly id: CardID;
@@ -21,9 +22,10 @@ export interface CardListProps {
 }
 
 export interface CardListItemProps {
-    card: Card
+    card: Card,
 }
 
 export interface CardListItemAddProps {
-    column: Column
+    column: Column,
+    cardCount: CardCount
 }

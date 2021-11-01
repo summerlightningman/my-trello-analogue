@@ -1,21 +1,22 @@
-import React, {FC} from 'react';
-
-import {ColumnListProps} from "../../types/column";
+import React, {FC, useContext} from 'react';
 import ColumnListItemAdd from "../column-list-item-add/column-list-item-add";
 import ColumnListItem from "../column-list-item/column-list-item";
 
-
 import {useTypedSelector} from "../../hooks/useTypedSelector";
+
+import {BoardContext} from "../board/board";
 
 import './column-list.css';
 
-const ColumnList: FC<ColumnListProps> = ({board}) => {
+const ColumnList: FC = () => {
+    const board = useContext(BoardContext);
+
     const columnList = useTypedSelector(state => state.board.columnList)
         .filter(col => col.boardId === board.id);
 
     return (
         <ul className="column-list">
-            <ColumnListItemAdd board={board}/>
+            <ColumnListItemAdd/>
             {columnList.map(column => <ColumnListItem column={column} key={column.id}/>)}
         </ul>
     );

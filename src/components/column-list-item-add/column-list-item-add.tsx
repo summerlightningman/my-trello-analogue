@@ -1,19 +1,23 @@
-import {FC, FormEventHandler, KeyboardEventHandler, MouseEventHandler} from 'react';
+import {FC, FormEventHandler, KeyboardEventHandler, MouseEventHandler, useContext} from 'react';
 
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {useDispatch} from "react-redux";
 import {AiOutlinePlus} from "react-icons/all";
 
 import {BoardActionTypes} from "../../store/types/board";
-import {Column, ColumnListItemAddProps} from "../../types/column";
+import {Column} from "../../types/column";
 
 import './column-list-item-add.css';
+import {BoardContext} from "../board/board";
 
 
-const ColumnListItemAdd: FC<ColumnListItemAddProps> = ({board}) => {
+const ColumnListItemAdd: FC = () => {
+    const board = useContext(BoardContext);
+
     const {columnList} = useTypedSelector(state => state.board);
-    const {newColumnName, isAddingColumn} = board;
     const dispatch = useDispatch();
+
+    const {newColumnName, isAddingColumn} = board;
 
     const switchIsAddingColumn: MouseEventHandler<HTMLButtonElement> = () =>
         dispatch({type: BoardActionTypes.SWITCH_IS_ADDING_COLUMN, payload: [board, !isAddingColumn]});

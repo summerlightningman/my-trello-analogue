@@ -1,20 +1,23 @@
-import {FC} from 'react';
-
-import {CardListProps} from "../../types/card";
+import {FC, useContext} from 'react';
 
 import CardListItem from "../card-list-item/card-list-item";
 import CardListItemAdd from "../card-list-item-add/card-list-item-add";
 
-import './card-list.css';
-import {useTypedSelector} from "../../hooks/useTypedSelector";
 
-const CardList: FC<CardListProps> = ({column}) => {
+import {useTypedSelector} from "../../hooks/useTypedSelector";
+import {ColumnContext} from "../column-list-item/column-list-item";
+
+import './card-list.css';
+
+const CardList: FC = () => {
+    const column = useContext(ColumnContext);
+
     const cardList = useTypedSelector(state => state.board.cardList)
         .filter(card => card.columnId === column.id);
 
     return (
         <ul className="card-list">
-            <CardListItemAdd key={-1} column={column} cardCount={cardList.length}/>
+            <CardListItemAdd key={-1} cardCount={cardList.length}/>
             {cardList.map(card => <CardListItem card={card}  key={card.id}/>)}
         </ul>
     );

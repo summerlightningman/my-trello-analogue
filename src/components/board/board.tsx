@@ -1,15 +1,18 @@
-import {FC, MouseEventHandler, useEffect} from 'react';
+import React, {FC, MouseEventHandler, useMemo} from 'react';
 import ColumnList from "../column-list/column-list";
 
 import {useHistory} from "react-router-dom";
 
 import {useTypedSelector} from "../../hooks/useTypedSelector";
-import {Board as BoardClass} from "../../types/board";
 
 import {useDispatch} from "react-redux";
+
+import {Board as BoardClass} from "../../types/board";
 import {BoardActionTypes} from "../../store/types/board";
 
 import './board.css';
+
+export const BoardContext = React.createContext<BoardClass>(new BoardClass(-1, ''));
 
 const Board: FC = () => {
     const history = useHistory();
@@ -19,23 +22,25 @@ const Board: FC = () => {
     const dispatch = useDispatch();
 
     const [, , boardId] = history.location.pathname.split('/');
-    const [board] = boardList.filter((board: BoardClass) => board.id === +boardId);
 
-    useEffect(() => {
-        if (board)
-            dispatch({type: BoardActionTypes.SET_WINDOW_TITLE, payload: `Board: ${board.name}`});
-        else
-            dispatch({type: BoardActionTypes.SET_WINDOW_TITLE, payload: '404: Board not found!'});
-        },
-        [board, dispatch]);
+    const board = useMemo(() => {
+        const [brd] = boardList.filter((board: BoardClass) => board.id === +boardId);
+        const windowTitle = brd ? `Board: ${brd.name}` : '404: Board not found!';
+        dispatch({type: BoardActionTypes.SET_WINDOW_TITLE, payload: windowTitle});
+        return brd
+    }, [boardId, boardList, dispatch]);
 
+    if (!board)
+        return <div className="board">
+            <button className="buttons-panel__btn" onClick={back}>Back</button>
+        </div>
 
     return (
         <div className="board">
-            <div>
-                <button className="buttons-panel__btn" onClick={back}>Back</button>
-            </div>
-            {board && <ColumnList board={board}/>}
+            <button className="buttons-panel__btn" onClick={back}>Back</button>
+            <BoardContext.Provider value={board}>
+                <ColumnList/>
+            </BoardContext.Provider>
         </div>
     );
 };

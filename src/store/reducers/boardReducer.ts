@@ -40,6 +40,10 @@ export const boardReducer = (state = initialState, action: BoardAction): BoardSt
             const newCol = col.setNewCardName(cardName);
             const newColList = replaceInListById(state.columnList, col, newCol)
             return {...state, columnList: newColList}
+        case BoardActionTypes.SET_DRAGGED_CARD:
+            const [board_, card] = action.payload;
+            const newBoard_ = board_.setDraggedCard(card);
+            return {...state, boardList: replaceInListById(state.boardList, board_, newBoard_)}
         case BoardActionTypes.SWITCH_IS_ADDING_BOARD:
             return {...state, isAddingBoard: action.payload}
         case BoardActionTypes.SWITCH_IS_ADDING_COLUMN:
@@ -52,6 +56,11 @@ export const boardReducer = (state = initialState, action: BoardAction): BoardSt
             const newColumn = column.setIsAddingCard(value);
             const newColumnList = replaceInListById(state.columnList, column, newColumn)
             return {...state, columnList: newColumnList}
+        case BoardActionTypes.MOVE_CARD_INTO_OTHER_COLUMN:
+            const [columnId, card_] = action.payload;
+            const newCard_ = card_.setColumnId(columnId);
+            const newCardList = replaceInListById(state.cardList, card_, newCard_);
+            return {...state, cardList: newCardList}
         default:
             return initialState
     }

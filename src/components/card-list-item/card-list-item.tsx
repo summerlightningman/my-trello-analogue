@@ -27,22 +27,18 @@ const CardListItem: FC<CardListItemProps> = ({card}) => {
         dispatch({type: BoardActionTypes.MOVE_CARD_INTO_OTHER_COLUMN, payload: [card.columnId, board.draggedCard]});
     }
 
-    const handleDragEnd: DragEventHandler<HTMLLIElement> = () => {
-        collapseCard();
-    }
+    const handleDragEnd: DragEventHandler<HTMLLIElement> = () => collapseCard();
+
 
     const handleDragEnter: DragEventHandler<HTMLLIElement> = e => {
         e.preventDefault();
         expandCard();
     };
 
-    const handleDragOver: DragEventHandler<HTMLLIElement> = e => {
-        e.preventDefault();
-    }
+    const handleDragOver: DragEventHandler<HTMLLIElement> = e => e.preventDefault();
 
-    const handleDragLeave: DragEventHandler<HTMLDivElement> = () => {
-        collapseCard();
-    };
+
+    const handleDragLeave: DragEventHandler<HTMLDivElement> = () => collapseCard();
 
     return (
         <li

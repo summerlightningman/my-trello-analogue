@@ -1,4 +1,4 @@
-import {DragEventHandler, FC, useContext, useState} from 'react';
+import {DragEventHandler, FC, useContext} from 'react';
 
 import {Card, CardListItemProps} from "../../types/card";
 import {useDispatch} from "react-redux";
@@ -6,16 +6,14 @@ import {BoardContext} from "../board/board";
 
 import './card-list-item.css';
 import {BoardActionTypes} from "../../store/types/board";
+import {useCardMove} from "../../hooks/useCardMove";
 
 const CardListItem: FC<CardListItemProps> = ({card}) => {
     const dispatch = useDispatch();
 
     const board = useContext(BoardContext);
 
-    const [isExpanded, setIsExpanded] = useState(false);
-    const height = isExpanded ? '120px' : '70px';
-    const expandCardMessage = 'Release to move card here';
-    const [expandCard, collapseCard] = [() => setIsExpanded(true), () => setIsExpanded(false)];
+    const {expandCard, collapseCard, getDragMessage, dragStyle} = useCardMove();
 
     const handleDragStart = (card: Card): DragEventHandler<HTMLLIElement> => () => {
         collapseCard();
@@ -30,12 +28,12 @@ const CardListItem: FC<CardListItemProps> = ({card}) => {
     }
 
     const handleDragEnd: DragEventHandler<HTMLLIElement> = () => {
-        collapseCard()
+        collapseCard();
     }
 
     const handleDragEnter: DragEventHandler<HTMLLIElement> = e => {
         e.preventDefault();
-        expandCard()
+        expandCard();
     };
 
     const handleDragOver: DragEventHandler<HTMLLIElement> = e => {
@@ -55,8 +53,8 @@ const CardListItem: FC<CardListItemProps> = ({card}) => {
             onDragEnd={handleDragEnd} // Отпустить карточку
             onDragOver={handleDragOver}
             onDragEnter={handleDragEnter}
-               // Выход карточки из поля
-            style={{height}}
+            // Выход карточки из поля
+            style={dragStyle}
         >
             <div
                 className="card-list-item__content"
@@ -64,9 +62,7 @@ const CardListItem: FC<CardListItemProps> = ({card}) => {
             >
                 {card.name}
             </div>
-            {isExpanded && <div className="card-list-item__expand">
-                <span className="card-list-item__expand-text">{expandCardMessage}</span>
-            </div>}
+            {getDragMessage()}
         </li>
     );
 };

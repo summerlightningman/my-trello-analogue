@@ -1,4 +1,4 @@
-import {FC, FormEventHandler, KeyboardEventHandler, MouseEventHandler} from 'react';
+import {FC, FormEventHandler, KeyboardEventHandler, MouseEventHandler, useContext} from 'react';
 
 import {useDispatch} from "react-redux";
 import {Card, CardListItemAddProps, CardName} from "../../types/card";
@@ -6,8 +6,10 @@ import {Card, CardListItemAddProps, CardName} from "../../types/card";
 import {BoardActionTypes} from "../../store/types/board";
 
 import './card-list-item-add.css';
+import {ColumnContext} from "../column-list-item/column-list-item";
 
-const CardListItemAdd: FC<CardListItemAddProps> = ({column,cardCount}) => {
+const CardListItemAdd: FC<CardListItemAddProps> = ({cardCount}) => {
+    const column = useContext(ColumnContext);
     const dispatch = useDispatch();
 
     const switchIsAddingCard = (value: boolean) => dispatch({
@@ -45,8 +47,11 @@ const CardListItemAdd: FC<CardListItemAddProps> = ({column,cardCount}) => {
     </>
 
     return (
-        <li className="card-list-item card-list-item-add">
-            {column.isAddingCard ? input : button}
+        <li>
+            <div className="card-list-item card-list-item-add">
+                {column.isAddingCard ? input : button}
+            </div>
+
         </li>
     );
 };

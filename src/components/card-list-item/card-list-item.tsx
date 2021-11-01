@@ -6,52 +6,43 @@ import {BoardContext} from "../board/board";
 
 import './card-list-item.css';
 import {BoardActionTypes} from "../../store/types/board";
-import {useTypedSelector} from "../../hooks/useTypedSelector";
 
 const CardListItem: FC<CardListItemProps> = ({card}) => {
     const dispatch = useDispatch();
 
     const board = useContext(BoardContext);
 
-    const [isDragOver, setIsDragOver] = useState(false);
-    const height = isDragOver ? '120px' : '70px';
+    const [isExpanded, setIsExpanded] = useState(false);
+    const height = isExpanded ? '120px' : '70px';
     const expandCardMessage = 'Release to move card here';
-    const [expandCard, collapseCard] = [() => setIsDragOver(true), () => setIsDragOver(false)];
-    const {cardList} = useTypedSelector(state => state.board);
+    const [expandCard, collapseCard] = [() => setIsExpanded(true), () => setIsExpanded(false)];
 
-    const handleDragStart = (card: Card): DragEventHandler<HTMLLIElement> => e => {
+    const handleDragStart = (card: Card): DragEventHandler<HTMLLIElement> => () => {
         collapseCard();
         dispatch({type: BoardActionTypes.SET_DRAGGED_CARD, payload: [board, card]});
-        console.log(cardList);
     };
 
     const handleDrop = (card: Card): DragEventHandler<HTMLLIElement> => e => {
-        console.log(e.type);
         e.preventDefault();
         collapseCard();
         dispatch({type: BoardActionTypes.SET_DRAGGED_CARD, payload: [board, null]});
         dispatch({type: BoardActionTypes.MOVE_CARD_INTO_OTHER_COLUMN, payload: [card.columnId, board.draggedCard]});
     }
 
-    const handleDragEnd: DragEventHandler<HTMLLIElement> = e => {
-        console.log(e.type);
-
+    const handleDragEnd: DragEventHandler<HTMLLIElement> = () => {
         collapseCard()
     }
 
     const handleDragEnter: DragEventHandler<HTMLLIElement> = e => {
-        console.log(e.type);
         e.preventDefault();
         expandCard()
     };
 
     const handleDragOver: DragEventHandler<HTMLLIElement> = e => {
-        console.log(e.type);
         e.preventDefault();
     }
 
-    const handleDragLeave: DragEventHandler<HTMLDivElement> = e => {
-        console.log(e.type);
+    const handleDragLeave: DragEventHandler<HTMLDivElement> = () => {
         collapseCard();
     };
 
@@ -71,10 +62,9 @@ const CardListItem: FC<CardListItemProps> = ({card}) => {
                 className="card-list-item__content"
                 onDragLeave={handleDragLeave}
             >
-
                 {card.name}
             </div>
-            {isDragOver && <div className="card-list-item__expand">
+            {isExpanded && <div className="card-list-item__expand">
                 <span className="card-list-item__expand-text">{expandCardMessage}</span>
             </div>}
         </li>

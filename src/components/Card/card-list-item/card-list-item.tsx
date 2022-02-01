@@ -1,12 +1,14 @@
 import {DragEventHandler, FC, useContext} from 'react';
 
-import {Card, CardListItemProps} from "../../types/card";
 import {useDispatch} from "react-redux";
-import {BoardContext} from "../board/board";
+import {Card, CardListItemProps} from "../../../types/card";
+import {BoardContext} from "../../Board/board/board";
+
+
+import {BoardActionTypes} from "../../../store/types/board";
+import {useCardMove} from "../../../hooks/useCardMove";
 
 import './card-list-item.css';
-import {BoardActionTypes} from "../../store/types/board";
-import {useCardMove} from "../../hooks/useCardMove";
 
 const CardListItem: FC<CardListItemProps> = ({card}) => {
     const dispatch = useDispatch();

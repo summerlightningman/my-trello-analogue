@@ -1,14 +1,14 @@
 import {DragEventHandler, FC, FormEventHandler, KeyboardEventHandler, MouseEventHandler, useContext} from 'react';
 
 import {useDispatch} from "react-redux";
-import {Card, CardListItemAddProps, CardName} from "../../types/card";
+import {Card, CardListItemAddProps, CardName} from "../../../types/card";
 
-import {BoardActionTypes} from "../../store/types/board";
+import {BoardActionTypes} from "../../../store/types/board";
 
+import {ColumnContext} from "../../Column/column-list-item/column-list-item";
+import {useCardMove} from "../../../hooks/useCardMove";
+import {BoardContext} from "../../Board/board/board";
 import './card-list-item-add.css';
-import {ColumnContext} from "../column-list-item/column-list-item";
-import {useCardMove} from "../../hooks/useCardMove";
-import {BoardContext} from "../board/board";
 
 const CardListItemAdd: FC<CardListItemAddProps> = ({cardCount}) => {
     const column = useContext(ColumnContext);

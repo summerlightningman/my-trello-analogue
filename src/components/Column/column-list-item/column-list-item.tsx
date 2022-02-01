@@ -1,9 +1,9 @@
 import React, {FC} from 'react';
 
-import {Column, ColumnListItemProps} from "../../types/column";
+import {Column, ColumnListItemProps} from "../../../types/column";
 
+import CardList from "../../Card/card-list/card-list";
 import './column-list-item.css';
-import CardList from "../card-list/card-list";
 
 export const ColumnContext = React.createContext<Column>(new Column(-1, -1, ''));
 

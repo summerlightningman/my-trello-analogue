@@ -1,15 +1,15 @@
 import {FC, FormEventHandler, KeyboardEventHandler, MouseEventHandler, useContext} from 'react';
 
-import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {useDispatch} from "react-redux";
 import {AiOutlinePlus} from "react-icons/all";
 
-import {BoardActionTypes} from "../../store/types/board";
-import {Column} from "../../types/column";
+import {useTypedSelector} from "../../../hooks/useTypedSelector";
+import {BoardActionTypes} from "../../../store/types/board";
+import {Column} from "../../../types/column";
+
+import {BoardContext} from "../../Board/board/board";
 
 import './column-list-item-add.css';
-import {BoardContext} from "../board/board";
-
 
 const ColumnListItemAdd: FC = () => {
     const board = useContext(BoardContext);

@@ -4,8 +4,8 @@ import CardListItem from "../card-list-item/card-list-item";
 import CardListItemAdd from "../card-list-item-add/card-list-item-add";
 
 
-import {useTypedSelector} from "../../hooks/useTypedSelector";
-import {ColumnContext} from "../column-list-item/column-list-item";
+import {useTypedSelector} from "../../../hooks/useTypedSelector";
+import {ColumnContext} from "../../Column/column-list-item/column-list-item";
 
 import './card-list.css';
 

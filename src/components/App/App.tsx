@@ -1,11 +1,11 @@
 import {FC} from "react";
-
-import BoardList from "../board-list/board-list";
-
 import {BrowserRouter as Router, Route} from "react-router-dom";
-import Board from "../board/board";
-
 import {useTypedSelector} from "../../hooks/useTypedSelector";
+
+import BoardList from "../Board/board-list/board-list";
+
+
+import Board from "../Board/board/board";
 
 import './App.css';
 import '../../styles/buttons-panel.css';

@@ -1,14 +1,14 @@
 import React, {FC, MouseEventHandler, useMemo} from 'react';
-import ColumnList from "../column-list/column-list";
-
 import {useHistory} from "react-router-dom";
-
-import {useTypedSelector} from "../../hooks/useTypedSelector";
-
 import {useDispatch} from "react-redux";
 
-import {Board as BoardClass} from "../../types/board";
-import {BoardActionTypes} from "../../store/types/board";
+import ColumnList from "../../Column/column-list/column-list";
+
+import {useTypedSelector} from "../../../hooks/useTypedSelector";
+
+
+import {Board as BoardClass} from "../../../types/board";
+import {BoardActionTypes} from "../../../store/types/board";
 
 import './board.css';
 

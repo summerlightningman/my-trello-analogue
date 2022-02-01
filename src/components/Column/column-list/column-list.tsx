@@ -2,9 +2,9 @@ import React, {FC, useContext} from 'react';
 import ColumnListItemAdd from "../column-list-item-add/column-list-item-add";
 import ColumnListItem from "../column-list-item/column-list-item";
 
-import {useTypedSelector} from "../../hooks/useTypedSelector";
+import {useTypedSelector} from "../../../hooks/useTypedSelector";
 
-import {BoardContext} from "../board/board";
+import {BoardContext} from "../../Board/board/board";
 
 import './column-list.css';
 

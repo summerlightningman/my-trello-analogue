@@ -1,6 +1,4 @@
 import {FC, useContext} from 'react';
-import {DndProvider} from "react-dnd";
-import {HTML5Backend} from "react-dnd-html5-backend";
 
 import CardListItem from "../card-list-item/card-list-item";
 import CardListItemAdd from "../card-list-item-add/card-list-item-add";
@@ -18,9 +16,7 @@ const CardList: FC = () => {
     return (
         <ul className="card-list">
             <CardListItemAdd key={-1} cardCount={cardList.length}/>
-            <DndProvider backend={HTML5Backend}>
-                {cardList.map(card => <CardListItem card={card}  key={card.id}/>)}
-            </DndProvider>
+            {cardList.map(card => <CardListItem card={card} key={card.id}/>)}
         </ul>
     );
 };

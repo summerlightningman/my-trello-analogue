@@ -1,6 +1,6 @@
 import {Board, BoardName} from "../../types/board";
 import {Column, ColumnID, ColumnName} from "../../types/column";
-import {Card, CardName, DraggedCard} from "../../types/card";
+import {Card, CardName} from "../../types/card";
 
 
 export enum BoardActionTypes {
@@ -11,7 +11,6 @@ export enum BoardActionTypes {
     SET_NEW_BOARD_NAME = 'SET_NEW_BOARD_NAME',
     SET_NEW_COLUMN_NAME = 'SET_NEW_COLUMN_NAME',
     SET_NEW_CARD_NAME = 'SET_NEW_CARD_NAME',
-    SET_DRAGGED_CARD = 'SET_DRAGGED_CARD',
     SWITCH_IS_ADDING_COLUMN = 'SWITCH_IS_ADDING_COLUMN',
     SWITCH_IS_ADDING_BOARD = 'SWITCH_IS_ADDING_BOARD',
     SWITCH_IS_ADDING_CARD = 'SWITCH_IS_ADDING_CARD',
@@ -53,12 +52,6 @@ interface SetNewCardNameAction {
     payload: [Column, CardName]
 }
 
-interface SetDraggedCardAction {
-    type: BoardActionTypes.SET_DRAGGED_CARD,
-    payload: [Board, DraggedCard]
-}
-
-
 interface SwitchIsAddingColumnAction {
     type: BoardActionTypes.SWITCH_IS_ADDING_COLUMN,
     payload: [Board, boolean]
@@ -96,7 +89,6 @@ export type BoardAction =
     | SetNewBoardNameAction
     | SetNewColumnNameAction
     | SetNewCardNameAction
-    | SetDraggedCardAction
     | SwitchIsAddingBoardAction
     | SwitchIsAddingColumnAction
     | SwitchIsAddingCardAction

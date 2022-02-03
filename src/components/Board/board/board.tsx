@@ -1,11 +1,12 @@
 import React, {FC, MouseEventHandler, useMemo} from 'react';
+import {DndProvider} from "react-dnd";
+import {HTML5Backend} from "react-dnd-html5-backend";
 import {useHistory} from "react-router-dom";
 import {useDispatch} from "react-redux";
 
 import ColumnList from "../../Column/column-list/column-list";
 
 import {useTypedSelector} from "../../../hooks/useTypedSelector";
-
 
 import {Board as BoardClass} from "../../../types/board";
 import {BoardActionTypes} from "../../../store/types/board";
@@ -39,7 +40,9 @@ const Board: FC = () => {
         <div className="board">
             <button className="buttons-panel__btn" onClick={back}>Back</button>
             <BoardContext.Provider value={board}>
-                <ColumnList/>
+                <DndProvider backend={HTML5Backend}>
+                    <ColumnList/>
+                </DndProvider>
             </BoardContext.Provider>
         </div>
     );

@@ -27,6 +27,10 @@ export interface CardListItemProps {
     card: Card,
 }
 
+export interface CardListItemSlotProps {
+    belowCardId: CardID
+}
+
 export interface CardListItemAddProps {
     cardCount: CardCount
 }

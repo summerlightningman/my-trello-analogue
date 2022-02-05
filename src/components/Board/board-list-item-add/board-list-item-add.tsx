@@ -7,7 +7,7 @@ import {BoardActionTypes} from "../../../store/types/board";
 import {Board} from "../../../types/board";
 
 import {BoardCard, BoardCardLabel} from "../board-card";
-
+import {ButtonsPanel, ButtonAdd, ButtonCancel} from "../../buttons";
 
 const BoardItemAdd = styled(BoardCard)`
   background: #00FF7F;
@@ -28,17 +28,34 @@ const BoardItemAddButton = styled.button`
   width: 100%;
   height: 100%;
   cursor: pointer;
-  
+
   &:hover ${BoardItemAddLabel} {
     color: white;
   }
 `;
 
-const BoardItemAddForm = styled(BoardCard)`
+const BoardItemAddForm = styled.form`
   width: 100%;
   height: 100%;
 
+  background: #00FF7F;
+  border-radius: 15px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const BoardAddInput = styled.input`
+  width: 80%;
+  outline: none;
   background: transparent;
+  border: none;
+  border-bottom: 1px solid #1E90FF;
+  padding: 0 0 5px 6px;
+  font-size: 20px;
+  
 `;
 
 
@@ -46,8 +63,9 @@ const BoardListItemAdd: FC = () => {
     const {newBoardName, boardList, isAddingBoard} = useTypedSelector(state => state.board);
     const dispatch = useDispatch();
 
-    const switchIsAddingBoard: MouseEventHandler<HTMLButtonElement | HTMLLIElement> = () =>
+    const switchIsAddingBoard: MouseEventHandler<HTMLButtonElement | HTMLFormElement> = () =>
         dispatch({type: BoardActionTypes.SWITCH_IS_ADDING_BOARD, payload: !isAddingBoard});
+
 
     const handleInput: FormEventHandler<HTMLInputElement> = e =>
         dispatch({type: BoardActionTypes.SET_NEW_BOARD_NAME, payload: e.currentTarget.value});
@@ -63,23 +81,26 @@ const BoardListItemAdd: FC = () => {
 
     const handleKeyPress: KeyboardEventHandler<HTMLInputElement> = e => e.key === 'Enter' && addBoard();
 
-    const button = <BoardItemAddButton onClick={switchIsAddingBoard}>
-        <BoardItemAddLabel>Add card</BoardItemAddLabel>
-    </BoardItemAddButton>;
+    const handleInputClick: MouseEventHandler<HTMLInputElement> = e => e.stopPropagation();
 
     const input = <BoardItemAddForm onClick={switchIsAddingBoard}>
-        <input
+        <BoardAddInput
             type="text"
             value={newBoardName}
             onInput={handleInput}
             onKeyPress={handleKeyPress}
-            className="board-list-item-add__input"
+            onClick={handleInputClick}
+            autoFocus
         />
-        <div className="buttons-panel">
-            <button onClick={handleAddClick} disabled={!newBoardName} className="buttons-panel__btn">Add</button>
-            <button onClick={switchIsAddingBoard} className="buttons-panel__btn">Cancel</button>
-        </div>
+        <ButtonsPanel>
+            <ButtonAdd onClick={handleAddClick} disabled={!newBoardName}>Add</ButtonAdd>
+            <ButtonCancel onClick={switchIsAddingBoard}>Cancel</ButtonCancel>
+        </ButtonsPanel>
     </BoardItemAddForm>;
+
+    const button = <BoardItemAddButton onClick={switchIsAddingBoard}>
+        <BoardItemAddLabel>Add card</BoardItemAddLabel>
+    </BoardItemAddButton>;
 
     return (
         <BoardItemAdd>

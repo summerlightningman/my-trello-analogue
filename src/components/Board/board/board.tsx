@@ -11,8 +11,6 @@ import {useTypedSelector} from "../../../hooks/useTypedSelector";
 import {Board as BoardClass} from "../../../types/board";
 import {BoardActionTypes} from "../../../store/types/board";
 
-import './board.css';
-
 export const BoardContext = React.createContext<BoardClass>(new BoardClass(-1, ''));
 
 const Board: FC = () => {

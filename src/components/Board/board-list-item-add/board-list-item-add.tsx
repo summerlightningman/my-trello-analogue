@@ -70,13 +70,13 @@ const BoardListItemAdd: FC = () => {
     </BoardItemAddForm>;
 
     const button = <BoardItemAddButton onClick={switchIsAddingBoard}>
-        <BoardItemAddLabel>Add card</BoardItemAddLabel>
+        <BoardItemAddLabel>Add board</BoardItemAddLabel>
     </BoardItemAddButton>;
 
     const boardColors: BoardCardProps = {
         background: '#00FF7F',
         hoverBackground: '#3CB371'
-    }
+    };
 
     return (
         <BoardCard {...boardColors}>

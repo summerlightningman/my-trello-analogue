@@ -12,7 +12,6 @@ import {ColumnComponent} from "../column";
 
 
 const ColumnListItemAdd: FC<ColumnListItemAddProps> = ({board}) => {
-
     const {columnList} = useTypedSelector(state => state.board);
     const dispatch = useDispatch();
 
@@ -31,17 +30,12 @@ const ColumnListItemAdd: FC<ColumnListItemAddProps> = ({board}) => {
 
     const handleAddClick: MouseEventHandler<HTMLButtonElement> = () => addColumn();
 
-
-    const button = <button onClick={switchIsAddingColumn} className="column-list-item-add__btn">
+    const button = <button onClick={switchIsAddingColumn}>
         <AiOutlinePlus color="#0098dd"/>
     </button>;
 
     const input = <>
-        <AddInput
-            onInput={handleInput}
-            onEnterPress={addColumn}
-            value={newColumnName}
-        />
+        <AddInput onInput={handleInput} onEnterPress={addColumn} value={newColumnName}/>
         <ButtonsPanel>
             <ButtonAdd onClick={handleAddClick} disabled={!newColumnName}>Add</ButtonAdd>
             <ButtonCancel onClick={switchIsAddingColumn}>Cancel</ButtonCancel>

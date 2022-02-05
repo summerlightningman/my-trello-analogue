@@ -1,11 +1,11 @@
 import {FC, useContext} from 'react';
 import {useDrop} from "react-dnd";
+import {useDispatch} from "react-redux";
 
+import {BoardActionTypes} from "../../../store/types/board";
+import ColumnContext from "../../Column/column-context";
 import draggableTypes from "../../../types/draggable-types";
 import {Card, CardListItemSlotProps} from "../../../types/card";
-import {ColumnContext} from "../../Column/column-list-item/column-list-item";
-import {useDispatch} from "react-redux";
-import {BoardActionTypes} from "../../../store/types/board";
 
 const CardListItemSlot: FC<CardListItemSlotProps> = ({belowCardId}) => {
     const dispatch = useDispatch();

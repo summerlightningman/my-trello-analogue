@@ -3,11 +3,9 @@ import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
 import {useHistory} from "react-router-dom";
 import {useDispatch} from "react-redux";
-
-import ColumnList from "../../Column/column-list/column-list";
-
 import {useTypedSelector} from "../../../hooks/useTypedSelector";
 
+import ColumnList from "../../Column/column-list/column-list";
 import {Board as BoardClass} from "../../../types/board";
 import {BoardActionTypes} from "../../../store/types/board";
 import {ButtonBack} from "../../buttons";

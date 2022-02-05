@@ -1,11 +1,10 @@
 import {FC, FormEventHandler, KeyboardEventHandler, MouseEventHandler, useContext} from 'react';
 
 import {useDispatch} from "react-redux";
+
 import {Card, CardListItemAddProps, CardName} from "../../../types/card";
-
+import ColumnContext from "../../Column/column-context";
 import {BoardActionTypes} from "../../../store/types/board";
-
-import {ColumnContext} from "../../Column/column-list-item/column-list-item";
 import CardListItemSlot from "../card-list-item-slot/card-list-item-slot";
 
 import './card-list-item-add.css';

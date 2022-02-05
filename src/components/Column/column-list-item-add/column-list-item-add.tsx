@@ -1,13 +1,15 @@
-import {FC, FormEventHandler, KeyboardEventHandler, MouseEventHandler} from 'react';
+import {FC, FormEventHandler, MouseEventHandler} from 'react';
 
 import {useDispatch} from "react-redux";
 import {AiOutlinePlus} from "react-icons/all";
-
 import {useTypedSelector} from "../../../hooks/useTypedSelector";
+
 import {BoardActionTypes} from "../../../store/types/board";
 import {Column, ColumnListItemAddProps} from "../../../types/column";
+import {ButtonAdd, ButtonCancel, ButtonsPanel} from "../../buttons";
+import {AddInput} from "../../add-input";
+import {ColumnComponent} from "../column";
 
-import './column-list-item-add.css';
 
 const ColumnListItemAdd: FC<ColumnListItemAddProps> = ({board}) => {
 
@@ -28,30 +30,28 @@ const ColumnListItemAdd: FC<ColumnListItemAddProps> = ({board}) => {
     }
 
     const handleAddClick: MouseEventHandler<HTMLButtonElement> = () => addColumn();
-    const handleKeyPress: KeyboardEventHandler<HTMLInputElement> = e => e.key === 'Enter' && addColumn();
+
 
     const button = <button onClick={switchIsAddingColumn} className="column-list-item-add__btn">
         <AiOutlinePlus color="#0098dd"/>
     </button>;
 
     const input = <>
-        <input
-            type="text"
+        <AddInput
             onInput={handleInput}
-            onKeyPress={handleKeyPress}
+            onEnterPress={addColumn}
             value={newColumnName}
-            className="column-list-item-add__input"
         />
-        <div className="buttons-panel column-list-item-add__btns">
-            <button className="buttons-panel__btn" onClick={handleAddClick} disabled={!newColumnName}>Add</button>
-            <button className="buttons-panel__btn" onClick={switchIsAddingColumn}>Cancel</button>
-        </div>
+        <ButtonsPanel>
+            <ButtonAdd onClick={handleAddClick} disabled={!newColumnName}>Add</ButtonAdd>
+            <ButtonCancel onClick={switchIsAddingColumn}>Cancel</ButtonCancel>
+        </ButtonsPanel>
     </>;
 
     return (
-        <li className="column-list-item column-list-item-add">
+        <ColumnComponent color={'#00FF7F'}>
             {isAddingColumn ? input : button}
-        </li>
+        </ColumnComponent>
     );
 };
 

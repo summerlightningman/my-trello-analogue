@@ -6,6 +6,7 @@ import {Card, CardListItemAddProps, CardName} from "../../../types/card";
 import ColumnContext from "../../Column/column-context";
 import {BoardActionTypes} from "../../../store/types/board";
 import CardListItemSlot from "../card-list-item-slot/card-list-item-slot";
+import {ButtonAdd, ButtonCancel, ButtonsPanel} from "../../buttons";
 
 import './card-list-item-add.css';
 
@@ -43,10 +44,10 @@ const CardListItemAdd: FC<CardListItemAddProps> = ({cardCount}) => {
             onInput={handleInput}
             onKeyPress={handleKeyPress}
         />
-        <div className="card-list-item-add__btns buttons-panel">
-            <button className="buttons-panel__btn" disabled={!column.newCardName} onClick={addCard}>Add</button>
-            <button className="buttons-panel__btn" onClick={handleClick}>Cancel</button>
-        </div>
+        <ButtonsPanel>
+            <ButtonAdd disabled={!column.newCardName} onClick={addCard}>Add</ButtonAdd>
+            <ButtonCancel onClick={handleClick}>Cancel</ButtonCancel>
+        </ButtonsPanel>
     </>;
 
     return (

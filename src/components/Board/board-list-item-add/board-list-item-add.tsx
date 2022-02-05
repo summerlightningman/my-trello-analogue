@@ -1,13 +1,14 @@
-import {FC, FormEventHandler, KeyboardEventHandler, MouseEventHandler} from 'react';
-import styled from "styled-components";
+import {FC, FormEventHandler, MouseEventHandler} from 'react';
 
+import styled from "styled-components";
 import {useTypedSelector} from "../../../hooks/useTypedSelector";
 import {useDispatch} from "react-redux";
+
 import {BoardActionTypes} from "../../../store/types/board";
 import {Board} from "../../../types/board";
-
 import {BoardCard, BoardCardLabel, BoardCardProps} from "../board-card";
-import {ButtonsPanel, ButtonAdd, ButtonCancel} from "../../buttons";
+import {ButtonAdd, ButtonCancel, ButtonsPanel} from "../../buttons";
+import {AddInput} from "../../add-input";
 
 
 const BoardItemAddLabel = styled(BoardCardLabel)`
@@ -40,16 +41,6 @@ const BoardItemAddForm = styled.form`
   align-items: center;
 `;
 
-const BoardAddInput = styled.input`
-  width: 80%;
-  outline: none;
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid #1E90FF;
-  padding: 0 0 5px 6px;
-  font-size: 20px;
-`;
-
 
 const BoardListItemAdd: FC = () => {
     const {newBoardName, boardList, isAddingBoard} = useTypedSelector(state => state.board);
@@ -70,19 +61,8 @@ const BoardListItemAdd: FC = () => {
         dispatch({type: BoardActionTypes.SWITCH_IS_ADDING_BOARD, payload: false});
     };
 
-    const handleKeyPress: KeyboardEventHandler<HTMLInputElement> = e => e.key === 'Enter' && addBoard();
-
-    const handleInputClick: MouseEventHandler<HTMLInputElement> = e => e.stopPropagation();
-
     const input = <BoardItemAddForm onClick={switchIsAddingBoard}>
-        <BoardAddInput
-            type="text"
-            value={newBoardName}
-            onInput={handleInput}
-            onKeyPress={handleKeyPress}
-            onClick={handleInputClick}
-            autoFocus
-        />
+        <AddInput value={newBoardName} onInput={handleInput} onEnterPress={addBoard}/>
         <ButtonsPanel>
             <ButtonAdd onClick={handleAddClick} disabled={!newBoardName}>Add</ButtonAdd>
             <ButtonCancel onClick={switchIsAddingBoard}>Cancel</ButtonCancel>

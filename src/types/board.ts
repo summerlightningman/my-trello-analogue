@@ -34,6 +34,7 @@ export class Board implements AppUnit {
 
 }
 
-export interface BoardListItemProps {
+export interface BoardListItemProps{
+    id: BoardID,
     name: BoardName
 }

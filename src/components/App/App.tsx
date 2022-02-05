@@ -18,6 +18,7 @@ const Header = styled.header`
   padding: 10px 10%;
   border-bottom: 1px solid #0002;
   font-size: 48px;
+  margin-bottom: 40px;
 `;
 
 const App: FC = () => {

@@ -1,10 +1,13 @@
 import {BoardAction, BoardActionTypes, BoardState} from "../types/board";
 import {replaceInListById} from "../../replace-in-list-by-id";
+import {Column} from "../../types/column";
+import {Card} from "../../types/card";
+import {Board} from "../../types/board";
 
 const initialState: BoardState = {
-    boardList: [],
-    columnList: [],
-    cardList: [],
+    boardList: [new Board(0, 'myboard')],
+    columnList: [new Column(0, 0, 'mycol1'), new Column(0, 1, 'mycol2')],
+    cardList: [new Card(0, 0, 'mycard1'), new Card(0, 1, 'mycard2'), new Card(1, 0, 'mycard3'), new Card(1, 1, 'mycard4'),],
     windowTitle: 'My Trello Analogue',
     newBoardName: '',
     isAddingBoard: false,
@@ -53,10 +56,16 @@ export const boardReducer = (state = initialState, action: BoardAction): BoardSt
             const newColumnList = replaceInListById(state.columnList, column, newColumn)
             return {...state, columnList: newColumnList}
         case BoardActionTypes.MOVE_CARD_INTO_OTHER_COLUMN:
-            const [columnId, card_] = action.payload;
-            const newCard_ = card_.setColumnId(columnId);
-            const newCardList = replaceInListById(state.cardList, card_, newCard_);
+            const [destColumnId, card, belowCardId] = action.payload;
+            const cardList = state.cardList.filter(cardItem => JSON.stringify(cardItem) !== JSON.stringify(card));
+            const newId = Math.max(...state.cardList.map(cardItem => cardItem.id)) + 1;
+            const belowCardIdx = belowCardId === -1
+                ? newId
+                : cardList.findIndex(cardItem => cardItem.id === belowCardId && cardItem.columnId === destColumnId);
+            const updatedCard = card.setId(newId).setColumnId(destColumnId);
+            const newCardList = [...cardList.slice(0, belowCardIdx), updatedCard, ...cardList.slice(belowCardIdx, newId)];
             return {...state, cardList: newCardList}
+
         default:
             return initialState
     }

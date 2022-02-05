@@ -2,16 +2,24 @@ import {FC, useContext} from 'react';
 import {useDrop} from "react-dnd";
 
 import draggableTypes from "../../../types/draggable-types";
-import {CardListItemSlotProps} from "../../../types/card";
+import {Card, CardListItemSlotProps} from "../../../types/card";
 import {ColumnContext} from "../../Column/column-list-item/column-list-item";
+import {useDispatch} from "react-redux";
+import {BoardActionTypes} from "../../../store/types/board";
 
 const CardListItemSlot: FC<CardListItemSlotProps> = ({belowCardId}) => {
+    const dispatch = useDispatch();
+
+    const column = useContext(ColumnContext);
+    const handleCardDrop = (card: Card) =>
+        dispatch({type: BoardActionTypes.MOVE_CARD_INTO_OTHER_COLUMN, payload: [column.id, card, belowCardId]});
+
     const [{isOver}, cardDropRef] = useDrop(() => ({
         accept: draggableTypes.CARD,
-        drop: (card) => console.log(card),
+        drop: handleCardDrop,
         collect: monitor => ({isOver: monitor.isOver()})
     }));
-    const column = useContext(ColumnContext);
+
 
     const dragOverStyle = {
         background: 'black',

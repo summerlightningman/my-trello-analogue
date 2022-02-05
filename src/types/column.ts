@@ -1,5 +1,5 @@
 import {BoardID} from "./board";
-import {Card, CardName} from "./card";
+import {Card, CardID, CardName} from "./card";
 import {AppUnit} from "./app-unit";
 
 export type ColumnName = string;
@@ -23,15 +23,10 @@ export class Column implements AppUnit {
         this._isAddingCard = false;
 
         this.setNewCardName = this.setNewCardName.bind(this);
-        this.addCard = this.addCard.bind(this);
-        this.cloneColumn = this.cloneColumn.bind(this)
-    }
-
-    addCard(card: Card): Column {
-        const column = new Column(this.boardId, this.id, this.name);
-        column.cardList = [card, ...this.cardList]
-            .sort((left: Card, right: Card) => left.id - right.id);
-        return column
+        this.setIsAddingCard = this.setIsAddingCard.bind(this);
+        this.removeCardFromColumnById = this.removeCardFromColumnById.bind(this);
+        this.insertCard = this.insertCard.bind(this);
+        this.cloneColumn = this.cloneColumn.bind(this);
     }
 
     setNewCardName(value: CardName): Column {
@@ -43,6 +38,23 @@ export class Column implements AppUnit {
     setIsAddingCard(value: boolean): Column {
         const newColumn = this.cloneColumn();
         newColumn._isAddingCard = value;
+        return newColumn
+    }
+
+    removeCardFromColumnById(id: CardID): Column {
+        const newColumn = this.cloneColumn();
+        console.log(newColumn);
+        newColumn.cardList = newColumn.cardList.filter(card => card.id !== id);
+        return newColumn
+    }
+
+    insertCard(card: Card, belowCardId: CardID): Column {
+        const newColumn = this.cloneColumn();
+        const cardIdx = newColumn.cardList.findIndex(card => card.id === belowCardId);
+        const cardCount = newColumn.cardList.length;
+        const {cardList} = newColumn;
+        newColumn.cardList = [...cardList.slice(0, cardIdx), card, ...cardList.slice(cardIdx, cardCount)]
+            .map((card, idx) => new Card(idx, card.id, card.name));
         return newColumn
     }
 

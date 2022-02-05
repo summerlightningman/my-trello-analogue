@@ -1,6 +1,6 @@
 import {Board, BoardName} from "../../types/board";
 import {Column, ColumnID, ColumnName} from "../../types/column";
-import {Card, CardName} from "../../types/card";
+import {Card, CardID, CardName} from "../../types/card";
 
 
 export enum BoardActionTypes {
@@ -69,7 +69,7 @@ interface SwitchIsAddingCardAction {
 
 interface MoveCardIntoNewColumnAction {
     type: BoardActionTypes.MOVE_CARD_INTO_OTHER_COLUMN,
-    payload: [ColumnID, Card]
+    payload: [ColumnID, Card, CardID]
 }
 
 export interface BoardState {

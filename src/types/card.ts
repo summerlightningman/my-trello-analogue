@@ -4,7 +4,7 @@ import {AppUnit} from "./app-unit";
 export type CardID = number;
 export type CardName = string;
 export type CardCount = number;
-export type DraggedCard = Card | null;
+
 
 export class Card implements AppUnit {
     readonly id: CardID;
@@ -15,10 +15,17 @@ export class Card implements AppUnit {
         this.id = id;
         this.name = name;
         this.columnId = columnId;
+
+        this.setColumnId = this.setColumnId.bind(this);
+        this.setId = this.setId.bind(this);
     }
 
-    setColumnId(columnId: ColumnID): Card {
-        return new Card(columnId, this.id, this.name);
+    setColumnId(columnId: ColumnID) {
+        return new Card(columnId, this.id, this.name)
+    }
+
+    setId(id: CardID) {
+        return new Card(this.columnId, id, this.name)
     }
 }
 

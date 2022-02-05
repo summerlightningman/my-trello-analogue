@@ -6,16 +6,9 @@ import {useDispatch} from "react-redux";
 import {BoardActionTypes} from "../../../store/types/board";
 import {Board} from "../../../types/board";
 
-import {BoardCard, BoardCardLabel} from "../board-card";
+import {BoardCard, BoardCardLabel, BoardCardProps} from "../board-card";
 import {ButtonsPanel, ButtonAdd, ButtonCancel} from "../../buttons";
 
-const BoardItemAdd = styled(BoardCard)`
-  background: #00FF7F;
-
-  &:hover {
-    background: #3CB371;
-  }
-`;
 
 const BoardItemAddLabel = styled(BoardCardLabel)`
   color: #1E90FF;
@@ -55,7 +48,6 @@ const BoardAddInput = styled.input`
   border-bottom: 1px solid #1E90FF;
   padding: 0 0 5px 6px;
   font-size: 20px;
-  
 `;
 
 
@@ -77,7 +69,7 @@ const BoardListItemAdd: FC = () => {
         dispatch({type: BoardActionTypes.ADD_BOARD, payload: board});
         dispatch({type: BoardActionTypes.SET_NEW_BOARD_NAME, payload: ''});
         dispatch({type: BoardActionTypes.SWITCH_IS_ADDING_BOARD, payload: false});
-    }
+    };
 
     const handleKeyPress: KeyboardEventHandler<HTMLInputElement> = e => e.key === 'Enter' && addBoard();
 
@@ -102,10 +94,15 @@ const BoardListItemAdd: FC = () => {
         <BoardItemAddLabel>Add card</BoardItemAddLabel>
     </BoardItemAddButton>;
 
+    const boardColors: BoardCardProps = {
+        background: '#00FF7F',
+        hoverBackground: '#3CB371'
+    }
+
     return (
-        <BoardItemAdd>
+        <BoardCard {...boardColors}>
             {isAddingBoard ? input : button}
-        </BoardItemAdd>
+        </BoardCard>
     );
 };
 

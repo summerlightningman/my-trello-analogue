@@ -1,6 +1,12 @@
 import styled from "styled-components";
 
-export const BoardCard = styled.li`
+export interface BoardCardProps {
+    background?: string,
+    hoverBackground?: string,
+    activeBackground?: string
+}
+
+export const BoardCard = styled.li<BoardCardProps>`
   width: 250px;
   height: 150px;
   
@@ -12,6 +18,15 @@ export const BoardCard = styled.li`
   border-radius: 15px;
   cursor: pointer;
   color: white;
+  background: ${props => props.background || '#00BFFF'};
+  
+  &:hover {
+    background: ${props => props.hoverBackground || '#1E90FF'};
+  }
+  
+  &:active {
+    background: ${props => props.activeBackground || '#4682B4'};
+  }
 `;
 
 export const BoardCardLabel = styled.span`

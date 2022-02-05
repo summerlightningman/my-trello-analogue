@@ -1,4 +1,4 @@
-import {BoardID} from "./board";
+import {Board, BoardID} from "./board";
 import {Card, CardID, CardName} from "./card";
 import {AppUnit} from "./app-unit";
 
@@ -71,6 +71,14 @@ export class Column implements AppUnit {
     }
 }
 
+export interface ColumnListProps {
+    board: Board
+}
+
 export interface ColumnListItemProps {
     column: Column
+}
+
+export interface ColumnListItemAddProps {
+    board: Board
 }

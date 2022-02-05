@@ -10,8 +10,7 @@ import {useTypedSelector} from "../../../hooks/useTypedSelector";
 
 import {Board as BoardClass} from "../../../types/board";
 import {BoardActionTypes} from "../../../store/types/board";
-
-export const BoardContext = React.createContext<BoardClass>(new BoardClass(-1, ''));
+import {ButtonBack} from "../../buttons";
 
 const Board: FC = () => {
     const history = useHistory();
@@ -36,12 +35,10 @@ const Board: FC = () => {
 
     return (
         <div className="board">
-            <button className="buttons-panel__btn" onClick={back}>Back</button>
-            <BoardContext.Provider value={board}>
-                <DndProvider backend={HTML5Backend}>
-                    <ColumnList/>
-                </DndProvider>
-            </BoardContext.Provider>
+            <ButtonBack onClick={back}>Back</ButtonBack>
+            <DndProvider backend={HTML5Backend}>
+                <ColumnList board={board}/>
+            </DndProvider>
         </div>
     );
 };

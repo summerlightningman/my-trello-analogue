@@ -35,3 +35,20 @@ export const ButtonAdd = styled(ButtonBase)`
 export const ButtonCancel = styled(ButtonBase)`
   color: #1E80DF;
 `;
+
+export const ButtonBack = styled(ButtonBase)`
+  background: transparent;
+  width: 100px;
+  height: 30px;
+  font-weight: bold;
+  text-align: left;
+  color: #00BFFF;
+  
+  &:hover {
+    color: #1E90FF;
+  }
+  
+  &:active {
+    color: #4682B4;
+  }
+`;

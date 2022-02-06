@@ -32,7 +32,7 @@ const ColumnListItemAdd: FC<ColumnListItemAddProps> = ({board}) => {
     const handleAddClick: MouseEventHandler<HTMLButtonElement> = () => addColumn();
 
     const button = <ButtonSwitch onClick={switchIsAddingColumn}>
-        <AiOutlinePlus color="#0098dd" size="100px"/>
+        <AiOutlinePlus color="#0098dd" size="80px"/>
     </ButtonSwitch>;
 
     const input = <AddForm onClick={switchIsAddingColumn}>
@@ -44,7 +44,7 @@ const ColumnListItemAdd: FC<ColumnListItemAddProps> = ({board}) => {
     </AddForm>;
 
     return (
-        <ColumnComponent color="#00FF7F" height="150px">
+        <ColumnComponent color="#00FF7F" height="130px">
             {isAddingColumn ? input : button}
         </ColumnComponent>
     );

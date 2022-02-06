@@ -16,6 +16,7 @@ const CardDropSlotComponent = styled.div<CardDropSlotComponentProps>`
   width: 100%;
   height: calc(30%);
   border-radius: 10px;
+  background: transparent;
   
   ${props => props.isOver && `
     box-shadow: 3px 5px 3px #0005;

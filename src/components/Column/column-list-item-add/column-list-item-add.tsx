@@ -9,7 +9,19 @@ import {Column, ColumnListItemAddProps} from "../../../types/column";
 import {ButtonAdd, ButtonCancel, ButtonsPanel} from "../../buttons";
 import {AddInput} from "../../add-input";
 import {ColumnComponent} from "../column";
+import {ButtonSwitch} from "../../buttons";
+import styled from "styled-components";
 
+const ColumnItemAddForm = styled.form`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  cursor: pointer;
+`;
 
 const ColumnListItemAdd: FC<ColumnListItemAddProps> = ({board}) => {
     const {columnList} = useTypedSelector(state => state.board);
@@ -17,7 +29,7 @@ const ColumnListItemAdd: FC<ColumnListItemAddProps> = ({board}) => {
 
     const {newColumnName, isAddingColumn} = board;
 
-    const switchIsAddingColumn: MouseEventHandler<HTMLButtonElement> = () =>
+    const switchIsAddingColumn: MouseEventHandler<HTMLButtonElement | HTMLFormElement> = () =>
         dispatch({type: BoardActionTypes.SWITCH_IS_ADDING_COLUMN, payload: [board, !isAddingColumn]});
 
     const handleInput: FormEventHandler<HTMLInputElement> = e =>
@@ -26,24 +38,24 @@ const ColumnListItemAdd: FC<ColumnListItemAddProps> = ({board}) => {
     const addColumn = () => {
         const column: Column = new Column(board.id, columnList.length, board.newColumnName);
         dispatch({type: BoardActionTypes.ADD_COLUMN, payload: column});
-    }
+    };
 
     const handleAddClick: MouseEventHandler<HTMLButtonElement> = () => addColumn();
 
-    const button = <button onClick={switchIsAddingColumn}>
-        <AiOutlinePlus color="#0098dd"/>
-    </button>;
+    const button = <ButtonSwitch onClick={switchIsAddingColumn}>
+        <AiOutlinePlus color="#0098dd" size="100px"/>
+    </ButtonSwitch>;
 
-    const input = <>
+    const input = <ColumnItemAddForm onClick={switchIsAddingColumn}>
         <AddInput onInput={handleInput} onEnterPress={addColumn} value={newColumnName}/>
         <ButtonsPanel>
             <ButtonAdd onClick={handleAddClick} disabled={!newColumnName}>Add</ButtonAdd>
             <ButtonCancel onClick={switchIsAddingColumn}>Cancel</ButtonCancel>
         </ButtonsPanel>
-    </>;
+    </ColumnItemAddForm>;
 
     return (
-        <ColumnComponent color={'#00FF7F'}>
+        <ColumnComponent color="#00FF7F" height="150px">
             {isAddingColumn ? input : button}
         </ColumnComponent>
     );

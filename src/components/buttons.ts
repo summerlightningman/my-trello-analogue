@@ -10,7 +10,7 @@ export const ButtonsPanel = styled.div`
 
 export const ButtonBase = styled.button`
   border: none;
-  background: none;
+  background: transparent;
   font-family: "Century Gothic", sans-serif;
   cursor: pointer;
   font-size: 20px;
@@ -50,5 +50,16 @@ export const ButtonBack = styled(ButtonBase)`
   
   &:active {
     color: #4682B4;
+  }
+`;
+
+export const ButtonSwitch = styled(ButtonBase)`
+  border: none;
+  color: white;
+  width: 100%;
+  height: 100%;
+
+  &:hover span {
+    color: white;
   }
 `;

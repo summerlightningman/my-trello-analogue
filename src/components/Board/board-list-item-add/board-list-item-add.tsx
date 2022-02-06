@@ -7,7 +7,7 @@ import {useDispatch} from "react-redux";
 import {BoardActionTypes} from "../../../store/types/board";
 import {Board} from "../../../types/board";
 import {BoardCard, BoardCardLabel, BoardCardProps} from "../board-card";
-import {ButtonAdd, ButtonCancel, ButtonsPanel} from "../../buttons";
+import {ButtonAdd, ButtonSwitch, ButtonCancel, ButtonsPanel} from "../../buttons";
 import {AddInput} from "../../add-input";
 
 
@@ -15,18 +15,7 @@ const BoardItemAddLabel = styled(BoardCardLabel)`
   color: #1E90FF;
 `;
 
-const BoardItemAddButton = styled.button`
-  border: none;
-  background: transparent;
-  color: white;
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
 
-  &:hover ${BoardItemAddLabel} {
-    color: white;
-  }
-`;
 
 const BoardItemAddForm = styled.form`
   width: 100%;
@@ -69,9 +58,9 @@ const BoardListItemAdd: FC = () => {
         </ButtonsPanel>
     </BoardItemAddForm>;
 
-    const button = <BoardItemAddButton onClick={switchIsAddingBoard}>
+    const button = <ButtonSwitch onClick={switchIsAddingBoard}>
         <BoardItemAddLabel>Add board</BoardItemAddLabel>
-    </BoardItemAddButton>;
+    </ButtonSwitch>;
 
     const boardColors: BoardCardProps = {
         background: '#00FF7F',

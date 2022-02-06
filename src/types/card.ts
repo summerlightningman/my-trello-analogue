@@ -34,7 +34,7 @@ export interface CardListItemProps {
     card: Card,
 }
 
-export interface CardListItemSlotProps {
+export interface CardDropSlotProps {
     belowCardId: CardID
 }
 

@@ -8,7 +8,7 @@ import ColumnContext from "../../Column/column-context";
 
 const CardListComponent = styled.ul`
   width: 90%;
-  padding: 0 0 10px 0;
+  padding-bottom: 15px;
 `;
 
 

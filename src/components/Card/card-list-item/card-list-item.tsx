@@ -2,11 +2,9 @@ import {FC} from 'react';
 import {useDrag} from "react-dnd";
 
 import {CardListItemProps} from "../../../types/card";
-
 import draggableTypes from "../../../types/draggable-types";
-import CardListItemSlot from "../card-list-item-slot/card-list-item-slot";
-
-import './card-list-item.css';
+import {CardComponent, CardLabel} from "../card";
+import CardDropSlot from "../card-list-item-slot/card-drop-slot";
 
 const CardListItem: FC<CardListItemProps> = ({card}) => {
     const [{isDragging}, cardDragRef] = useDrag(() => ({
@@ -16,18 +14,13 @@ const CardListItem: FC<CardListItemProps> = ({card}) => {
     }));
 
     return (
-        <li
-            className="card-list-item"
+        <CardComponent
             ref={cardDragRef}
-            style={{opacity: isDragging ? 0 : 1}}
+            isDragging={isDragging}
         >
-            <div
-                className="card-list-item__content"
-            >
-                {card.name}
-            </div>
-            <CardListItemSlot belowCardId={card.id}/>
-        </li>
+            <CardLabel>{card.name}</CardLabel>
+            <CardDropSlot belowCardId={card.id}/>
+        </CardComponent>
     );
 };
 

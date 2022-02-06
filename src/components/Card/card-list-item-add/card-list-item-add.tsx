@@ -5,7 +5,7 @@ import {useDispatch} from "react-redux";
 import {Card, CardListItemAddProps, CardName} from "../../../types/card";
 import ColumnContext from "../../Column/column-context";
 import {BoardActionTypes} from "../../../store/types/board";
-import CardListItemSlot from "../card-list-item-slot/card-list-item-slot";
+import CardDropSlot from "../card-list-item-slot/card-drop-slot";
 import {ButtonAdd, ButtonCancel, ButtonsPanel} from "../../buttons";
 
 import './card-list-item-add.css';
@@ -57,7 +57,7 @@ const CardListItemAdd: FC<CardListItemAddProps> = ({cardCount}) => {
             <div className="card-list-item-add">
                 {column.isAddingCard ? input : button}
             </div>
-            <CardListItemSlot belowCardId={-1}/>
+            <CardDropSlot belowCardId={-1}/>
         </li>
     );
 };

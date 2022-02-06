@@ -1,13 +1,28 @@
 import {FC, useContext} from 'react';
 import {useDrop} from "react-dnd";
 import {useDispatch} from "react-redux";
+import styled from "styled-components";
 
 import {BoardActionTypes} from "../../../store/types/board";
 import ColumnContext from "../../Column/column-context";
 import draggableTypes from "../../../types/draggable-types";
-import {Card, CardListItemSlotProps} from "../../../types/card";
+import {Card, CardDropSlotProps} from "../../../types/card";
 
-const CardListItemSlot: FC<CardListItemSlotProps> = ({belowCardId}) => {
+interface CardDropSlotComponentProps {
+    isOver: boolean;
+}
+
+const CardDropSlotComponent = styled.div<CardDropSlotComponentProps>`
+  width: 100%;
+  height: calc(30%);
+  border-radius: 10px;
+  
+  ${props => props.isOver && `
+    box-shadow: 3px 5px 3px #0005;
+  `}
+`;
+
+const CardDropSlot: FC<CardDropSlotProps> = ({belowCardId}) => {
     const dispatch = useDispatch();
 
     const column = useContext(ColumnContext);
@@ -20,19 +35,11 @@ const CardListItemSlot: FC<CardListItemSlotProps> = ({belowCardId}) => {
         collect: monitor => ({isOver: monitor.isOver()})
     }));
 
-
-    const dragOverStyle = {
-        background: 'black',
-        border: '1px solid black'
-    };
-
-    const elementStyle = {width: '100%', height: '10px'};
-
     return (
-        <div ref={cardDropRef} style={isOver ? {...dragOverStyle, ...elementStyle} : elementStyle}>
+        <CardDropSlotComponent ref={cardDropRef} isOver={isOver}>
 
-        </div>
+        </CardDropSlotComponent>
     );
 };
 
-export default CardListItemSlot;
+export default CardDropSlot;

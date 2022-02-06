@@ -1,11 +1,15 @@
 import {FC, useContext} from 'react';
-import {useTypedSelector} from "../../../hooks/useTypedSelector";
+import styled from "styled-components";
 
+import {useTypedSelector} from "../../../hooks/useTypedSelector";
 import CardListItem from "../card-list-item/card-list-item";
 import CardListItemAdd from "../card-list-item-add/card-list-item-add";
 import ColumnContext from "../../Column/column-context";
 
-import './card-list.css';
+const CardListComponent = styled.ul`
+  width: 90%;
+  padding: 0 0 10px 0;
+`;
 
 
 const CardList: FC = () => {
@@ -15,10 +19,10 @@ const CardList: FC = () => {
         .filter(card => card.columnId === column.id);
 
     return (
-        <ul className="card-list">
+        <CardListComponent>
             <CardListItemAdd key={-1} cardCount={cardList.length}/>
             {cardList.map(card => <CardListItem card={card} key={card.id}/>)}
-        </ul>
+        </CardListComponent>
     );
 };
 

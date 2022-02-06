@@ -16,22 +16,30 @@ export class Board implements AppUnit {
         this.name = name;
         this.newColumnName = '';
         this.isAddingColumn = false;
+
+        this.setNewColumnName = this.setNewColumnName.bind(this);
+        this.setIsAddingColumn = this.setIsAddingColumn.bind(this);
+        this.cloneBoard = this.cloneBoard.bind(this);
+    }
+
+    cloneBoard(): Board {
+        const newBoard = new Board(this.id, this.name);
+        newBoard.isAddingColumn = this.isAddingColumn;
+        newBoard.newColumnName = this.newColumnName;
+        return newBoard
     }
 
     setNewColumnName(name: ColumnName): Board {
-        const board = new Board(this.id, this.name);
-        board.isAddingColumn = true;
-        board.newColumnName = name;
-        return board
+        const newBoard = this.cloneBoard();
+        newBoard.newColumnName = name;
+        return newBoard
     }
 
     setIsAddingColumn(value: boolean): Board {
-        const board = new Board(this.id, this.name);
-        board.isAddingColumn = value;
-        board.newColumnName = this.newColumnName;
-        return board
+        const newBoard = this.cloneBoard();
+        newBoard.isAddingColumn = value;
+        return newBoard
     }
-
 }
 
 export interface BoardListItemProps{

@@ -1,14 +1,21 @@
-import {FC, FormEventHandler, KeyboardEventHandler, MouseEventHandler, useContext} from 'react';
-
+import {FC, FormEventHandler, MouseEventHandler, useContext} from 'react';
+import styled from "styled-components";
 import {useDispatch} from "react-redux";
 
 import {Card, CardListItemAddProps, CardName} from "../../../types/card";
 import ColumnContext from "../../Column/column-context";
 import {BoardActionTypes} from "../../../store/types/board";
 import CardDropSlot from "../card-list-item-slot/card-drop-slot";
-import {ButtonAdd, ButtonCancel, ButtonsPanel} from "../../buttons";
+import {ButtonAdd, ButtonCancel, ButtonsPanel, ButtonSwitch} from "../../buttons";
+import {CardComponent} from "../card";
+import {AddInput} from "../../add-input";
+import AddForm from "../../add-form";
 
-import './card-list-item-add.css';
+
+const CardAddButtonSwitch = styled(ButtonSwitch)`
+  color: #0000FF;
+  
+`;
 
 const CardListItemAdd: FC<CardListItemAddProps> = ({cardCount}) => {
     const column = useContext(ColumnContext);
@@ -33,32 +40,21 @@ const CardListItemAdd: FC<CardListItemAddProps> = ({cardCount}) => {
     const handleClick: MouseEventHandler<HTMLButtonElement> = () => switchIsAddingCard(!column.isAddingCard)
 
     const handleInput: FormEventHandler<HTMLInputElement> = e => setNewCardName(e.currentTarget.value);
-    const handleKeyPress: KeyboardEventHandler<HTMLInputElement> = e => e.key === 'Enter' && addCard();
 
-    const button = <button className="card-list-item-add__btn" onClick={handleClick}>Add card</button>;
-    const input = <>
-        <input
-            className="card-list-item-add__input"
-            type="text"
-            value={column.newCardName}
-            onInput={handleInput}
-            onKeyPress={handleKeyPress}
-        />
+    const button = <CardAddButtonSwitch onClick={handleClick}>Add card</CardAddButtonSwitch>
+    const input = <AddForm>
+        <AddInput onInput={handleInput} onEnterPress={addCard} value={column.newCardName}/>
         <ButtonsPanel>
             <ButtonAdd disabled={!column.newCardName} onClick={addCard}>Add</ButtonAdd>
             <ButtonCancel onClick={handleClick}>Cancel</ButtonCancel>
         </ButtonsPanel>
-    </>;
+    </AddForm>;
 
     return (
-        <li
-            className="card-list-item"
-        >
-            <div className="card-list-item-add">
-                {column.isAddingCard ? input : button}
-            </div>
+        <CardComponent color="#7FFFD4">
+            {column.isAddingCard ? input : button}
             <CardDropSlot belowCardId={-1}/>
-        </li>
+        </CardComponent>
     );
 };
 

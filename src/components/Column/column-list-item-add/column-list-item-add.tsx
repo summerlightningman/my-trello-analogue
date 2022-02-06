@@ -6,22 +6,11 @@ import {useTypedSelector} from "../../../hooks/useTypedSelector";
 
 import {BoardActionTypes} from "../../../store/types/board";
 import {Column, ColumnListItemAddProps} from "../../../types/column";
-import {ButtonAdd, ButtonCancel, ButtonsPanel} from "../../buttons";
+import {ButtonAdd, ButtonCancel, ButtonsPanel, ButtonSwitch} from "../../buttons";
 import {AddInput} from "../../add-input";
 import {ColumnComponent} from "../column";
-import {ButtonSwitch} from "../../buttons";
-import styled from "styled-components";
+import AddForm from "../../add-form";
 
-const ColumnItemAddForm = styled.form`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  
-  cursor: pointer;
-`;
 
 const ColumnListItemAdd: FC<ColumnListItemAddProps> = ({board}) => {
     const {columnList} = useTypedSelector(state => state.board);
@@ -46,13 +35,13 @@ const ColumnListItemAdd: FC<ColumnListItemAddProps> = ({board}) => {
         <AiOutlinePlus color="#0098dd" size="100px"/>
     </ButtonSwitch>;
 
-    const input = <ColumnItemAddForm onClick={switchIsAddingColumn}>
+    const input = <AddForm onClick={switchIsAddingColumn}>
         <AddInput onInput={handleInput} onEnterPress={addColumn} value={newColumnName}/>
         <ButtonsPanel>
             <ButtonAdd onClick={handleAddClick} disabled={!newColumnName}>Add</ButtonAdd>
             <ButtonCancel onClick={switchIsAddingColumn}>Cancel</ButtonCancel>
         </ButtonsPanel>
-    </ColumnItemAddForm>;
+    </AddForm>;
 
     return (
         <ColumnComponent color="#00FF7F" height="150px">

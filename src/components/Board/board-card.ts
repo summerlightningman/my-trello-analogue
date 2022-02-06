@@ -19,6 +19,7 @@ export const BoardCard = styled.li<BoardCardProps>`
   cursor: pointer;
   color: white;
   background: ${props => props.background || '#00BFFF'};
+  overflow: hidden;
   
   &:hover {
     background: ${props => props.hoverBackground || '#1E90FF'};

@@ -9,25 +9,10 @@ import {Board} from "../../../types/board";
 import {BoardCard, BoardCardLabel, BoardCardProps} from "../board-card";
 import {ButtonAdd, ButtonSwitch, ButtonCancel, ButtonsPanel} from "../../buttons";
 import {AddInput} from "../../add-input";
-
+import AddForm from "../../add-form";
 
 const BoardItemAddLabel = styled(BoardCardLabel)`
   color: #1E90FF;
-`;
-
-
-
-const BoardItemAddForm = styled.form`
-  width: 100%;
-  height: 100%;
-
-  background: #00FF7F;
-  border-radius: 15px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 `;
 
 
@@ -50,13 +35,13 @@ const BoardListItemAdd: FC = () => {
         dispatch({type: BoardActionTypes.SWITCH_IS_ADDING_BOARD, payload: false});
     };
 
-    const input = <BoardItemAddForm onClick={switchIsAddingBoard}>
+    const input = <AddForm color="#00FF7F" onClick={switchIsAddingBoard}>
         <AddInput value={newBoardName} onInput={handleInput} onEnterPress={addBoard}/>
         <ButtonsPanel>
             <ButtonAdd onClick={handleAddClick} disabled={!newBoardName}>Add</ButtonAdd>
             <ButtonCancel onClick={switchIsAddingBoard}>Cancel</ButtonCancel>
         </ButtonsPanel>
-    </BoardItemAddForm>;
+    </AddForm>;
 
     const button = <ButtonSwitch onClick={switchIsAddingBoard}>
         <BoardItemAddLabel>Add board</BoardItemAddLabel>

@@ -19,14 +19,16 @@ export const boardReducer = (state = initialState, action: BoardAction): BoardSt
             return {...state, boardList: [...state.boardList, action.payload]}
         case BoardActionTypes.ADD_COLUMN:
             const newCol_ = action.payload;
-            const [brd_,] = state.boardList.filter(b => b.id === newCol_.boardId);
-            const newBrd_ = brd_.setNewColumnName('').setIsAddingColumn(false);
+            const brd_ = state.boardList.find(b => b.id === newCol_.boardId);
+            if (!brd_) return state
+            const newBrd_ = brd_.reset();
             const newBrdList = replaceInListById(state.boardList, brd_, newBrd_);
             return {...state, columnList: [...state.columnList, action.payload], boardList: newBrdList}
         case BoardActionTypes.ADD_CARD:
             const newCard = action.payload;
-            const [col_,] = state.columnList.filter(b => b.id === newCard.columnId);
-            const newColumn_ = col_.setNewCardName('').setIsAddingCard(false);
+            const col_ = state.columnList.find(b => b.id === newCard.columnId);
+            if (!col_) return state
+            const newColumn_ = col_.reset();
             const newColumnList_ = replaceInListById(state.columnList, col_, newColumn_);
             return {...state, cardList: [action.payload, ...state.cardList], columnList: newColumnList_}
         case BoardActionTypes.SET_WINDOW_TITLE:

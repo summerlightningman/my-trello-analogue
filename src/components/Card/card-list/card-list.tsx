@@ -22,7 +22,7 @@ const CardList: FC = () => {
     return (
         <CardListComponent>
             <CardListItemAdd key={-2} cardCount={cardList.length}/>
-            <CardDndSlot key={-1} belowCardId={-1}/>
+            <CardDndSlot key={-1} aboveCardId={-1}/>
             {cardList.map(card => <CardListItem card={card} key={`${card.columnId}/${card.id}/${card.name}`}/>)}
         </CardListComponent>
     );

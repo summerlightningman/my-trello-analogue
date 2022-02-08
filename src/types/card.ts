@@ -51,7 +51,7 @@ export interface CardListItemProps {
 }
 
 export interface CardDropSlotProps {
-    belowCardId: CardID
+    aboveCardId: CardID
 }
 
 export interface CardListItemAddProps {

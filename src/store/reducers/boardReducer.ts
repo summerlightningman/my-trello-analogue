@@ -60,18 +60,18 @@ export const boardReducer = (state = initialState, action: BoardAction): BoardSt
             const newColumnList = replaceInListById(state.columnList, column, newColumn)
             return {...state, columnList: newColumnList}
         case BoardActionTypes.MOVE_CARD_INTO_OTHER_COLUMN:
-            const [destColumnId, card, belowCardId] = action.payload;
+            const [destColumnId, card, aboveCardId] = action.payload;
             const cardJson = JSON.stringify(card);
             const cardList = state.cardList.filter(cardItem => cardJson !== JSON.stringify(cardItem));
-            const updatedCard = card.setId(belowCardId + 1).setColumnId(destColumnId);
+            const updatedCard = card.setId(aboveCardId + 1).setColumnId(destColumnId);
             const incFunc = (cardItem: Card) =>
                 cardItem.columnId === destColumnId ? cardItem.setId(cardItem.id + 1) : cardItem;
 
-            if (belowCardId === -1)
+            if (aboveCardId === -1)
                 return {...state, cardList: [updatedCard, ...cardList.map(incFunc)]}
 
             const index =
-                cardList.findIndex(cardItem => cardItem.id === belowCardId && cardItem.columnId === destColumnId) + 1;
+                cardList.findIndex(cardItem => cardItem.id === aboveCardId && cardItem.columnId === destColumnId) + 1;
             const newCardList = [...cardList.slice(0, index), updatedCard, ...cardList.slice(index).map(incFunc)]
             return {...state, cardList: newCardList}
 

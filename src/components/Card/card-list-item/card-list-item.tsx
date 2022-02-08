@@ -30,7 +30,7 @@ const CardListItem: FC<CardListItemProps> = ({card}) => {
             >
                 <CardLabel>{card.name}</CardLabel>
             </CardComponent>
-            <CardDndSlot belowCardId={card.id}/>
+            <CardDndSlot aboveCardId={card.id}/>
         </CardItemContainer>
     );
 };

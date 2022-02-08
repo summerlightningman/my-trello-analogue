@@ -5,7 +5,7 @@ import {useDispatch} from "react-redux";
 import {Card, CardListItemAddProps, CardName} from "../../../types/card";
 import ColumnContext from "../../Column/column-context";
 import {BoardActionTypes} from "../../../store/types/board";
-import CardDropSlot from "../card-list-item-slot/card-drop-slot";
+import CardDndSlot from "../card-dnd-slot/card-dnd-slot";
 import {ButtonAdd, ButtonCancel, ButtonsPanel, ButtonSwitch} from "../../buttons";
 import {CardComponent} from "../card";
 import {AddInput} from "../../add-input";
@@ -14,7 +14,6 @@ import AddForm from "../../add-form";
 
 const CardAddButtonSwitch = styled(ButtonSwitch)`
   color: #0000FF;
-  
 `;
 
 const CardListItemAdd: FC<CardListItemAddProps> = ({cardCount}) => {
@@ -54,7 +53,7 @@ const CardListItemAdd: FC<CardListItemAddProps> = ({cardCount}) => {
     return (
         <CardComponent color="#7FFFD4">
             {column.isAddingCard ? input : button}
-            <CardDropSlot belowCardId={-1}/>
+            <CardDndSlot belowCardId={-1}/>
         </CardComponent>
     );
 };

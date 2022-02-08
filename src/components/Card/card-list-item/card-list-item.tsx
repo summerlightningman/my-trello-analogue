@@ -4,7 +4,7 @@ import {useDrag} from "react-dnd";
 import {CardListItemProps} from "../../../types/card";
 import draggableTypes from "../../../types/draggable-types";
 import {CardComponent, CardLabel} from "../card";
-import CardDropSlot from "../card-list-item-slot/card-drop-slot";
+import CardDndSlot from "../card-dnd-slot/card-dnd-slot";
 
 const CardListItem: FC<CardListItemProps> = ({card}) => {
     const [{isDragging}, cardDragRef] = useDrag(() => ({
@@ -19,7 +19,7 @@ const CardListItem: FC<CardListItemProps> = ({card}) => {
             isDragging={isDragging}
         >
             <CardLabel>{card.name}</CardLabel>
-            <CardDropSlot belowCardId={card.id}/>
+            <CardDndSlot belowCardId={card.id}/>
         </CardComponent>
     );
 };

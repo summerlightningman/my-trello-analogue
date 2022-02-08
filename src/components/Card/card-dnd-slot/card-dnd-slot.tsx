@@ -14,7 +14,7 @@ interface CardDropSlotComponentProps {
 
 const CardDropSlotComponent = styled.div<CardDropSlotComponentProps>`
   width: 100%;
-  height: calc(30%);
+  height: 30%;
   border-radius: 10px;
   background: transparent;
   
@@ -23,7 +23,7 @@ const CardDropSlotComponent = styled.div<CardDropSlotComponentProps>`
   `}
 `;
 
-const CardDropSlot: FC<CardDropSlotProps> = ({belowCardId}) => {
+const CardDndSlot: FC<CardDropSlotProps> = ({belowCardId}) => {
     const dispatch = useDispatch();
 
     const column = useContext(ColumnContext);
@@ -43,4 +43,4 @@ const CardDropSlot: FC<CardDropSlotProps> = ({belowCardId}) => {
     );
 };
 
-export default CardDropSlot;
+export default CardDndSlot;

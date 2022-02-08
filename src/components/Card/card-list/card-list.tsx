@@ -5,6 +5,7 @@ import {useTypedSelector} from "../../../hooks/useTypedSelector";
 import CardListItem from "../card-list-item/card-list-item";
 import CardListItemAdd from "../card-list-item-add/card-list-item-add";
 import ColumnContext from "../../Column/column-context";
+import CardDndSlot from "../card-dnd-slot/card-dnd-slot";
 
 const CardListComponent = styled.ul`
   width: 90%;
@@ -20,7 +21,8 @@ const CardList: FC = () => {
 
     return (
         <CardListComponent>
-            <CardListItemAdd key={-1} cardCount={cardList.length}/>
+            <CardListItemAdd key={-2} cardCount={cardList.length}/>
+            <CardDndSlot key={-1} belowCardId={-1}/>
             {cardList.map(card => <CardListItem card={card} key={`${card.columnId}/${card.id}/${card.name}`}/>)}
         </CardListComponent>
     );

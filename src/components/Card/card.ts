@@ -10,12 +10,12 @@ export const CardComponent = styled.li<CardComponentProps>`
   width: 100%;
   height: 70px;
   background: ${props => props.color || 'white'};
-  margin-top: 15px;
+  //margin-top: 15px;
   border-radius: 10px;
   
   display: inline-flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   
   box-shadow: 4px 6px 2px #0004;

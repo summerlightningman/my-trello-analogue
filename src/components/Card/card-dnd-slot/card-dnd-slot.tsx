@@ -12,15 +12,26 @@ interface CardDropSlotComponentProps {
     isOver: boolean;
 }
 
-const CardDropSlotComponent = styled.div<CardDropSlotComponentProps>`
+const CardDndSlotComponent = styled.div<CardDropSlotComponentProps>`
   width: 100%;
-  height: 30%;
+  height: 30px;
   border-radius: 10px;
-  background: transparent;
+  margin: -5px 0;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
   
   ${props => props.isOver && `
-    box-shadow: 3px 5px 3px #0005;
+    height: 70px;
+    border: 2px dashed white;
+    margin: 20px 0;
   `}
+`;
+
+const CardDndLabel = styled.span`
+  text-align: center;
+  color: white;
 `;
 
 const CardDndSlot: FC<CardDropSlotProps> = ({belowCardId}) => {
@@ -37,9 +48,9 @@ const CardDndSlot: FC<CardDropSlotProps> = ({belowCardId}) => {
     }));
 
     return (
-        <CardDropSlotComponent ref={cardDropRef} isOver={isOver}>
-
-        </CardDropSlotComponent>
+        <CardDndSlotComponent ref={cardDropRef} isOver={isOver}>
+            {isOver && <CardDndLabel>Release mouse button to put this card here</CardDndLabel>}
+        </CardDndSlotComponent>
     );
 };
 

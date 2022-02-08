@@ -21,9 +21,7 @@ export const boardReducer = (state = initialState, action: BoardAction): BoardSt
             const newCol_ = action.payload;
             const brd_ = state.boardList.find(b => b.id === newCol_.boardId);
             if (!brd_) return state
-            const newBrd_ = brd_.reset();
-            const newBrdList = replaceInListById(state.boardList, brd_, newBrd_);
-            return {...state, columnList: [...state.columnList, action.payload], boardList: newBrdList}
+            return {...state, columnList: [...state.columnList, action.payload]}
         case BoardActionTypes.ADD_CARD:
             const newCard = action.payload;
             const col_ = state.columnList.find(b => b.id === newCard.columnId);
@@ -36,36 +34,41 @@ export const boardReducer = (state = initialState, action: BoardAction): BoardSt
         case BoardActionTypes.SET_NEW_BOARD_NAME:
             return {...state, newBoardName: action.payload}
         case BoardActionTypes.SET_NEW_COLUMN_NAME:
-            const [brd, newColumnName] = action.payload;
+            const [boardID, newColumnName] = action.payload;
+            const brd = Board.getById(boardID, state.boardList);
             const newBrd = brd.setNewColumnName(newColumnName);
             const boardList = replaceInListById(state.boardList, brd, newBrd);
             return {...state, boardList}
         case BoardActionTypes.SET_NEW_CARD_NAME:
-            const [col, cardName] = action.payload;
+            const [colId, cardName] = action.payload;
+            const col = Column.getById(colId, state.columnList);
             const newCol = col.setNewCardName(cardName);
-            const newColList = replaceInListById(state.columnList, col, newCol)
+            const newColList = replaceInListById(state.columnList, col, newCol);
             return {...state, columnList: newColList}
         case BoardActionTypes.SWITCH_IS_ADDING_BOARD:
             return {...state, isAddingBoard: action.payload}
         case BoardActionTypes.SWITCH_IS_ADDING_COLUMN:
-            const [board, isAddingColumn] = action.payload;
+            const [boardId, isAddingColumn] = action.payload;
+            const board = Board.getById(boardId, state.boardList)
             const newBoard = board.setIsAddingColumn(isAddingColumn);
             const newBoardList = replaceInListById(state.boardList, board, newBoard);
             return {...state, boardList: newBoardList}
         case BoardActionTypes.SWITCH_IS_ADDING_CARD:
-            const [column, value] = action.payload;
+            const [columnId, value] = action.payload;
+            const column = Column.getById(columnId, state.columnList);
             const newColumn = column.setIsAddingCard(value);
             const newColumnList = replaceInListById(state.columnList, column, newColumn)
             return {...state, columnList: newColumnList}
         case BoardActionTypes.MOVE_CARD_INTO_OTHER_COLUMN:
             const [destColumnId, card, belowCardId] = action.payload;
-            const cardList = state.cardList.filter(cardItem => JSON.stringify(cardItem) !== JSON.stringify(card));
+            const cardJson = JSON.stringify(card);
+            const cardList = state.cardList.filter(cardItem => cardJson !== JSON.stringify(cardItem));
             const newId = Math.max(...state.cardList.map(cardItem => cardItem.id)) + 1;
-            const belowCardIdx = belowCardId === -1
+            const index = belowCardId === -1
                 ? newId
                 : cardList.findIndex(cardItem => cardItem.id === belowCardId && cardItem.columnId === destColumnId);
             const updatedCard = card.setId(newId).setColumnId(destColumnId);
-            const newCardList = [...cardList.slice(0, belowCardIdx), updatedCard, ...cardList.slice(belowCardIdx, newId)];
+            const newCardList = [...cardList.slice(0, index), updatedCard, ...cardList.slice(index)];
             return {...state, cardList: newCardList}
 
         default:

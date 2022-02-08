@@ -4,6 +4,7 @@ import AppUnit from "./app-unit";
 
 export type ColumnName = string;
 export type ColumnID = number;
+export type ColumnList = Column[];
 
 export class Column extends AppUnit<ColumnID, Column> {
     readonly id: ColumnID;
@@ -50,6 +51,10 @@ export class Column extends AppUnit<ColumnID, Column> {
 
     get isAddingCard(): boolean {
         return this._isAddingCard;
+    }
+
+    public static getById(id: ColumnID, list: ColumnList): Column {
+        return list.find(column => column.id === id) || new Column(-1, -1, '404: Column not found!')
     }
 }
 

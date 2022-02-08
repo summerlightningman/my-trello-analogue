@@ -4,6 +4,7 @@ import AppUnit from "./app-unit";
 export type CardID = number;
 export type CardName = string;
 export type CardCount = number;
+export type CardList = Card[];
 
 
 export class Card extends AppUnit<CardID, Card> {
@@ -37,6 +38,10 @@ export class Card extends AppUnit<CardID, Card> {
 
     public reset() {
         return new Card(this.columnId, this.id, this.name)
+    }
+
+    static getById(id: CardID, list: CardList): Card {
+        return list.find(card => card.id === id) || new Card(-1, -1, '404: Card not found!')
     }
 }
 

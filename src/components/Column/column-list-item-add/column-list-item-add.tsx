@@ -10,23 +10,30 @@ import {ButtonAdd, ButtonCancel, ButtonsPanel, ButtonSwitch} from "../../buttons
 import {AddInput} from "../../add-input";
 import {ColumnComponent} from "../column";
 import AddForm from "../../add-form";
+import {useHistory} from "react-router-dom";
+import {Board} from "../../../types/board";
 
 
-const ColumnListItemAdd: FC<ColumnListItemAddProps> = ({board}) => {
-    const {columnList} = useTypedSelector(state => state.board);
+const ColumnListItemAdd: FC<ColumnListItemAddProps> = () => {
+    const {columnList, boardList} = useTypedSelector(state => state.board);
     const dispatch = useDispatch();
-
-    const {newColumnName, isAddingColumn} = board;
+    const boardId = +useHistory().location.pathname.split('/')[2];
+    const board = boardList.find((item: Board) => item.id === boardId);
+    if (!board)
+        return <></>
 
     const switchIsAddingColumn: MouseEventHandler<HTMLButtonElement | HTMLFormElement> = () =>
-        dispatch({type: BoardActionTypes.SWITCH_IS_ADDING_COLUMN, payload: [board, !isAddingColumn]});
+        dispatch({type: BoardActionTypes.SWITCH_IS_ADDING_COLUMN, payload: [board.id, !board.isAddingColumn]});
+
 
     const handleInput: FormEventHandler<HTMLInputElement> = e =>
-        dispatch({type: BoardActionTypes.SET_NEW_COLUMN_NAME, payload: [board, e.currentTarget.value]});
+        dispatch({type: BoardActionTypes.SET_NEW_COLUMN_NAME, payload: [board.id, e.currentTarget.value]});
 
     const addColumn = () => {
         const column: Column = new Column(board.id, columnList.length, board.newColumnName);
         dispatch({type: BoardActionTypes.ADD_COLUMN, payload: column});
+        dispatch({type: BoardActionTypes.SWITCH_IS_ADDING_COLUMN, payload: [board.id, false]});
+        dispatch({type: BoardActionTypes.SET_NEW_COLUMN_NAME, payload: [board.id, '']});
     };
 
     const handleAddClick: MouseEventHandler<HTMLButtonElement> = () => addColumn();
@@ -36,16 +43,16 @@ const ColumnListItemAdd: FC<ColumnListItemAddProps> = ({board}) => {
     </ButtonSwitch>;
 
     const input = <AddForm onClick={switchIsAddingColumn}>
-        <AddInput onInput={handleInput} onEnterPress={addColumn} value={newColumnName}/>
+        <AddInput onInput={handleInput} onEnterPress={addColumn} value={board.newColumnName}/>
         <ButtonsPanel>
-            <ButtonAdd onClick={handleAddClick} disabled={!newColumnName}>Add</ButtonAdd>
+            <ButtonAdd onClick={handleAddClick} disabled={!board.newColumnName}>Add</ButtonAdd>
             <ButtonCancel onClick={switchIsAddingColumn}>Cancel</ButtonCancel>
         </ButtonsPanel>
     </AddForm>;
 
     return (
         <ColumnComponent color="#00FF7F" height="130px">
-            {isAddingColumn ? input : button}
+            {board.isAddingColumn ? input : button}
         </ColumnComponent>
     );
 };

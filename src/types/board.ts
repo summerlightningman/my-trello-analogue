@@ -3,6 +3,7 @@ import AppUnit from "./app-unit";
 
 export type BoardName = string;
 export type BoardID = number;
+export type BoardList = Board[];
 
 export class Board extends AppUnit<BoardID, Board> {
     readonly id: BoardID;
@@ -45,6 +46,10 @@ export class Board extends AppUnit<BoardID, Board> {
         const newBoard = this.clone();
         newBoard.isAddingColumn = value;
         return newBoard
+    }
+
+    static getById(id: BoardID, boardList: BoardList): Board {
+        return boardList.find(board => board.id === id) || new Board(-1, '404: Board not found!')
     }
 }
 

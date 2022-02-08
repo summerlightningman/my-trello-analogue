@@ -7,6 +7,7 @@ interface ColumnComponentProps {
 
 export const ColumnComponent = styled.li<ColumnComponentProps>`
   width: 280px;
+  min-width: 280px;
   ${props => props.height && `height: ${props.height}`};
   
   border-radius: 10px;

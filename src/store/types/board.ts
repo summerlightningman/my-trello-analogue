@@ -1,6 +1,6 @@
-import {Board, BoardName} from "../../types/board";
-import {Column, ColumnID, ColumnName} from "../../types/column";
-import {Card, CardID, CardName} from "../../types/card";
+import {Board, BoardID, BoardList, BoardName} from "../../types/board";
+import {Column, ColumnID, ColumnList, ColumnName} from "../../types/column";
+import {Card, CardID, CardList, CardName} from "../../types/card";
 
 
 export enum BoardActionTypes {
@@ -44,17 +44,17 @@ interface SetNewBoardNameAction {
 
 interface SetNewColumnNameAction {
     type: BoardActionTypes.SET_NEW_COLUMN_NAME,
-    payload: [Board, ColumnName],
+    payload: [BoardID, ColumnName],
 }
 
 interface SetNewCardNameAction {
     type: BoardActionTypes.SET_NEW_CARD_NAME,
-    payload: [Column, CardName]
+    payload: [ColumnID, CardName]
 }
 
 interface SwitchIsAddingColumnAction {
     type: BoardActionTypes.SWITCH_IS_ADDING_COLUMN,
-    payload: [Board, boolean]
+    payload: [BoardID, boolean]
 }
 
 interface SwitchIsAddingBoardAction {
@@ -64,7 +64,7 @@ interface SwitchIsAddingBoardAction {
 
 interface SwitchIsAddingCardAction {
     type: BoardActionTypes.SWITCH_IS_ADDING_CARD,
-    payload: [Column, boolean]
+    payload: [ColumnID, boolean]
 }
 
 interface MoveCardIntoNewColumnAction {
@@ -73,9 +73,9 @@ interface MoveCardIntoNewColumnAction {
 }
 
 export interface BoardState {
-    boardList: Board[],
-    columnList: Column[],
-    cardList: Card[],
+    boardList: BoardList,
+    columnList: ColumnList,
+    cardList: CardList,
     newBoardName: BoardName,
     isAddingBoard: boolean,
     windowTitle: string

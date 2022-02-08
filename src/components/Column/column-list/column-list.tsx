@@ -4,23 +4,26 @@ import styled from "styled-components";
 
 import ColumnListItemAdd from "../column-list-item-add/column-list-item-add";
 import ColumnListItem from "../column-list-item/column-list-item";
-import {ColumnListProps} from "../../../types/column";
+import {Column, ColumnListProps} from "../../../types/column";
 
 
 const ColumnListComponent = styled.ul`
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row;
   align-items: flex-start;
+  overflow-x: auto;
+  height: 80vh;
 `;
 
 const ColumnList: FC<ColumnListProps> = ({board}) => {
     const columnList = useTypedSelector(state => state.board.columnList)
         .filter(col => col.boardId === board.id);
+    const sortFunc = (left: Column, right: Column) => left.id < right.id ? -1 : left.id > right.id ? 1 : 0;
 
     return (
         <ColumnListComponent>
             <ColumnListItemAdd board={board}/>
-            {columnList.map(column => <ColumnListItem column={column} key={column.id}/>)}
+            {columnList.sort(sortFunc).map(column => <ColumnListItem column={column} key={column.id}/>)}
         </ColumnListComponent>
     );
 };

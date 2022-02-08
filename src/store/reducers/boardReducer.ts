@@ -1,5 +1,5 @@
 import {BoardAction, BoardActionTypes, BoardState} from "../types/board";
-import {replaceInListById} from "../../replace-in-list-by-id";
+import {replaceInListById} from "../../redux-functions";
 import {Column} from "../../types/column";
 import {Card} from "../../types/card";
 import {Board} from "../../types/board";
@@ -63,12 +63,16 @@ export const boardReducer = (state = initialState, action: BoardAction): BoardSt
             const [destColumnId, card, belowCardId] = action.payload;
             const cardJson = JSON.stringify(card);
             const cardList = state.cardList.filter(cardItem => cardJson !== JSON.stringify(cardItem));
-            const newId = Math.max(...state.cardList.map(cardItem => cardItem.id)) + 1;
-            const index = belowCardId === -1
-                ? newId
-                : cardList.findIndex(cardItem => cardItem.id === belowCardId && cardItem.columnId === destColumnId);
-            const updatedCard = card.setId(newId).setColumnId(destColumnId);
-            const newCardList = [...cardList.slice(0, index), updatedCard, ...cardList.slice(index)];
+            const updatedCard = card.setId(belowCardId + 1).setColumnId(destColumnId);
+            const incFunc = (cardItem: Card) =>
+                cardItem.columnId === destColumnId ? cardItem.setId(cardItem.id + 1) : cardItem;
+
+            if (belowCardId === -1)
+                return {...state, cardList: [updatedCard, ...cardList.map(incFunc)]}
+
+            const index =
+                cardList.findIndex(cardItem => cardItem.id === belowCardId && cardItem.columnId === destColumnId) + 1;
+            const newCardList = [...cardList.slice(0, index), updatedCard, ...cardList.slice(index).map(incFunc)]
             return {...state, cardList: newCardList}
 
         default:

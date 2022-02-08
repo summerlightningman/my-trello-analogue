@@ -21,7 +21,7 @@ const CardList: FC = () => {
     return (
         <CardListComponent>
             <CardListItemAdd key={-1} cardCount={cardList.length}/>
-            {cardList.map(card => <CardListItem card={card} key={card.id}/>)}
+            {cardList.map(card => <CardListItem card={card} key={`${card.columnId}/${card.id}/${card.name}`}/>)}
         </CardListComponent>
     );
 };

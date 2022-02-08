@@ -1,4 +1,4 @@
-import React, {FC, MouseEventHandler, useMemo} from 'react';
+import React, {FC, MouseEventHandler, useEffect} from 'react';
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
 import {useHistory} from "react-router-dom";
@@ -19,25 +19,23 @@ const Board: FC = () => {
 
     const [, , boardId] = history.location.pathname.split('/');
 
-    const board = useMemo(() => {
-        const [brd] = boardList.filter((board: BoardClass) => board.id === +boardId);
-        const windowTitle = brd ? `Board: ${brd.name}` : '404: Board not found!';
-        dispatch({type: BoardActionTypes.SET_WINDOW_TITLE, payload: windowTitle});
-        return brd
-    }, [boardId, boardList, dispatch]);
+    const boardInfo = boardList.find((board: BoardClass) => board.id === +boardId)
+        || new BoardClass(-1, '404: Board not found!');
 
-    if (!board)
-        return <div className="board">
-            <button className="buttons-panel__btn" onClick={back}>Back</button>
-        </div>
+    useEffect(() => {
+        dispatch({type: BoardActionTypes.SET_WINDOW_TITLE, payload: boardInfo.name});
+    }, [boardInfo.name, dispatch]);
+
+    if (!boardInfo)
+        return <ButtonBack onClick={back}>Back</ButtonBack>
 
     return (
-        <div className="board">
+        <>
             <ButtonBack onClick={back}>Back</ButtonBack>
             <DndProvider backend={HTML5Backend}>
-                <ColumnList board={board}/>
+                <ColumnList board={boardInfo}/>
             </DndProvider>
-        </div>
+        </>
     );
 };
 

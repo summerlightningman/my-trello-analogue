@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {useTypedSelector} from "../../../hooks/useTypedSelector";
+import {useAppSelector} from "../../../hooks/redux";
 import styled from "styled-components";
 
 import ColumnListItemAdd from "../column-list-item-add/column-list-item-add";
@@ -16,7 +16,7 @@ const ColumnListComponent = styled.ul`
 `;
 
 const ColumnList: FC<ColumnListProps> = ({board}) => {
-    const columnList = useTypedSelector(state => state.board.columnList)
+    const columnList = useAppSelector(state => state.board.columnList)
         .filter(col => col.boardId === board.id);
     const sortFunc = (left: Column, right: Column) => left.id < right.id ? -1 : left.id > right.id ? 1 : 0;
 

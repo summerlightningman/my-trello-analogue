@@ -1,7 +1,7 @@
 import {FC, useContext} from 'react';
 import styled from "styled-components";
 
-import {useTypedSelector} from "../../../hooks/useTypedSelector";
+import {useAppSelector} from "../../../hooks/redux";
 import CardListItem from "../card-list-item/card-list-item";
 import CardListItemAdd from "../card-list-item-add/card-list-item-add";
 import ColumnContext from "../../Column/column-context";
@@ -16,7 +16,7 @@ const CardListComponent = styled.ul`
 const CardList: FC = () => {
     const column = useContext(ColumnContext);
 
-    const cardList = useTypedSelector(state => state.board.cardList)
+    const cardList = useAppSelector(state => state.board.cardList)
         .filter(card => card.columnId === column.id);
 
     return (

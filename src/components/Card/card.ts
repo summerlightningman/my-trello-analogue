@@ -14,7 +14,6 @@ export const CardDndSlotComponent = styled.div<CardDropSlotComponentProps>`
   width: 100%;
   height: 20px;
   border-radius: 10px;
-  
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,6 +21,7 @@ export const CardDndSlotComponent = styled.div<CardDropSlotComponentProps>`
   ${props => props.isOver && `
     height: 70px;
     border: 2px dashed white;
+    margin: 10px 0;
   `}
 `;
 

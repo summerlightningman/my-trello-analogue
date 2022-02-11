@@ -1,6 +1,6 @@
 import {FC, FormEventHandler, MouseEventHandler, useContext} from 'react';
 import styled from "styled-components";
-import {useDispatch} from "react-redux";
+
 
 import {Card, CardListItemAddProps, CardName} from "../../../types/card";
 import ColumnContext from "../../Column/column-context";
@@ -9,6 +9,7 @@ import {ButtonAdd, ButtonCancel, ButtonsPanel, ButtonSwitch} from "../../buttons
 import {CardComponent} from "../card";
 import {AddInput} from "../../add-input";
 import AddForm from "../../add-form";
+import {useAppDispatch} from "../../../hooks/redux";
 
 
 const CardAddButtonSwitch = styled(ButtonSwitch)`
@@ -18,7 +19,7 @@ const CardAddButtonSwitch = styled(ButtonSwitch)`
 const CardListItemAdd: FC<CardListItemAddProps> = ({cardCount}) => {
     const column = useContext(ColumnContext);
 
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
 
     const switchIsAddingCard = (value: boolean) => dispatch({

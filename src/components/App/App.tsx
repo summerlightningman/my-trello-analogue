@@ -1,6 +1,6 @@
 import {FC} from "react";
 import {BrowserRouter as Router, Route} from "react-router-dom";
-import {useTypedSelector} from "../../hooks/useTypedSelector";
+import {useAppSelector} from "../../hooks/redux";
 import styled from "styled-components";
 
 import BoardList from "../Board/board-list/board-list";
@@ -22,7 +22,7 @@ const Header = styled.header`
 `;
 
 const App: FC = () => {
-    const {windowTitle} = useTypedSelector(state => state.board);
+    const {windowTitle} = useAppSelector(state => state.board);
 
     return <>
         <Header>{windowTitle}</Header>

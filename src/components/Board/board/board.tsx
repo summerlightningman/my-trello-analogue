@@ -2,8 +2,7 @@ import React, {FC, MouseEventHandler, useEffect} from 'react';
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
 import {useHistory} from "react-router-dom";
-import {useDispatch} from "react-redux";
-import {useTypedSelector} from "../../../hooks/useTypedSelector";
+import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 
 import ColumnList from "../../Column/column-list/column-list";
 import {Board as BoardClass} from "../../../types/board";
@@ -14,8 +13,8 @@ const Board: FC = () => {
     const history = useHistory();
     const back: MouseEventHandler = () => history.push('/');
 
-    const {boardList} = useTypedSelector(state => state.board);
-    const dispatch = useDispatch();
+    const {boardList} = useAppSelector(state => state.board);
+    const dispatch = useAppDispatch();
 
     const [, , boardId] = history.location.pathname.split('/');
 

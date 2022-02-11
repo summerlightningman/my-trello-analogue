@@ -1,6 +1,5 @@
 import {FC, useEffect} from 'react';
-import {useDispatch} from "react-redux";
-import {useTypedSelector} from "../../../hooks/useTypedSelector";
+import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import styled from "styled-components";
 
 import BoardListItem from "../board-list-item/board-list-item";
@@ -19,8 +18,8 @@ const BoardListComponent = styled.ul`
 
 
 const BoardList: FC = () => {
-    const {boardList} = useTypedSelector(state => state.board);
-    const dispatch = useDispatch();
+    const {boardList} = useAppSelector(state => state.board);
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
             dispatch({type: BoardActionTypes.SET_WINDOW_TITLE, payload: 'My Trello Analogue'})

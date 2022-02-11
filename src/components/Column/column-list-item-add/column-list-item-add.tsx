@@ -1,8 +1,7 @@
 import {FC, FormEventHandler, MouseEventHandler} from 'react';
 
-import {useDispatch} from "react-redux";
 import {AiOutlinePlus} from "react-icons/all";
-import {useTypedSelector} from "../../../hooks/useTypedSelector";
+import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 
 import {BoardActionTypes} from "../../../store/types/board";
 import {Column, ColumnListItemAddProps} from "../../../types/column";
@@ -15,8 +14,8 @@ import {Board} from "../../../types/board";
 
 
 const ColumnListItemAdd: FC<ColumnListItemAddProps> = () => {
-    const {columnList, boardList} = useTypedSelector(state => state.board);
-    const dispatch = useDispatch();
+    const {columnList, boardList} = useAppSelector(state => state.board);
+    const dispatch = useAppDispatch();
     const boardId = +useHistory().location.pathname.split('/')[2];
     const board = boardList.find((item: Board) => item.id === boardId);
     if (!board)

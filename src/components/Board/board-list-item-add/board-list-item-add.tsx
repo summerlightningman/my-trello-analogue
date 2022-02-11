@@ -1,8 +1,7 @@
 import {FC, FormEventHandler, MouseEventHandler} from 'react';
 
 import styled from "styled-components";
-import {useTypedSelector} from "../../../hooks/useTypedSelector";
-import {useDispatch} from "react-redux";
+import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 
 import {BoardActionTypes} from "../../../store/types/board";
 import {Board} from "../../../types/board";
@@ -17,8 +16,8 @@ const BoardItemAddLabel = styled(BoardCardLabel)`
 
 
 const BoardListItemAdd: FC = () => {
-    const {newBoardName, boardList, isAddingBoard} = useTypedSelector(state => state.board);
-    const dispatch = useDispatch();
+    const {newBoardName, boardList, isAddingBoard} = useAppSelector(state => state.board);
+    const dispatch = useAppDispatch();
 
     const switchIsAddingBoard: MouseEventHandler<HTMLButtonElement | HTMLFormElement> = () =>
         dispatch({type: BoardActionTypes.SWITCH_IS_ADDING_BOARD, payload: !isAddingBoard});

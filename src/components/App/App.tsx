@@ -4,8 +4,6 @@ import {useAppSelector} from "../../hooks/redux";
 import styled from "styled-components";
 
 import BoardList from "../Board/board-list/board-list";
-
-
 import Board from "../Board/board/board";
 
 

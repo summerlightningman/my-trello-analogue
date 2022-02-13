@@ -30,7 +30,7 @@ const Board: FC = () => {
 
     return (
         <>
-            <ButtonBack onClick={back}>Back</ButtonBack>
+            <ButtonBack onClick={back} data-testid="button-back">Back</ButtonBack>
             <DndProvider backend={HTML5Backend}>
                 <ColumnList board={boardInfo}/>
             </DndProvider>

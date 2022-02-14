@@ -18,9 +18,7 @@ const CardAddButtonSwitch = styled(ButtonSwitch)`
 
 const CardListItemAdd: FC<CardListItemAddProps> = ({cardCount}) => {
     const column = useContext(ColumnContext);
-
     const dispatch = useAppDispatch();
-
 
     const switchIsAddingCard = (value: boolean) => dispatch({
         type: MainActionTypes.SWITCH_IS_ADDING_CARD,
@@ -37,16 +35,21 @@ const CardListItemAdd: FC<CardListItemAddProps> = ({cardCount}) => {
         dispatch({type: MainActionTypes.ADD_CARD, payload: card});
     };
 
-    const handleClick: MouseEventHandler<HTMLButtonElement> = () => switchIsAddingCard(!column.isAddingCard)
+    const handleAddEvent: MouseEventHandler<HTMLButtonElement> = e => {
+        e.preventDefault();
+        addCard();
+    };
+
+    const toggleAddingMode: MouseEventHandler<HTMLButtonElement> = () => switchIsAddingCard(!column.isAddingCard)
 
     const handleInput: FormEventHandler<HTMLInputElement> = e => setNewCardName(e.currentTarget.value);
 
-    const button = <CardAddButtonSwitch onClick={handleClick}>Add card</CardAddButtonSwitch>
+    const button = <CardAddButtonSwitch onClick={toggleAddingMode}>Add card</CardAddButtonSwitch>
     const input = <AddForm>
         <AddInput onInput={handleInput} onEnterPress={addCard} value={column.newCardName}/>
         <ButtonsPanel>
-            <ButtonAdd disabled={!column.newCardName} onClick={addCard}>Add</ButtonAdd>
-            <ButtonCancel onClick={handleClick}>Cancel</ButtonCancel>
+            <ButtonAdd disabled={!column.newCardName} onClick={handleAddEvent}>Add</ButtonAdd>
+            <ButtonCancel onClick={toggleAddingMode}>Cancel</ButtonCancel>
         </ButtonsPanel>
     </AddForm>;
 

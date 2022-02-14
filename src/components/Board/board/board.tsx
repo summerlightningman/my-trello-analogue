@@ -22,7 +22,7 @@ const Board: FC = () => {
 
     useEffect(() => {
         dispatch({type: GuiActionTypes.SET_WINDOW_TITLE, payload: boardInfo.name});
-    }, [boardInfo.name]);
+    }, [boardInfo.name, dispatch]);
 
     if (boardInfo.id === -1)
         return <ButtonBack onClick={back}>Back</ButtonBack>

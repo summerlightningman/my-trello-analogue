@@ -3,8 +3,7 @@ import {BrowserRouter as Router, Route} from "react-router-dom";
 import {useAppSelector} from "../../hooks/redux";
 import styled from "styled-components";
 
-import BoardList from "../Board/board-list/board-list";
-import Board from "../Board/board/board";
+import appRoutes from "./app-routes";
 
 
 const Main = styled.main`
@@ -26,8 +25,8 @@ const App: FC = () => {
         <Header>{windowTitle}</Header>
         <Main>
             <Router>
-                <Route path="/" exact><BoardList/></Route>
-                <Route path="/board/:id"><Board/></Route>
+                {appRoutes.map(routeProps =>
+                    <Route {...routeProps}/>)}
             </Router>
         </Main>
     </>;

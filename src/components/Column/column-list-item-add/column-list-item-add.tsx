@@ -3,7 +3,7 @@ import {FC, FormEventHandler, MouseEventHandler} from 'react';
 import {AiOutlinePlus} from "react-icons/all";
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 
-import {MainActionTypes} from "../../../store/types/board";
+import {MainActionTypes} from "../../../store/types/main-reducer";
 import {Column, ColumnListItemAddProps, ColumnName} from "../../../types/column";
 import {ButtonAdd, ButtonCancel, ButtonsPanel, ButtonSwitch} from "../../buttons";
 import {AddInput} from "../../add-input";

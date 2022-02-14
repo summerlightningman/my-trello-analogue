@@ -1,7 +1,7 @@
 import {FC, useContext} from 'react';
 import {useDrop} from "react-dnd";
 
-import {MainActionTypes} from "../../../store/types/board";
+import {MainActionTypes} from "../../../store/types/main-reducer";
 import ColumnContext from "../../Column/column-context";
 import draggableTypes from "../../../types/draggable-types";
 import {Card, CardDropSlotProps} from "../../../types/card";

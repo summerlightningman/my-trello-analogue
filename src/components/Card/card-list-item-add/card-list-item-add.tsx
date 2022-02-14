@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import {Card, CardListItemAddProps, CardName} from "../../../types/card";
 import ColumnContext from "../../Column/column-context";
-import {MainActionTypes} from "../../../store/types/board";
+import {MainActionTypes} from "../../../store/types/main-reducer";
 import {ButtonAdd, ButtonCancel, ButtonsPanel, ButtonSwitch} from "../../buttons";
 import {CardComponent} from "../card";
 import {AddInput} from "../../add-input";

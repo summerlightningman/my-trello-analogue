@@ -1,4 +1,4 @@
-import {MainAction, MainActionTypes, MainState} from "../types/board";
+import {MainAction, MainActionTypes, MainState} from "../types/main-reducer";
 import {Column} from "../../types/column";
 import {Card} from "../../types/card";
 import {Board} from "../../types/board";
@@ -45,7 +45,6 @@ export const mainReducer = (state = initialState, action: MainAction): MainState
             return switchIsAddingCard(state, ...action.payload)
         case MainActionTypes.MOVE_CARD_INTO_OTHER_COLUMN:
             return moveCardIntoOtherColumn(state, ...action.payload)
-
         default:
             return initialState
     }

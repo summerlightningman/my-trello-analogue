@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import BoardListItem from "../board-list-item/board-list-item";
 import BoardListItemAdd from "../board-list-item-add/board-list-item-add";
-import {MainActionTypes} from "../../../store/types/board";
+import {MainActionTypes} from "../../../store/types/main-reducer";
 
 
 const BoardListComponent = styled.ul`

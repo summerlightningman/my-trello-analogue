@@ -1,5 +1,5 @@
 import {Column, ColumnID, ColumnName} from "../../types/column";
-import {MainState} from "../types/board";
+import {MainState} from "../types/main-reducer";
 import {replaceInListById} from "../../redux-functions";
 import {Card, CardID, CardName} from "../../types/card";
 import {Board, BoardID} from "../../types/board";

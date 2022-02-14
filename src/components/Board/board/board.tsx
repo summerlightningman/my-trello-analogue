@@ -6,7 +6,7 @@ import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 
 import ColumnList from "../../Column/column-list/column-list";
 import {Board as BoardClass} from "../../../types/board";
-import {MainActionTypes} from "../../../store/types/board";
+import {MainActionTypes} from "../../../store/types/main-reducer";
 import {ButtonBack} from "../../buttons";
 
 const Board: FC = () => {

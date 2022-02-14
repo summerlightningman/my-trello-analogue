@@ -3,7 +3,7 @@ import {FC, FormEventHandler, MouseEventHandler} from 'react';
 import styled from "styled-components";
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 
-import {MainActionTypes} from "../../../store/types/board";
+import {MainActionTypes} from "../../../store/types/main-reducer";
 import {Board, BoardName} from "../../../types/board";
 import {BoardCard, BoardCardLabel, BoardCardProps} from "../board-card";
 import {ButtonAdd, ButtonCancel, ButtonsPanel, ButtonSwitch} from "../../buttons";

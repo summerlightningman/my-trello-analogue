@@ -33,6 +33,8 @@ const CardListItemAdd: FC<CardListItemAddProps> = ({cardCount}) => {
     const addCard = () => {
         const card = new Card(column.id, cardCount, column.newCardName);
         dispatch({type: MainActionTypes.ADD_CARD, payload: card});
+        switchIsAddingCard(false);
+        setNewCardName('');
     };
 
     const handleAddEvent: MouseEventHandler<HTMLButtonElement> = e => {

@@ -16,7 +16,6 @@ const initialState: MainState = {
     boardList: [new Board(0, 'myboard')],
     columnList: [new Column(0, 0, 'mycol1'), new Column(0, 1, 'mycol2')],
     cardList: [new Card(0, 0, 'mycard1'), new Card(0, 1, 'mycard2'), new Card(1, 0, 'mycard3'), new Card(1, 1, 'mycard4'),],
-    // windowTitle: 'My Trello Analogue',
     newBoardName: '',
     isAddingBoard: false,
 }
@@ -29,8 +28,6 @@ export const mainReducer = (state = initialState, action: MainAction): MainState
             return addColumn(state, action.payload);
         case MainActionTypes.ADD_CARD:
             return addCard(state, action.payload)
-        // case MainActionTypes.SET_WINDOW_TITLE:
-        //     return {...state, windowTitle: action.payload}
         case MainActionTypes.SET_NEW_BOARD_NAME:
             return {...state, newBoardName: action.payload}
         case MainActionTypes.SET_NEW_COLUMN_NAME:
@@ -46,6 +43,6 @@ export const mainReducer = (state = initialState, action: MainAction): MainState
         case MainActionTypes.MOVE_CARD_INTO_OTHER_COLUMN:
             return moveCardIntoOtherColumn(state, ...action.payload)
         default:
-            return initialState
+            return state
     }
 }

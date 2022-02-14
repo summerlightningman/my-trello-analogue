@@ -9,6 +9,6 @@ export const guiReducer = (state = initialState, action: GuiAction) => {
         case GuiActionTypes.SET_WINDOW_TITLE:
             return {...state, windowTitle: action.payload}
         default:
-            return initialState
+            return state
     }
 };

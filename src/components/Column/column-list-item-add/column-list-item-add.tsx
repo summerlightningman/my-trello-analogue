@@ -9,17 +9,11 @@ import {ButtonAdd, ButtonCancel, ButtonsPanel, ButtonSwitch} from "../../buttons
 import {AddInput} from "../../add-input";
 import {ColumnComponent} from "../column";
 import AddForm from "../../add-form";
-import {useHistory} from "react-router-dom";
-import {Board} from "../../../types/board";
 
 
-const ColumnListItemAdd: FC<ColumnListItemAddProps> = () => {
-    const {columnList, boardList} = useAppSelector(state => state.main);
+const ColumnListItemAdd: FC<ColumnListItemAddProps> = ({board}) => {
+    const {columnList} = useAppSelector(state => state.main);
     const dispatch = useAppDispatch();
-    const boardId = +useHistory().location.pathname.split('/')[2];
-    const board = boardList.find((item: Board) => item.id === boardId);
-    if (!board)
-        return <></>
 
     const switchIsAddingColumn = (isAddingColumn: boolean) =>
         dispatch({type: MainActionTypes.SWITCH_IS_ADDING_COLUMN, payload: [board.id, isAddingColumn]});
@@ -36,7 +30,7 @@ const ColumnListItemAdd: FC<ColumnListItemAddProps> = () => {
         const column: Column = new Column(board.id, columnList.length, board.newColumnName);
         dispatch({type: MainActionTypes.ADD_COLUMN, payload: column});
         switchIsAddingColumn(false);
-        setNewColumnName('')
+        setNewColumnName('');
     };
 
     const handleAddClick: MouseEventHandler<HTMLButtonElement> = () => addColumn();

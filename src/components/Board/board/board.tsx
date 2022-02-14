@@ -16,16 +16,15 @@ const Board: FC = () => {
     const {boardList} = useAppSelector(state => state.main);
     const dispatch = useAppDispatch();
 
-    const [, , boardId] = history.location.pathname.split('/');
-
-    const boardInfo = boardList.find((board: BoardClass) => board.id === +boardId)
-        || new BoardClass(-1, '404: Board not found!');
+    const boardId = +history.location.pathname.split('/')[2] ?? -1;
+    const boardInfo = boardList.find((board: BoardClass) => board.id === boardId) ??
+        new BoardClass(-1, '404: Board not found!');
 
     useEffect(() => {
         dispatch({type: MainActionTypes.SET_WINDOW_TITLE, payload: boardInfo.name});
-    }, [boardInfo.name, dispatch]);
+    }, [boardInfo.name]);
 
-    if (!boardInfo)
+    if (boardInfo.id === -1)
         return <ButtonBack onClick={back}>Back</ButtonBack>
 
     return (

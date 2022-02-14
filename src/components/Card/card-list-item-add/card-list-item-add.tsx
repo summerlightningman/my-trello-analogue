@@ -44,11 +44,11 @@ const CardListItemAdd: FC<CardListItemAddProps> = ({cardCount}) => {
 
     const toggleAddingMode: MouseEventHandler<HTMLButtonElement> = () => switchIsAddingCard(!column.isAddingCard)
 
-    const handleInput: FormEventHandler<HTMLInputElement> = e => setNewCardName(e.currentTarget.value);
+    const handleCardNameInput: FormEventHandler<HTMLInputElement> = e => setNewCardName(e.currentTarget.value);
 
     const button = <CardAddButtonSwitch onClick={toggleAddingMode}>Add card</CardAddButtonSwitch>
     const input = <AddForm>
-        <AddInput onInput={handleInput} onEnterPress={addCard} value={column.newCardName}/>
+        <AddInput onInput={handleCardNameInput} onEnterPress={addCard} value={column.newCardName}/>
         <ButtonsPanel>
             <ButtonAdd disabled={!column.newCardName} onClick={handleAddEvent}>Add</ButtonAdd>
             <ButtonCancel onClick={toggleAddingMode}>Cancel</ButtonCancel>

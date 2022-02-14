@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import BoardListItem from "../board-list-item/board-list-item";
 import BoardListItemAdd from "../board-list-item-add/board-list-item-add";
-import {MainActionTypes} from "../../../store/types/main-reducer";
+import {GuiActionTypes} from "../../../store/types/gui-reducer";
 
 
 const BoardListComponent = styled.ul`
@@ -16,13 +16,12 @@ const BoardListComponent = styled.ul`
 `;
 
 
-
 const BoardList: FC = () => {
     const {boardList} = useAppSelector(state => state.main);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-            dispatch({type: MainActionTypes.SET_WINDOW_TITLE, payload: 'My Trello Analogue'})
+            dispatch({type: GuiActionTypes.SET_WINDOW_TITLE, payload: 'My Trello Analogue'})
         },
         [dispatch]);
 

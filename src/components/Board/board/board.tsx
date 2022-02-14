@@ -6,8 +6,8 @@ import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 
 import ColumnList from "../../Column/column-list/column-list";
 import {Board as BoardClass} from "../../../types/board";
-import {MainActionTypes} from "../../../store/types/main-reducer";
 import {ButtonBack} from "../../buttons";
+import {GuiActionTypes} from "../../../store/types/gui-reducer";
 
 const Board: FC = () => {
     const history = useHistory();
@@ -21,7 +21,7 @@ const Board: FC = () => {
         new BoardClass(-1, '404: Board not found!');
 
     useEffect(() => {
-        dispatch({type: MainActionTypes.SET_WINDOW_TITLE, payload: boardInfo.name});
+        dispatch({type: GuiActionTypes.SET_WINDOW_TITLE, payload: boardInfo.name});
     }, [boardInfo.name]);
 
     if (boardInfo.id === -1)

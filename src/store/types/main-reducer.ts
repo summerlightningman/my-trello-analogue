@@ -8,14 +8,12 @@ export interface MainState {
     cardList: CardList,
     newBoardName: BoardName,
     isAddingBoard: boolean,
-    windowTitle: string
 }
 
 export const enum MainActionTypes {
     ADD_BOARD = 'ADD_BOARD',
     ADD_COLUMN = 'ADD_COLUMN',
     ADD_CARD = 'ADD_CARD',
-    SET_WINDOW_TITLE = 'SET_WINDOW_TITLE',
     SET_NEW_BOARD_NAME = 'SET_NEW_BOARD_NAME',
     SET_NEW_COLUMN_NAME = 'SET_NEW_COLUMN_NAME',
     SET_NEW_CARD_NAME = 'SET_NEW_CARD_NAME',
@@ -38,11 +36,6 @@ interface AddColumnAction {
 interface AddCardAction {
     type: MainActionTypes.ADD_CARD,
     payload: Card
-}
-
-interface SetWindowTitleAction {
-    type: MainActionTypes.SET_WINDOW_TITLE,
-    payload: string
 }
 
 interface SetNewBoardNameAction {
@@ -90,5 +83,4 @@ export type MainAction =
     | SwitchIsAddingBoardAction
     | SwitchIsAddingColumnAction
     | SwitchIsAddingCardAction
-    | SetWindowTitleAction
     | MoveCardIntoNewColumnAction;

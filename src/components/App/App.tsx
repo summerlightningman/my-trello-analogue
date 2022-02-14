@@ -20,7 +20,7 @@ const Header = styled.header`
 `;
 
 const App: FC = () => {
-    const {windowTitle} = useAppSelector(state => state.main);
+    const {windowTitle} = useAppSelector(state => state.gui);
 
     return <>
         <Header>{windowTitle}</Header>

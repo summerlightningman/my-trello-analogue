@@ -1,8 +1,16 @@
 import {MainAction, MainActionTypes, MainState} from "../types/board";
-import {replaceInListById} from "../../redux-functions";
 import {Column} from "../../types/column";
 import {Card} from "../../types/card";
 import {Board} from "../../types/board";
+import {
+    addCard,
+    addColumn,
+    moveCardIntoOtherColumn,
+    setNewCardName,
+    setNewColumnName,
+    switchIsAddingCard,
+    switchIsAddingColumn
+} from "../functions/main-reducer";
 
 const initialState: MainState = {
     boardList: [new Board(0, 'myboard')],
@@ -18,62 +26,25 @@ export const mainReducer = (state = initialState, action: MainAction): MainState
         case MainActionTypes.ADD_BOARD:
             return {...state, boardList: [...state.boardList, action.payload]}
         case MainActionTypes.ADD_COLUMN:
-            const newCol_ = action.payload;
-            const brd_ = state.boardList.find(b => b.id === newCol_.boardId);
-            if (!brd_) return state
-            return {...state, columnList: [...state.columnList, action.payload]}
+            return addColumn(state, action.payload);
         case MainActionTypes.ADD_CARD:
-            const newCard = action.payload;
-            const col_ = state.columnList.find(b => b.id === newCard.columnId);
-            if (!col_) return state
-            const newColumn_ = col_.reset();
-            const newColumnList_ = replaceInListById(state.columnList, col_, newColumn_);
-            return {...state, cardList: [action.payload, ...state.cardList], columnList: newColumnList_}
+            return addCard(state, action.payload)
         case MainActionTypes.SET_WINDOW_TITLE:
             return {...state, windowTitle: action.payload}
         case MainActionTypes.SET_NEW_BOARD_NAME:
             return {...state, newBoardName: action.payload}
         case MainActionTypes.SET_NEW_COLUMN_NAME:
-            const [boardID, newColumnName] = action.payload;
-            const brd = Board.getById(boardID, state.boardList);
-            const newBrd = brd.setNewColumnName(newColumnName);
-            const boardList = replaceInListById(state.boardList, brd, newBrd);
-            return {...state, boardList}
+            return setNewColumnName(state, ...action.payload)
         case MainActionTypes.SET_NEW_CARD_NAME:
-            const [colId, cardName] = action.payload;
-            const col = Column.getById(colId, state.columnList);
-            const newCol = col.setNewCardName(cardName);
-            const newColList = replaceInListById(state.columnList, col, newCol);
-            return {...state, columnList: newColList}
+            return setNewCardName(state, ...action.payload)
         case MainActionTypes.SWITCH_IS_ADDING_BOARD:
             return {...state, isAddingBoard: action.payload}
         case MainActionTypes.SWITCH_IS_ADDING_COLUMN:
-            const [boardId, isAddingColumn] = action.payload;
-            const board = Board.getById(boardId, state.boardList)
-            const newBoard = board.setIsAddingColumn(isAddingColumn);
-            const newBoardList = replaceInListById(state.boardList, board, newBoard);
-            return {...state, boardList: newBoardList}
+            return switchIsAddingColumn(state, ...action.payload)
         case MainActionTypes.SWITCH_IS_ADDING_CARD:
-            const [columnId, value] = action.payload;
-            const column = Column.getById(columnId, state.columnList);
-            const newColumn = column.setIsAddingCard(value);
-            const newColumnList = replaceInListById(state.columnList, column, newColumn)
-            return {...state, columnList: newColumnList}
+            return switchIsAddingCard(state, ...action.payload)
         case MainActionTypes.MOVE_CARD_INTO_OTHER_COLUMN:
-            const [destColumnId, card, aboveCardId] = action.payload;
-            const cardJson = JSON.stringify(card);
-            const cardList = state.cardList.filter(cardItem => cardJson !== JSON.stringify(cardItem));
-            const updatedCard = card.setId(aboveCardId + 1).setColumnId(destColumnId);
-            const incFunc = (cardItem: Card) =>
-                cardItem.columnId === destColumnId ? cardItem.setId(cardItem.id + 1) : cardItem;
-
-            if (aboveCardId === -1)
-                return {...state, cardList: [updatedCard, ...cardList.map(incFunc)]}
-
-            const index =
-                cardList.findIndex(cardItem => cardItem.id === aboveCardId && cardItem.columnId === destColumnId) + 1;
-            const newCardList = [...cardList.slice(0, index), updatedCard, ...cardList.slice(index).map(incFunc)]
-            return {...state, cardList: newCardList}
+            return moveCardIntoOtherColumn(state, ...action.payload)
 
         default:
             return initialState

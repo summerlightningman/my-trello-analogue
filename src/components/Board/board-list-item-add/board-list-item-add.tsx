@@ -16,7 +16,7 @@ const BoardItemAddLabel = styled(BoardCardLabel)`
 
 
 const BoardListItemAdd: FC = () => {
-    const {newBoardName, boardList, isAddingBoard} = useAppSelector(state => state.board);
+    const {newBoardName, boardList, isAddingBoard} = useAppSelector(state => state.main);
     const dispatch = useAppDispatch();
 
     const switchIsAddingBoard: MouseEventHandler<HTMLButtonElement | HTMLFormElement> = () =>

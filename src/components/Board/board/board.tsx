@@ -13,7 +13,7 @@ const Board: FC = () => {
     const history = useHistory();
     const back: MouseEventHandler = () => history.push('/');
 
-    const {boardList} = useAppSelector(state => state.board);
+    const {boardList} = useAppSelector(state => state.main);
     const dispatch = useAppDispatch();
 
     const [, , boardId] = history.location.pathname.split('/');

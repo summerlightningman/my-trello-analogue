@@ -16,7 +16,7 @@ const ColumnListComponent = styled.ul`
 `;
 
 const ColumnList: FC<ColumnListProps> = ({board}) => {
-    const columnList = useAppSelector(state => state.board.columnList)
+    const columnList = useAppSelector(state => state.main.columnList)
         .filter(col => col.boardId === board.id);
     const sortFunc = (left: Column, right: Column) => left.id < right.id ? -1 : left.id > right.id ? 1 : 0;
 

@@ -16,7 +16,7 @@ const CardListComponent = styled.ul`
 const CardList: FC = () => {
     const column = useContext(ColumnContext);
 
-    const cardList = useAppSelector(state => state.board.cardList)
+    const cardList = useAppSelector(state => state.main.cardList)
         .filter(card => card.columnId === column.id);
 
     return (

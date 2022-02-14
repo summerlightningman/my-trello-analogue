@@ -14,7 +14,7 @@ import {Board} from "../../../types/board";
 
 
 const ColumnListItemAdd: FC<ColumnListItemAddProps> = () => {
-    const {columnList, boardList} = useAppSelector(state => state.board);
+    const {columnList, boardList} = useAppSelector(state => state.main);
     const dispatch = useAppDispatch();
     const boardId = +useHistory().location.pathname.split('/')[2];
     const board = boardList.find((item: Board) => item.id === boardId);

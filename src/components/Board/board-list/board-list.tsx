@@ -18,7 +18,7 @@ const BoardListComponent = styled.ul`
 
 
 const BoardList: FC = () => {
-    const {boardList} = useAppSelector(state => state.board);
+    const {boardList} = useAppSelector(state => state.main);
     const dispatch = useAppDispatch();
 
     useEffect(() => {

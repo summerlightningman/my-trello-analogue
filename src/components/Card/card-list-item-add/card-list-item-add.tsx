@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import {Card, CardListItemAddProps, CardName} from "../../../types/card";
 import ColumnContext from "../../Column/column-context";
-import {BoardActionTypes} from "../../../store/types/board";
+import {MainActionTypes} from "../../../store/types/board";
 import {ButtonAdd, ButtonCancel, ButtonsPanel, ButtonSwitch} from "../../buttons";
 import {CardComponent} from "../card";
 import {AddInput} from "../../add-input";
@@ -23,18 +23,18 @@ const CardListItemAdd: FC<CardListItemAddProps> = ({cardCount}) => {
 
 
     const switchIsAddingCard = (value: boolean) => dispatch({
-        type: BoardActionTypes.SWITCH_IS_ADDING_CARD,
+        type: MainActionTypes.SWITCH_IS_ADDING_CARD,
         payload: [column.id, value]
     });
 
     const setNewCardName = (value: CardName) => dispatch({
-        type: BoardActionTypes.SET_NEW_CARD_NAME,
+        type: MainActionTypes.SET_NEW_CARD_NAME,
         payload: [column.id, value]
     });
 
     const addCard = () => {
         const card = new Card(column.id, cardCount, column.newCardName);
-        dispatch({type: BoardActionTypes.ADD_CARD, payload: card});
+        dispatch({type: MainActionTypes.ADD_CARD, payload: card});
     };
 
     const handleClick: MouseEventHandler<HTMLButtonElement> = () => switchIsAddingCard(!column.isAddingCard)

@@ -2,8 +2,16 @@ import {Board, BoardID, BoardList, BoardName} from "../../types/board";
 import {Column, ColumnID, ColumnList, ColumnName} from "../../types/column";
 import {Card, CardID, CardList, CardName} from "../../types/card";
 
+export interface MainState {
+    boardList: BoardList,
+    columnList: ColumnList,
+    cardList: CardList,
+    newBoardName: BoardName,
+    isAddingBoard: boolean,
+    windowTitle: string
+}
 
-export enum BoardActionTypes {
+export const enum MainActionTypes {
     ADD_BOARD = 'ADD_BOARD',
     ADD_COLUMN = 'ADD_COLUMN',
     ADD_CARD = 'ADD_CARD',
@@ -18,71 +26,61 @@ export enum BoardActionTypes {
 }
 
 interface AddBoardAction {
-    type: BoardActionTypes.ADD_BOARD,
+    type: MainActionTypes.ADD_BOARD,
     payload: Board
 }
 
 interface AddColumnAction {
-    type: BoardActionTypes.ADD_COLUMN,
+    type: MainActionTypes.ADD_COLUMN,
     payload: Column
 }
 
 interface AddCardAction {
-    type: BoardActionTypes.ADD_CARD,
+    type: MainActionTypes.ADD_CARD,
     payload: Card
 }
 
 interface SetWindowTitleAction {
-    type: BoardActionTypes.SET_WINDOW_TITLE,
+    type: MainActionTypes.SET_WINDOW_TITLE,
     payload: string
 }
 
 interface SetNewBoardNameAction {
-    type: BoardActionTypes.SET_NEW_BOARD_NAME,
+    type: MainActionTypes.SET_NEW_BOARD_NAME,
     payload: BoardName
 }
 
 interface SetNewColumnNameAction {
-    type: BoardActionTypes.SET_NEW_COLUMN_NAME,
+    type: MainActionTypes.SET_NEW_COLUMN_NAME,
     payload: [BoardID, ColumnName],
 }
 
 interface SetNewCardNameAction {
-    type: BoardActionTypes.SET_NEW_CARD_NAME,
+    type: MainActionTypes.SET_NEW_CARD_NAME,
     payload: [ColumnID, CardName]
 }
 
 interface SwitchIsAddingColumnAction {
-    type: BoardActionTypes.SWITCH_IS_ADDING_COLUMN,
+    type: MainActionTypes.SWITCH_IS_ADDING_COLUMN,
     payload: [BoardID, boolean]
 }
 
 interface SwitchIsAddingBoardAction {
-    type: BoardActionTypes.SWITCH_IS_ADDING_BOARD,
+    type: MainActionTypes.SWITCH_IS_ADDING_BOARD,
     payload: boolean
 }
 
 interface SwitchIsAddingCardAction {
-    type: BoardActionTypes.SWITCH_IS_ADDING_CARD,
+    type: MainActionTypes.SWITCH_IS_ADDING_CARD,
     payload: [ColumnID, boolean]
 }
 
 interface MoveCardIntoNewColumnAction {
-    type: BoardActionTypes.MOVE_CARD_INTO_OTHER_COLUMN,
+    type: MainActionTypes.MOVE_CARD_INTO_OTHER_COLUMN,
     payload: [ColumnID, Card, CardID]
 }
 
-export interface BoardState {
-    boardList: BoardList,
-    columnList: ColumnList,
-    cardList: CardList,
-    newBoardName: BoardName,
-    isAddingBoard: boolean,
-    windowTitle: string
-}
-
-
-export type BoardAction =
+export type MainAction =
     AddBoardAction
     | AddColumnAction
     | AddCardAction

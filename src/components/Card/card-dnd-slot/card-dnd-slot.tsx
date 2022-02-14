@@ -1,7 +1,7 @@
 import {FC, useContext} from 'react';
 import {useDrop} from "react-dnd";
 
-import {BoardActionTypes} from "../../../store/types/board";
+import {MainActionTypes} from "../../../store/types/board";
 import ColumnContext from "../../Column/column-context";
 import draggableTypes from "../../../types/draggable-types";
 import {Card, CardDropSlotProps} from "../../../types/card";
@@ -14,7 +14,7 @@ const CardDndSlot: FC<CardDropSlotProps> = ({aboveCardId}) => {
 
     const column = useContext(ColumnContext);
     const handleCardDrop = (card: Card) =>
-        dispatch({type: BoardActionTypes.MOVE_CARD_INTO_OTHER_COLUMN, payload: [column.id, card, aboveCardId]});
+        dispatch({type: MainActionTypes.MOVE_CARD_INTO_OTHER_COLUMN, payload: [column.id, card, aboveCardId]});
 
     const [{isOver}, cardDropRef] = useDrop(() => ({
         accept: draggableTypes.CARD,

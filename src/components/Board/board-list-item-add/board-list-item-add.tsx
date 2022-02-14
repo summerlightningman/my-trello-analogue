@@ -3,7 +3,7 @@ import {FC, FormEventHandler, MouseEventHandler} from 'react';
 import styled from "styled-components";
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 
-import {BoardActionTypes} from "../../../store/types/board";
+import {MainActionTypes} from "../../../store/types/board";
 import {Board} from "../../../types/board";
 import {BoardCard, BoardCardLabel, BoardCardProps} from "../board-card";
 import {ButtonAdd, ButtonSwitch, ButtonCancel, ButtonsPanel} from "../../buttons";
@@ -20,18 +20,18 @@ const BoardListItemAdd: FC = () => {
     const dispatch = useAppDispatch();
 
     const switchIsAddingBoard: MouseEventHandler<HTMLButtonElement | HTMLFormElement> = () =>
-        dispatch({type: BoardActionTypes.SWITCH_IS_ADDING_BOARD, payload: !isAddingBoard});
+        dispatch({type: MainActionTypes.SWITCH_IS_ADDING_BOARD, payload: !isAddingBoard});
 
     const handleInput: FormEventHandler<HTMLInputElement> = e =>
-        dispatch({type: BoardActionTypes.SET_NEW_BOARD_NAME, payload: e.currentTarget.value});
+        dispatch({type: MainActionTypes.SET_NEW_BOARD_NAME, payload: e.currentTarget.value});
 
     const handleAddClick: MouseEventHandler<HTMLButtonElement> = () => addBoard();
 
     const addBoard = () => {
         const board: Board = new Board(boardList.length, newBoardName);
-        dispatch({type: BoardActionTypes.ADD_BOARD, payload: board});
-        dispatch({type: BoardActionTypes.SET_NEW_BOARD_NAME, payload: ''});
-        dispatch({type: BoardActionTypes.SWITCH_IS_ADDING_BOARD, payload: false});
+        dispatch({type: MainActionTypes.ADD_BOARD, payload: board});
+        dispatch({type: MainActionTypes.SET_NEW_BOARD_NAME, payload: ''});
+        dispatch({type: MainActionTypes.SWITCH_IS_ADDING_BOARD, payload: false});
     };
 
     const input = <AddForm color="#00FF7F" onClick={switchIsAddingBoard}>

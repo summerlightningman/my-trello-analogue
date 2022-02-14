@@ -1,5 +1,5 @@
 import {combineReducers} from "redux";
-import {mainReducer} from "./mainReducer";
+import {mainReducer} from "./main-reducer";
 import {configureStore} from "@reduxjs/toolkit";
 
 export const rootReducer = combineReducers({

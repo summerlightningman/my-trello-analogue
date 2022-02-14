@@ -3,7 +3,7 @@ import {FC, FormEventHandler, MouseEventHandler} from 'react';
 import {AiOutlinePlus} from "react-icons/all";
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 
-import {BoardActionTypes} from "../../../store/types/board";
+import {MainActionTypes} from "../../../store/types/board";
 import {Column, ColumnListItemAddProps} from "../../../types/column";
 import {ButtonAdd, ButtonCancel, ButtonsPanel, ButtonSwitch} from "../../buttons";
 import {AddInput} from "../../add-input";
@@ -22,17 +22,17 @@ const ColumnListItemAdd: FC<ColumnListItemAddProps> = () => {
         return <></>
 
     const switchIsAddingColumn: MouseEventHandler<HTMLButtonElement | HTMLFormElement> = () =>
-        dispatch({type: BoardActionTypes.SWITCH_IS_ADDING_COLUMN, payload: [board.id, !board.isAddingColumn]});
+        dispatch({type: MainActionTypes.SWITCH_IS_ADDING_COLUMN, payload: [board.id, !board.isAddingColumn]});
 
 
     const handleInput: FormEventHandler<HTMLInputElement> = e =>
-        dispatch({type: BoardActionTypes.SET_NEW_COLUMN_NAME, payload: [board.id, e.currentTarget.value]});
+        dispatch({type: MainActionTypes.SET_NEW_COLUMN_NAME, payload: [board.id, e.currentTarget.value]});
 
     const addColumn = () => {
         const column: Column = new Column(board.id, columnList.length, board.newColumnName);
-        dispatch({type: BoardActionTypes.ADD_COLUMN, payload: column});
-        dispatch({type: BoardActionTypes.SWITCH_IS_ADDING_COLUMN, payload: [board.id, false]});
-        dispatch({type: BoardActionTypes.SET_NEW_COLUMN_NAME, payload: [board.id, '']});
+        dispatch({type: MainActionTypes.ADD_COLUMN, payload: column});
+        dispatch({type: MainActionTypes.SWITCH_IS_ADDING_COLUMN, payload: [board.id, false]});
+        dispatch({type: MainActionTypes.SET_NEW_COLUMN_NAME, payload: [board.id, '']});
     };
 
     const handleAddClick: MouseEventHandler<HTMLButtonElement> = () => addColumn();

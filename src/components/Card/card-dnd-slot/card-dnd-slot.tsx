@@ -5,8 +5,10 @@ import {MainActionTypes} from "../../../store/types/main-reducer";
 import ColumnContext from "../../Column/column-context";
 import draggableTypes from "../../../types/draggable-types";
 import {Card, CardDropSlotProps} from "../../../types/card";
-import {CardDndLabel, CardDndSlotComponent} from "../card";
+
 import {useAppDispatch} from "../../../hooks/redux";
+import CardDndSlotContainer from "../../styled/card-dnd-slot-container";
+import CardDndLabel from "../../styled/card-dnd-label";
 
 
 const CardDndSlot: FC<CardDropSlotProps> = ({aboveCardId}) => {
@@ -23,9 +25,9 @@ const CardDndSlot: FC<CardDropSlotProps> = ({aboveCardId}) => {
     }));
 
     return (
-        <CardDndSlotComponent ref={cardDropRef} isOver={isOver}>
+        <CardDndSlotContainer ref={cardDropRef} isOver={isOver}>
             {isOver && <CardDndLabel>Release mouse button to put this card here</CardDndLabel>}
-        </CardDndSlotComponent>
+        </CardDndSlotContainer>
     );
 };
 

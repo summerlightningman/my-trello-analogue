@@ -7,8 +7,9 @@ import {MainActionTypes} from "../../../store/types/main-reducer";
 import {Column, ColumnListItemAddProps, ColumnName} from "../../../types/column";
 import {ButtonAdd, ButtonCancel, ButtonsPanel, ButtonSwitch} from "../../buttons";
 import {AddInput} from "../../add-input";
-import {ColumnComponent} from "../column";
+
 import AddForm from "../../add-form";
+import ColumnContainer from '../../styled/column-container';
 
 
 const ColumnListItemAdd: FC<ColumnListItemAddProps> = ({board}) => {
@@ -48,9 +49,9 @@ const ColumnListItemAdd: FC<ColumnListItemAddProps> = ({board}) => {
     </AddForm>;
 
     return (
-        <ColumnComponent color="#00FF7F" height="130px">
+        <ColumnContainer color="#00FF7F" height="130px">
             {board.isAddingColumn ? input : button}
-        </ColumnComponent>
+        </ColumnContainer>
     );
 };
 

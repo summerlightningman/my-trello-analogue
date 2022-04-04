@@ -1,18 +1,16 @@
 import {FC, FormEventHandler, MouseEventHandler} from 'react';
-
-import styled from "styled-components";
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 
 import {MainActionTypes} from "../../../store/types/main-reducer";
 import {Board, BoardName} from "../../../types/board";
-import {BoardCard, BoardCardLabel, BoardCardProps} from "../board-card";
+import { BoardCardProps} from "../../../types/board-card";
 import {ButtonAdd, ButtonCancel, ButtonsPanel, ButtonSwitch} from "../../buttons";
 import {AddInput} from "../../add-input";
 import AddForm from "../../add-form";
 
-const BoardItemAddLabel = styled(BoardCardLabel)`
-  color: #1E90FF;
-`;
+import BoardItemAddLabel from "../../styled/board-item-add-label";
+import BoardCard from "../../styled/board-card";
+
 
 const BoardListItemAdd: FC = () => {
     const {newBoardName, boardList, isAddingBoard} = useAppSelector(state => state.main);

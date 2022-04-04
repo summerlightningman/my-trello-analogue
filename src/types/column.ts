@@ -58,6 +58,11 @@ export class Column extends AppUnit<ColumnID, Column> {
     }
 }
 
+export interface ColumnContainerProps {
+    color?: string
+    height?: string,
+}
+
 export interface ColumnListProps {
     board: Board
 }

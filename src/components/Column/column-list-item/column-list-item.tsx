@@ -4,17 +4,18 @@ import {ColumnListItemProps} from "../../../types/column";
 
 import CardList from "../../Card/card-list/card-list";
 import ColumnContext from "../column-context";
-import {ColumnComponent, ColumnLabel} from "../column";
+import ColumnLabel from "../../styled/column-label";
+import ColumnContainer from "../../styled/column-container";
 
 
 const ColumnListItem: FC<ColumnListItemProps> = ({column}) => {
     return (
-        <ColumnComponent>
+        <ColumnContainer>
             <ColumnLabel>{column.name}</ColumnLabel>
             <ColumnContext.Provider value={column}>
                 <CardList/>
             </ColumnContext.Provider>
-        </ColumnComponent>
+        </ColumnContainer>
     );
 };
 

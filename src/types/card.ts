@@ -57,3 +57,13 @@ export interface CardDropSlotProps {
 export interface CardListItemAddProps {
     cardCount: CardCount
 }
+
+export interface CardContainerProps {
+    color?: string,
+    isDragging?: boolean,
+    isOver?: boolean
+}
+
+export interface CardDropSlotComponentProps {
+    isOver: boolean;
+}

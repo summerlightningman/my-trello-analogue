@@ -1,11 +1,7 @@
 import styled from "styled-components";
+import {ColumnContainerProps} from "../../types/column";
 
-interface ColumnComponentProps {
-    color?: string
-    height?: string,
-}
-
-export const ColumnComponent = styled.li<ColumnComponentProps>`
+const ColumnContainer = styled.li<ColumnContainerProps>`
   width: 280px;
   min-width: 280px;
   ${props => props.height && `height: ${props.height}`};
@@ -21,7 +17,4 @@ export const ColumnComponent = styled.li<ColumnComponentProps>`
   align-items: center;
 `;
 
-export const ColumnLabel = styled.span`
-  font-size: 1.5rem;
-  color: white;
-`;
+export default ColumnContainer

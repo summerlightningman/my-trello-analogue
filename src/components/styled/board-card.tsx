@@ -1,12 +1,7 @@
 import styled from "styled-components";
+import {BoardCardProps} from "../../types/board-card";
 
-export interface BoardCardProps {
-    background?: string,
-    hoverBackground?: string,
-    activeBackground?: string
-}
-
-export const BoardCard = styled.li<BoardCardProps>`
+const BoardCard = styled.li<BoardCardProps>`
   width: 250px;
   height: 150px;
   
@@ -30,9 +25,4 @@ export const BoardCard = styled.li<BoardCardProps>`
   }
 `;
 
-export const BoardCardLabel = styled.span`
-  text-decoration: none;
-  font-family: "Century Gothic", sans-serif;
-  font-size: 32px;
-`;
-
+export default BoardCard

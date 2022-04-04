@@ -4,8 +4,9 @@ import styled from "styled-components";
 
 import {CardListItemProps} from "../../../types/card";
 import draggableTypes from "../../../types/draggable-types";
-import {CardComponent, CardLabel} from "../card";
 import CardDndSlot from "../card-dnd-slot/card-dnd-slot";
+import CardContainer from "../../styled/card-container";
+import CardLabel from "../../styled/card-label";
 
 interface CardItemContainerProps {
     isDragging: boolean
@@ -24,12 +25,12 @@ const CardListItem: FC<CardListItemProps> = ({card}) => {
 
     return (
         <CardItemContainer isDragging={isDragging}>
-            <CardComponent
+            <CardContainer
                 ref={cardDragRef}
                 isDragging={isDragging}
             >
                 <CardLabel>{card.name}</CardLabel>
-            </CardComponent>
+            </CardContainer>
             <CardDndSlot aboveCardId={card.id}/>
         </CardItemContainer>
     );
